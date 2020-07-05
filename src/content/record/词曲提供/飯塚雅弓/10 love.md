@@ -3,7 +3,7 @@ id: "10_love"
 title: "10 love"
 type: "record"
 date: "2013-03-30"
-artist: "饭冢雅弓"
+artist: "飯塚雅弓"
 categories: ["词曲提供"]
 recordNo: "TKCA-73111"
 recordPrice: "2,913円"
