@@ -40,7 +40,7 @@ const Records = ({ single, category, artists }: RecordsProp) => (
         }
         {
             artists.map(({ artist, records }) => (
-                <>
+                <React.Fragment key={artist}>
                     {artists.length > 1 && (
                         <Header as={single ? 'h2' : "h3"}>
                             <Header.Content>
@@ -48,7 +48,7 @@ const Records = ({ single, category, artists }: RecordsProp) => (
                             </Header.Content>
                         </Header>
                     )}
-                    <Card.Group fluid itemsPerRow={5} doubling>
+                    <Card.Group itemsPerRow={5} doubling>
                         {records.map(item =>
                             (
                                 <Card as={Link} key={item.id} to={item.slug}>
@@ -57,7 +57,7 @@ const Records = ({ single, category, artists }: RecordsProp) => (
                             )
                         )}
                     </Card.Group>
-                </>
+                </React.Fragment>
             ))
         }
     </>
@@ -79,7 +79,7 @@ const DiscographyLayout = ({ records }: DiscographyProps) => {
                 categories.length == 1 ?
                     <Records single {...categories[0]} />
                     : categories.map(prop => (
-                        <Records {...prop} />
+                        <Records key={prop.category} {...prop} />
                     ))
             }
         </>

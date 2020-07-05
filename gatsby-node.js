@@ -12,6 +12,14 @@ const { group } = require("console")
 //   const start = pathName.substring(0, end).lastIndexOf('/')
 //   return pathName.substring(start, end);
 // }
+Map.prototype.addListValue = function (key, value) {
+  let values = this.get(key);
+  if (!values) {
+    values = [];
+    this.set(key, values)
+  }
+  values.push(value);
+}
 
 const createPages = async (createPage, graphql, reporter) => {
 
@@ -228,26 +236,28 @@ const createPages = async (createPage, graphql, reporter) => {
   const recordListTemplate = require.resolve("./src/templates/RecordListTemplate.tsx")
   const discographyTemplate = require.resolve("./src/templates/DiscographyTemplate.tsx")
   const recordGroups = result.data.recordList.group;
+  const artistMap = new Map();
   recordGroups.forEach(recordGroup => {
     const category = recordGroup.fieldValue;
     const frontmatters = recordGroup.nodes.map(p => p.frontmatter);
     const g = _.groupBy(frontmatters, p => p.artist);
     const recordsMap = _.map(g, (value, key) => ({ artist: key, records: value }));
     if (recordsMap.length == 1) {
-      //单一分类
+      //主分类
       const { artist, records } = recordsMap[0];
+      artistMap.addListValue(artist, { category: category, records: records });
       createPage({
         path: `/discography/${_.kebabCase(category)}/`,
         component: recordListTemplate,
         context: {
           title: category,
-          category: category,
+          categories: Array.of(category),
           artist: artist,
           discographyIds: records.map(p => p.id)
         },
       })
     } else {
-      //分类
+      //子分类
       createPage({
         path: `/discography/${_.kebabCase(category)}/`,
         component: discographyTemplate,
@@ -262,7 +272,7 @@ const createPages = async (createPage, graphql, reporter) => {
           component: recordListTemplate,
           context: {
             title: artist,
-            category: category,
+            categories: Array.of(category),
             artist: artist,
             discographyIds: records.map(p => p.id)
           },
@@ -270,7 +280,28 @@ const createPages = async (createPage, graphql, reporter) => {
       });
 
     }
-  })
+  });
+
+
+  for (let [key, value] of artistMap.entries()) {
+    if (value.length == 1) {
+      continue;
+    }
+    const artist = key;
+    const categories = value.map(p => p.category);
+    const recordIds = value.flatMap(p => p.records).map(p => p.id);
+    createPage({
+      path: `/discography/${_.kebabCase(artist)}/`,
+      component: recordListTemplate,
+      context: {
+        title: artist,
+        categories: categories,
+        artist: artist,
+        discographyIds: recordIds
+      },
+    })
+  }
+
 
 }
 

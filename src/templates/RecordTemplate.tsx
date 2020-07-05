@@ -11,13 +11,15 @@ import {
 import _ from "lodash";
 import demo from "../images/demo.png"
 
-type RecordInfo = {
+interface RecordInfo {
   coverImage: string;
+  artist: string;
   recordNo: string;
   recordPrice: string;
   recordPublisher: string;
   recordType: string;
   recordReleaseDate: string;
+  categories: string[];
 }
 
 interface TemplateProps {
@@ -44,13 +46,15 @@ const MetaItem = ({ meta, name }: { meta: string, name: string }) => (
   name ? <List.Item>{meta}: {name}</List.Item> : <></>
 )
 
-const Record = ({ title, info, artist }: { title: string, info: RecordInfo, artist: string[] }) => (
+const Record = ({ title, info, artist }: { title: string, info: RecordInfo, artist: string }) => (
   <Card.Group centered>
     <Card>
       <CoverImage coverimage={info.coverImage} />
       <Card.Content>
         <Card.Header>{title}</Card.Header>
-        <Card.Meta><StaffLink type="singer" names={artist} /></Card.Meta>
+        <Card.Meta>
+          <Link to={`/discography/${_.kebabCase(artist)}/`}>{artist}</Link>
+        </Card.Meta>
         <Card.Description>
           <List>
             <MetaItem meta='编号' name={info.recordNo} />
@@ -75,9 +79,9 @@ class RecordTemplate extends Component<TemplateProps> {
 
   render() {
     const { record: { frontmatter, html }, songs: { nodes } } = this.props.data; // data.markdownRemark holds your post data
-    const { title, slug } = frontmatter;
+    const { title, slug, artist } = frontmatter;
     const songs = nodes.map(p => p.frontmatter)
-    const artist = [...new Set<string>(songs.flatMap(p => p.singer))]
+    //const artist = [...new Set<string>(songs.flatMap(p => p.singer))]
     return (
       <Layout path={slug}>
         <SEO title={title} />
@@ -111,9 +115,6 @@ class RecordTemplate extends Component<TemplateProps> {
               }
             </List>
           </Grid.Column>
-          {/* <Grid.Column mobile={16} computer={3} tablet={5} >
-            <SideBar />
-          </Grid.Column> */}
         </Grid>
       </Layout>
     )
@@ -134,6 +135,8 @@ export const pageQuery = graphql`
         slug
         title
         coverImage
+        artist
+        categories
         recordNo
         recordPrice
         recordPublisher

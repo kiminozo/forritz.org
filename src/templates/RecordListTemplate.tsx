@@ -27,7 +27,7 @@ interface SongInfo {
 
 interface TemplateProps {
   pageContext: {
-    category: string
+    categories: string[]
     artist: string
     title: string
   }
@@ -113,10 +113,10 @@ export default function Template(props: TemplateProps) {
 }
 
 export const pageQuery = graphql`
-query ($category: String, $artist:String, $discographyIds:[String]) {
+query ($categories: [String], $artist:String, $discographyIds:[String]) {
   records: allMarkdownRemark(
       sort: {fields: [frontmatter___order], order: ASC}, 
-      filter: {frontmatter: {categories: {in: [$category]}, artist: {eq: $artist}}}) {
+      filter: {frontmatter: {categories: {in: $categories}, artist: {eq: $artist}}}) {
     totalCount
     recordGroup: nodes {
       frontmatter {
