@@ -9493,6 +9493,11 @@ jpeg-js@^0.3.4:
   resolved "https://registry.npm.taobao.org/jpeg-js/download/jpeg-js-0.3.7.tgz?cache=0&sync_timestamp=1587651302595&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fjpeg-js%2Fdownload%2Fjpeg-js-0.3.7.tgz#471a89d06011640592d314158608690172b1028d"
   integrity sha1-RxqJ0GARZAWS0xQVhghpAXKxAo0=
 
+jquery@x.*:
+  version "3.5.1"
+  resolved "https://registry.npm.taobao.org/jquery/download/jquery-3.5.1.tgz?cache=0&sync_timestamp=1588633811418&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fjquery%2Fdownload%2Fjquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
+  integrity sha1-17TQjhv9uGrS8aPQOeoXMEcXq7U=
+
 js-base64@^2.1.8:
   version "2.5.2"
   resolved "https://registry.npm.taobao.org/js-base64/download/js-base64-2.5.2.tgz#313b6274dda718f714d00b3330bbae6e38e90209"
@@ -13415,6 +13420,13 @@ selfsigned@^1.10.7:
   integrity sha1-2lgZ/QSdVXTyjoipvMbbxubzkGs=
   dependencies:
     node-forge "0.9.0"
+
+semantic-ui-css@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.npm.taobao.org/semantic-ui-css/download/semantic-ui-css-2.4.1.tgz#f5aea39fafb787cbd905ec724272a3f9cba9004a"
+  integrity sha1-9a6jn6+3h8vZBexyQnKj+cupAEo=
+  dependencies:
+    jquery x.*
 
 semantic-ui-react@^0.88.2:
   version "0.88.2"
