@@ -27,7 +27,6 @@ interface TemplateProps {
     }
 }
 
-export const Head = (props: TemplateProps) => <SEO title={props.title} />
 
 
 const DiscographyTemplate = (props: TemplateProps) => {
@@ -48,6 +47,9 @@ const DiscographyTemplate = (props: TemplateProps) => {
         </Layout>
     )
 }
+
+export const Head = (props: TemplateProps & ContextProps) => <SEO title={props.pageContext.category} />
+
 
 //export { DiscographyTemplate, TemplateProps };
 export default function Template(props: TemplateProps & ContextProps) {

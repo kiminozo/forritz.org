@@ -74,7 +74,7 @@ function SEO({ description, lang = `zh-CN`, meta = [], title }: SEOProps): any {
   return (
     <>
       <html lang={lang} />
-      <title>{`${title.length > 0 ? `${title} | ` : ""}${siteMetadata.title} | ${siteMetadata.description}`}</title>
+      <title>{`${title} | ${siteMetadata.title} | ${siteMetadata.description}`}</title>
       {
         constantMeta.map(item => (<meta name="description" content={item.content} />))
       }
