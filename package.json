@@ -2,7 +2,7 @@
   "name": "forritz.org",
   "private": true,
   "description": "",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "author": "kiminozo<kiminozoeien@gmail.com>",
   "dependencies": {
     "anchor-js": "^5.0.0",
@@ -53,10 +53,10 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby clean && gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "npm run develop",
+    "start": "gatsby clean && gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
