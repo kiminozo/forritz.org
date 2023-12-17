@@ -27,12 +27,14 @@ interface TemplateProps {
     }
 }
 
+export const Head = (props: TemplateProps) => <SEO title={props.title} />
+
+
 const DiscographyTemplate = (props: TemplateProps) => {
     const { title, path, data: { records: { nodes } } } = props;
     const records = nodes.map(p => p.frontmatter);
     return (
         <Layout path={path}>
-            <SEO title={title} />
             <Grid>
                 <Grid.Column mobile={16} computer={11} tablet={11}>
                     <h1>{title}</h1>

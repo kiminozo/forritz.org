@@ -44,6 +44,9 @@ function getPath(basePath: string, activePage: string | number | undefined) {
     return path;
 }
 
+export const Head = (props: TemplateProps) => <SEO title={props.pageContext.category} />
+
+
 const CategoriesTemplatePage = (props: TemplateProps) => {
     const {
         pageContext: { category, basePath, activePage, totalPages },
@@ -54,8 +57,6 @@ const CategoriesTemplatePage = (props: TemplateProps) => {
     } = props;
     return (
         <Layout path={getPath(basePath, 1)}>
-            <SEO title={category} />
-
             <Grid container stackable>
                 <Grid.Column mobile={16} computer={11} tablet={11}>
                     <Header as="h1" >

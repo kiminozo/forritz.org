@@ -50,6 +50,8 @@ interface TemplateProps {
   }
 }
 
+export const Head = (props: TemplateProps) => <SEO title={props.pageContext.title} />
+
 
 const RecordListTemplate = (props: TemplateProps) => {
   const { pageContext: { artist, title }, data } = props;
@@ -58,7 +60,6 @@ const RecordListTemplate = (props: TemplateProps) => {
   const songs = songGroup.map(p => p.frontmatter);
   return (
     <Layout path={`/discography/${_.kebabCase(title)}/`}>
-      <SEO title={title} />
       <Grid>
         <Grid.Column mobile={16} computer={11} tablet={11}>
           <Header as="h1">{title}</Header>

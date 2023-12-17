@@ -26,6 +26,9 @@ type CategoriesPageProp = {
     }
 }
 
+export const Head = () => <SEO title="Categories" />
+
+
 const CategoriesPage = (props: CategoriesPageProp) => {
     const {
         data: { allMarkdownRemark: { group },
@@ -34,7 +37,6 @@ const CategoriesPage = (props: CategoriesPageProp) => {
     } = props;
     return (
         <Layout>
-            <SEO title={title} />
             <div>
                 <h1>Categories</h1>
                 <Menu vertical>

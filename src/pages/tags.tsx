@@ -25,6 +25,9 @@ type TagsPageProp = {
     }
 }
 
+export const Head = () => <SEO title="Tags" />
+
+
 const TagsPage = (props: TagsPageProp) => {
     const {
         data: { allMarkdownRemark: { group },
@@ -33,7 +36,6 @@ const TagsPage = (props: TagsPageProp) => {
     } = props;
     return (
         <Layout>
-            <SEO title={title} />
             <div>
                 <h1>Tags</h1>
                 <Label.Group >

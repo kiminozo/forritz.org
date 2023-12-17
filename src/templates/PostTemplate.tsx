@@ -38,12 +38,14 @@ const sidebarStyle = {
   paddingTop: '0.1em',
 }
 
+export const Head = (props: TemplateProps) => <SEO title={props.data.markdownRemark.frontmatter.title} />
+
+
 class PostTemplate extends Component<TemplateProps> {
 
   constructor(props: Readonly<TemplateProps>) {
     super(props);
   }
-
 
 
   renderTags() {
@@ -68,7 +70,6 @@ class PostTemplate extends Component<TemplateProps> {
 
     return (
       <Layout path={frontmatter.slug}>
-        <SEO title={frontmatter.title} />
         <Grid>
           <Grid.Column mobile={16} computer={11} tablet={11}>
             <Header as="h1">{frontmatter.title}</Header>

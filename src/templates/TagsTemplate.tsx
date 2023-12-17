@@ -45,13 +45,15 @@ interface TemplateProps {
 //     }),
 // }
 
+export const Head = (props: TemplateProps) => <SEO title={props.pageContext.tag} />
+
+
 const TagsTemplatePage = (props: TemplateProps) => {
 
     const { pageContext: { tag },
         data: { allMarkdownRemark: { nodes, totalCount } } } = props;
     return (
         <Layout>
-            <SEO title={tag} />
             <Grid container stackable>
                 <Grid.Column mobile={16} computer={11} tablet={11}>
                     <Header as="h1">
@@ -69,7 +71,7 @@ const TagsTemplatePage = (props: TemplateProps) => {
                     </List>
                     <Button as={Link} basic color='blue' to="/tags" icon labelPosition='left'>
                         全部标签
-                            <Icon name='arrow left' />
+                        <Icon name='arrow left' />
                     </Button>
                 </Grid.Column>
                 <Grid.Column mobile={16} computer={5} tablet={5} >

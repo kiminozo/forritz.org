@@ -19,6 +19,7 @@ interface Props extends PageProps {
     }
 }
 
+export const Head = () => <SEO title="唱片集" />
 
 
 const DiscographyPage = (props: Props) => {
@@ -27,7 +28,6 @@ const DiscographyPage = (props: Props) => {
 
     return (
         <Layout path={props.location.pathname}>
-            <SEO title="唱片集" />
             <Grid>
                 <Grid.Column mobile={16} computer={11} tablet={11}>
                     <h1>唱片集</h1>

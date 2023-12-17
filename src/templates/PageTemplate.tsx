@@ -118,9 +118,9 @@ class TemplatePage extends Component<TemplateProps, TemplateState> {
                   </Accordion.Title>
                   <Accordion.Content as={Menu.Menu} active={true}>
                     {h1.child.map(h2 =>
-                      (<Menu.Item href={`#${h2.id}`}
-                        content={h2.value} active={h2.id === activeId}
-                      />)
+                    (<Menu.Item href={`#${h2.id}`}
+                      content={h2.value} active={h2.id === activeId}
+                    />)
                     )}
                   </Accordion.Content>
                 </Menu.Item>
@@ -169,7 +169,6 @@ class TemplatePage extends Component<TemplateProps, TemplateState> {
 
     return (
       <Layout>
-        <SEO title={frontmatter.title} />
         {frontmatter.toc ?
           (<Visibility onUpdate={this.handleUpdate}>
             {body}
@@ -205,6 +204,9 @@ class TemplatePage extends Component<TemplateProps, TemplateState> {
 export default function Template({ data }: TemplateProps) {
   return (<TemplatePage data={data} />)
 }
+
+export const Head = (props: TemplateProps) => <SEO title={props.data.markdownRemark.frontmatter.title} />
+
 
 // export const pageQuery = graphql`
 //   query($slug: String!) {

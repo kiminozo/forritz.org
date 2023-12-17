@@ -70,6 +70,9 @@ const Record = ({ title, info, artist }: { title: string, info: RecordInfo, arti
   </Card.Group>
 )
 
+export const Head = (props: TemplateProps) => <SEO title={props.data.record.frontmatter.title} />
+
+
 class RecordTemplate extends Component<TemplateProps> {
 
   constructor(props: Readonly<TemplateProps>) {
@@ -85,7 +88,6 @@ class RecordTemplate extends Component<TemplateProps> {
     //const artist = [...new Set<string>(songs.flatMap(p => p.singer))]
     return (
       <Layout path={slug}>
-        <SEO title={title} />
         <Grid>
           <Grid.Column mobile={16} computer={4} tablet={4}>
             <Record title={title} artist={artist} info={frontmatter} />
@@ -100,25 +102,25 @@ class RecordTemplate extends Component<TemplateProps> {
             <h1>曲目列表</h1>
             <List divided relaxed>
               {songs.map(song =>
-                (
-                  <List.Item key={song.slug}>
-                    <List.Icon name="music" size="large" color='blue' />
-                    <List.Content>
-                      <List.Header as="h3">
-                        <Link to={song.slug}>{song.title}</Link>
-                      </List.Header>
+              (
+                <List.Item key={song.slug}>
+                  <List.Icon name="music" size="large" color='blue' />
+                  <List.Content>
+                    <List.Header as="h3">
+                      <Link to={song.slug}>{song.title}</Link>
+                    </List.Header>
+                    <List.Description>
+                      <StaffList staff={song} />
+                    </List.Description>
+                    {
+                      song.remarks &&
                       <List.Description>
-                        <StaffList staff={song} />
+                        <Label basic color='teal'>{song.remarks}</Label>
                       </List.Description>
-                      {
-                        song.remarks &&
-                        <List.Description>
-                          <Label basic color='teal'>{song.remarks}</Label>
-                        </List.Description>
-                      }
-                    </List.Content>
-                  </List.Item>
-                ))
+                    }
+                  </List.Content>
+                </List.Item>
+              ))
               }
             </List>
           </Grid.Column>

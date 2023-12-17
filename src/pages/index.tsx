@@ -73,9 +73,10 @@ const AlbumCard = ({ records }: { records: Record[] }) => (
   </Card.Group>
 )
 
+export const Head = () => <SEO title="首页" />
+
 const IndexPage = (props: Props) => (
   <Layout path={props.location.pathname}>
-    <SEO title="首页" />
     <Grid>
       <Grid.Column mobile={16} computer={4} tablet={5}>
         <RitzCard />
