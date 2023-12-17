@@ -120,26 +120,29 @@ export default function CategoriesTemplate({ pageContext, data }: TemplateProps)
     return (<CategoriesTemplatePage pageContext={pageContext} data={data} />)
 }
 
-export const query = graphql`
-  query($category: String, $skip: Int!, $limit: Int!) {
-     meta: markdownRemark(frontmatter: {type: {eq: "meta"}, title: {eq: $category}}) {
-      frontmatter {
-        id
-        title
-      }
-      info:html
+export const query = graphql`query ($category: String, $skip: Int!, $limit: Int!) {
+  meta: markdownRemark(frontmatter: {type: {eq: "meta"}, title: {eq: $category}}) {
+    frontmatter {
+      id
+      title
     }
-    posts: allMarkdownRemark(limit: $limit, skip: $skip, sort: {fields: [frontmatter___slug], order: ASC}, filter: {frontmatter: {categories: {in: [$category]}}}) {
-      totalCount
-      nodes {
-        frontmatter {
-          slug
-          title
-          categories
-          tags
-        }
-        excerpt(truncate: true)
+    info: html
+  }
+  posts: allMarkdownRemark(
+    limit: $limit
+    skip: $skip
+    sort: {frontmatter: {slug: ASC}}
+    filter: {frontmatter: {categories: {in: [$category]}}}
+  ) {
+    totalCount
+    nodes {
+      frontmatter {
+        slug
+        title
+        categories
+        tags
       }
+      excerpt(truncate: true)
     }
   }
-`
+}`

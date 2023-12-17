@@ -135,36 +135,37 @@ export default function Template({ data }: TemplateProps) {
 }
 
 
-export const pageQuery = graphql`
-  query($id: String!){
-    record: markdownRemark(frontmatter: {id: {eq: $id}}) {
-      html
-      frontmatter {
-        id
-        slug
-        title
-        coverImage
-        artist
-        categories
-        recordNo
-        recordPrice
-        recordPublisher
-        recordType
-        recordReleaseDate
-      }
+export const pageQuery = graphql`query ($id: String!) {
+  record: markdownRemark(frontmatter: {id: {eq: $id}}) {
+    html
+    frontmatter {
+      id
+      slug
+      title
+      coverImage
+      artist
+      categories
+      recordNo
+      recordPrice
+      recordPublisher
+      recordType
+      recordReleaseDate
     }
-    songs: allMarkdownRemark(filter: {frontmatter: {type: {eq: "song"}, discographyId: {glob: $id}}}, sort: {fields: frontmatter___order}) {
-      nodes {
-        frontmatter {
-          title
-          slug
-          songWriter:songwriter
-          lyricWriter:lyricwriter
-          singer
-          arranger
-          remarks
-        }
+  }
+  songs: allMarkdownRemark(
+    filter: {frontmatter: {type: {eq: "song"}, discographyId: {glob: $id}}}
+    sort: {frontmatter: {order: ASC}}
+  ) {
+    nodes {
+      frontmatter {
+        title
+        slug
+        songWriter: songwriter
+        lyricWriter: lyricwriter
+        singer
+        arranger
+        remarks
       }
     }
   }
-`
+}`

@@ -53,18 +53,16 @@ const CategoriesPage = (props: CategoriesPageProp) => {
 }
 export default CategoriesPage
 
-export const CategoriesQuery = graphql`
-{
-    site {
-        siteMetadata {
-            title
-        }
+export const CategoriesQuery = graphql`{
+  site {
+    siteMetadata {
+      title
     }
-    allMarkdownRemark(limit: 2000, filter: { frontmatter: { type: { eq: null } } }) {
-        group(field: frontmatter___categories) {
-            fieldValue
-            totalCount
-        }
+  }
+  allMarkdownRemark(limit: 2000, filter: {frontmatter: {type: {eq: null}}}) {
+    group(field: {frontmatter: {categories: SELECT}}) {
+      fieldValue
+      totalCount
     }
-}
-`
+  }
+}`

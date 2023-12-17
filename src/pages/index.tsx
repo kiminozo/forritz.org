@@ -128,18 +128,17 @@ const IndexPage = (props: Props) => (
 
 export default IndexPage
 
-export const query = graphql`
-  {
-    records:allMarkdownRemark(filter: {frontmatter: {id: {in: ["sincerely-yours","joyful-calendar", "a-happy-life",
-    "ritzberry-fields","rain-or-shine","ohayou","lovehina-okazaki-collection","life-is-lovely","for-ritz",
-    "love-and-life","morning-grace","melodic-hard-cure"]}, type: {eq: "record"}}}, sort: {fields: frontmatter___order}) {
-      nodes {
-        frontmatter {
-          coverImage
-          title
-          slug
-        }
+export const query = graphql`{
+  records: allMarkdownRemark(
+    filter: {frontmatter: {id: {in: ["sincerely-yours", "joyful-calendar", "a-happy-life", "ritzberry-fields", "rain-or-shine", "ohayou", "lovehina-okazaki-collection", "life-is-lovely", "for-ritz", "love-and-life", "morning-grace", "melodic-hard-cure"]}, type: {eq: "record"}}}
+    sort: {frontmatter: {order: ASC}}
+  ) {
+    nodes {
+      frontmatter {
+        coverImage
+        title
+        slug
       }
     }
   }
-`
+}`

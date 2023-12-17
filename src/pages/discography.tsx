@@ -43,19 +43,20 @@ const DiscographyPage = (props: Props) => {
 }
 export default DiscographyPage
 
-export const query = graphql`
-  {
-    records: allMarkdownRemark(filter: {frontmatter: {type: {eq: "record"}}}, sort: {fields: frontmatter___order}) {
-      nodes {
-        frontmatter {
-          coverImage
-          id
-          title
-          slug
-          artist
-          categories
-        }
+export const query = graphql`{
+  records: allMarkdownRemark(
+    filter: {frontmatter: {type: {eq: "record"}}}
+    sort: {frontmatter: {order: ASC}}
+  ) {
+    nodes {
+      frontmatter {
+        coverImage
+        id
+        title
+        slug
+        artist
+        categories
       }
     }
   }
-`
+}`

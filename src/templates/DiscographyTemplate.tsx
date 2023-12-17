@@ -56,19 +56,20 @@ export default function Template(props: TemplateProps & ContextProps) {
     return (<DiscographyTemplate {...props} path={path} title={category} />)
 }
 
-export const query = graphql`
-  query ($category: String) {
-    records: allMarkdownRemark(filter: {frontmatter: {type: {eq: "record"}, categories: {glob: $category}}}, sort: {fields: frontmatter___order}) {
-      nodes {
-        frontmatter {
-          coverImage
-          id
-          title
-          slug
-          artist
-          categories
-        }
+export const query = graphql`query ($category: String) {
+  records: allMarkdownRemark(
+    filter: {frontmatter: {type: {eq: "record"}, categories: {glob: $category}}}
+    sort: {frontmatter: {order: ASC}}
+  ) {
+    nodes {
+      frontmatter {
+        coverImage
+        id
+        title
+        slug
+        artist
+        categories
       }
     }
   }
-`
+}`

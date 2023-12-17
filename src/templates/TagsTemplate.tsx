@@ -87,20 +87,18 @@ export default function TagsTemplate({ pageContext, data }: TemplateProps) {
     return (<TagsTemplatePage pageContext={pageContext} data={data} />)
 }
 
-export const pageQuery = graphql`
-  query($tag: String) {
-    allMarkdownRemark(
-      limit: 2000
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { tags: { in: [$tag] } } }
-    ) {
-      totalCount
-      nodes {
-          frontmatter {
-            slug
-            title
-          }
+export const pageQuery = graphql`query ($tag: String) {
+  allMarkdownRemark(
+    limit: 2000
+    sort: {frontmatter: {date: DESC}}
+    filter: {frontmatter: {tags: {in: [$tag]}}}
+  ) {
+    totalCount
+    nodes {
+      frontmatter {
+        slug
+        title
       }
     }
   }
-`
+}`

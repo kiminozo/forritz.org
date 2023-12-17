@@ -113,11 +113,11 @@ export default function Template(props: TemplateProps) {
   return (<RecordListTemplate {...props} />)
 }
 
-export const pageQuery = graphql`
-query ($categories: [String], $artist:String, $discographyIds:[String]) {
+export const pageQuery = graphql`query ($categories: [String], $artist: String, $discographyIds: [String]) {
   records: allMarkdownRemark(
-      sort: {fields: [frontmatter___order], order: ASC}, 
-      filter: {frontmatter: {categories: {in: $categories}, artist: {eq: $artist}}}) {
+    sort: {frontmatter: {order: ASC}}
+    filter: {frontmatter: {categories: {in: $categories}, artist: {eq: $artist}}}
+  ) {
     totalCount
     recordGroup: nodes {
       frontmatter {
@@ -133,18 +133,18 @@ query ($categories: [String], $artist:String, $discographyIds:[String]) {
       }
     }
   }
-
-  songs:allMarkdownRemark(sort: {fields: [frontmatter___order], order: ASC}, filter: {frontmatter: {type: {eq: "song"}, discographyId: {in: $discographyIds}}}) {
-          totalCount
+  songs: allMarkdownRemark(
+    sort: {frontmatter: {order: ASC}}
+    filter: {frontmatter: {type: {eq: "song"}, discographyId: {in: $discographyIds}}}
+  ) {
+    totalCount
     songGroup: nodes {
-          frontmatter {
-            slug
-            title
-            singer
-            discographyId
+      frontmatter {
+        slug
+        title
+        singer
+        discographyId
       }
     }
   }
-}
-
-`
+}`
