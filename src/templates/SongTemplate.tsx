@@ -5,7 +5,7 @@ import { SEO, Layout, CC, License } from "../components";
 import RecordGroup from "../components/RecordGroup"
 import StaffList, { StaffInfo } from '../components/StaffList'
 import {
-  Icon, Grid, Header, Container, Segment, Divider, Responsive,
+  Icon, Grid, Header, Container, Segment, Divider,
   Button, Card, Image, Label, Item, List
 } from 'semantic-ui-react'
 import _ from "lodash";

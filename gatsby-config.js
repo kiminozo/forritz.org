@@ -2,8 +2,8 @@ module.exports = {
   siteMetadata: {
     title: `For RITZ`,
     description: `岡崎律子的非官方中文资料站`,
-    author: `@kiminozo`,
-    siteUrl: `https://www.forritz.org`,
+    author: `@piova`,
+    siteUrl: `https://forritz.org`,
   },
   plugins: [
     `gatsby-plugin-typescript`,

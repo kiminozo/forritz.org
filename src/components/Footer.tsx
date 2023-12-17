@@ -21,7 +21,7 @@ const Footer = () => (
                             <List link >
                                 <List.Item as='a' href="https://bbs.forritz.org" >加入讨论</List.Item>
                                 <List.Item as={Link} to='/about'>特别感谢</List.Item>
-                                <List.Item as='a' href='/sitemap.xml'>网站地图</List.Item>
+                                <List.Item as='a' href='/sitemap-index.xml'>网站地图</List.Item>
                             </List>
                         </Grid.Column>
                         <Grid.Column width={3}>
@@ -40,7 +40,7 @@ const Footer = () => (
                                 </List.Item> */}
                                 <List.Item>
                                     © 2006-{new Date().getFullYear()},
-                                 <Link to="/">For RITZ</Link>
+                                    <Link to="/">For RITZ</Link>
                                     {` `}All rights reserved.
                                 </List.Item>
                                 <List.Item>
