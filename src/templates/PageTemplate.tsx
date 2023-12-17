@@ -6,7 +6,7 @@ import { SEO, Layout, TagsLine, CC, License } from "../components";
 import {
   Button, Grid, Header, Ref, Segment, Rail, Accordion,
   Label, Divider, Message,
-  Menu, Icon, Sticky, Visibility, VisibilityEventData, Responsive, Container
+  Menu, Icon, Sticky, Visibility, VisibilityEventData, Container
 } from 'semantic-ui-react'
 import _ from "lodash";
 
@@ -80,13 +80,13 @@ class TemplatePage extends Component<TemplateProps, TemplateState> {
     }
   }
 
-  componentDidMount() {
-    const { headings } = this.props.data.markdownRemark;
-    headings.forEach(element => {
-      let offset = document.getElementById(element.id)?.offsetTop ?? 0;
-      this.headerInfos.push({ id: element.id, offset });
-    });
-  }
+  // componentDidMount() {
+  //   const { headings } = this.props.data.markdownRemark;
+  //   // headings.forEach(element => {
+  //   //   let offset = document.getElementById(element.id)?.offsetTop ?? 0;
+  //   //   this.headerInfos.push({ id: element.id, offset });
+  //   // });
+  // }
 
   renderMenu(headings: Headings[]) {
     if (headings.length == 0) {
@@ -107,7 +107,7 @@ class TemplatePage extends Component<TemplateProps, TemplateState> {
     })
 
     return (
-      <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+      <Container>
         <Rail position='right'>
           <Sticky context={this.contextRef} offset={20}>
             <Menu as={Accordion} fluid style={sidebarStyle} text vertical>
@@ -129,7 +129,7 @@ class TemplatePage extends Component<TemplateProps, TemplateState> {
             </Menu>
           </Sticky>
         </Rail>
-      </Responsive >
+      </Container>
     )
   }
 
