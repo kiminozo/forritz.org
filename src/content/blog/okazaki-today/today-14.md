@@ -4,7 +4,7 @@ date: "2011-05-07"
 categories: ["岡崎Today"]
 slug: "/okazaki-today/today-14"
 tags: ["新专辑","烫裙子"]
-license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/today/today14.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://love.life.coocan.jp/today/today14.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/suwatte.jpg)](./images/suwatte.jpg)

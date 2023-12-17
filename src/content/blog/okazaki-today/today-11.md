@@ -4,7 +4,7 @@ date: "2011-05-07"
 categories: ["岡崎Today"]
 slug: "/okazaki-today/today-11"
 tags: ["专辑","坏人","幼稚園","旅行","笔记本","艺人","采访"]
-license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/today/today11.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://love.life.coocan.jp/today/today11.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/ascii.jpg)](./images/ascii.jpg)  

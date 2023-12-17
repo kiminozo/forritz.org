@@ -4,7 +4,7 @@ date: "2010-11-07"
 categories: ["Photo日记"]
 slug: "/photo-diary/photo-15"
 tags: []
-license: {type: "translated",author: "岡崎律子",translator: "ココロの雨",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/photo/photo15.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "ココロの雨",reproduced-url: "http://love.life.coocan.jp/photo/photo15.html",reproduced-website: "岡崎律子Book"}
 ---
 
 **2001.3.24 NKホール**  

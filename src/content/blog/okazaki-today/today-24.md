@@ -4,7 +4,7 @@ date: "2011-05-08"
 categories: ["岡崎Today"]
 slug: "/okazaki-today/today-24"
 tags: ["おはよう","工作室"]
-license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/today/today24.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://love.life.coocan.jp/today/today24.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/today24.jpg)](./images/today24.jpg)

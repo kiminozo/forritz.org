@@ -4,7 +4,7 @@ date: "2011-05-04"
 categories: ["岡崎Today"]
 slug: "/okazaki-today/today-04"
 tags: ["1997年1月","占卜","喜欢","懒惰","甜面圈和咖啡","竞争"]
-license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/today/today4.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://love.life.coocan.jp/today/today4.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/pola.gif)](./images/pola.gif)

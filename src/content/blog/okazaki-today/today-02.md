@@ -4,7 +4,7 @@ date: "2011-05-04"
 categories: ["岡崎Today"]
 slug: "/okazaki-today/today-02"
 tags: ["烦恼","生活","网站","雨"]
-license: {type: "reproduced",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/today/today2.html",reproduced-website: "岡崎律子Book"}
+license: {type: "reproduced",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://love.life.coocan.jp/today/today2.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/753.gif)](./images/753.gif)

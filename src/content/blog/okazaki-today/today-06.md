@@ -4,7 +4,7 @@ date: "2011-05-04"
 categories: ["岡崎Today"]
 slug: "/okazaki-today/today-06"
 tags: ["公园","温柔","豪斯登堡"]
-license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/today/today6.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://love.life.coocan.jp/today/today6.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/fuusha.gif)](./images/fuusha.gif)  

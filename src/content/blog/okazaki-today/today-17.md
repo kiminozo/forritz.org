@@ -4,7 +4,7 @@ date: "2011-05-07"
 categories: ["岡崎Today"]
 slug: "/okazaki-today/today-17"
 tags: ["作息","出门","生活","言行","记事本"]
-license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/today/today17.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://love.life.coocan.jp/today/today17.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/curtain2.jpg)](./images/curtain2.jpg)  

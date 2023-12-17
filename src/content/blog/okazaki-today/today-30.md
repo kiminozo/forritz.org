@@ -4,7 +4,7 @@ date: "2011-08-01"
 categories: ["岡崎Today"]
 slug: "/okazaki-today/today-30"
 tags: ["喜久子","小森まなみ","雨"]
-license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/today/today30.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://love.life.coocan.jp/today/today30.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/today27.jpg)](./images/today27.jpg)

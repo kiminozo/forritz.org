@@ -4,7 +4,7 @@ date: "2020-09-07"
 categories: ["岡崎Today"]
 slug: "/okazaki-today/today-33"
 tags: ["感冒","おはよう","青空","春が来た","Tokyo-FM","朋友"]
-license: {type: "translated",author: "岡崎律子",translator: "貓总",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/today/today33.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "貓总",reproduced-url: "http://love.life.coocan.jp/today/today33.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/today32.jpg)](./images/today32.jpg)

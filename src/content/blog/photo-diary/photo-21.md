@@ -4,7 +4,7 @@ date: "2010-11-07"
 categories: ["Photo日记"]
 slug: "/photo-diary/photo-21"
 tags: []
-license: {type: "translated",author: "岡崎律子",translator: "ココロの雨",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/photo/photo.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "ココロの雨",reproduced-url: "http://love.life.coocan.jp/photo/photo.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/meg-na1.jpg "meg-na1")](./images/meg-na1.jpg)[![](./images/meg-na2.jpg "meg-na2")](./images/meg-na2.jpg)  
