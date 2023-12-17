@@ -34,5 +34,4 @@ const CC = ({ license }: { license?: License }) => {
     )
 };
 
-export { License }
 export default CC
