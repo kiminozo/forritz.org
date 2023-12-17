@@ -1,5 +1,5 @@
 import { useStaticQuery, graphql } from "gatsby"
-import { FluidObject } from "gatsby-image"
+import { ImageDataLike } from "gatsby-plugin-image"
 
 interface CoverImageInfo {
   relativePath: string
@@ -7,10 +7,7 @@ interface CoverImageInfo {
   publicURL: string
   extension: string
   base: string
-  image: {
-    fluid: FluidObject
-    size: FluidObject
-  }
+  image: ImageDataLike
 }
 
 interface Data {
@@ -29,23 +26,27 @@ interface Data {
 //   }
 // `
 
-export const query = graphql`
-  {
-    coverImages: allFile(filter: {relativeDirectory: {regex: "/record.+/"}, extension: {in: ["png","jpg"]}}) {
-      nodes {
-        name
-        publicURL
-        extension
-        base
-        image:childImageSharp {
-          fluid(maxWidth: 300, maxHeight: 300, cropFocus: CENTER) {
-            ...GatsbyImageSharpFluid_withWebp
-          }
-        }
+export const query = graphql`{
+  coverImages: allFile(
+    filter: {relativeDirectory: {regex: "/record.+/"}, extension: {in: ["png", "jpg"]}}
+  ) {
+    nodes {
+      name
+      publicURL
+      extension
+      base
+      image: childImageSharp {
+        gatsbyImageData(
+          width: 300
+          height: 300
+          transformOptions: {cropFocus: CENTER}
+          layout: CONSTRAINED,
+          placeholder: BLURRED
+        )
       }
     }
   }
-`
+}`
 
 export const useCoverImagesData = (): CoverImageInfo[] => {
   const data = useStaticQuery<Data>(query)

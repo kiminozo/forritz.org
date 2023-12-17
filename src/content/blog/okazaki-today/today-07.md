@@ -4,7 +4,7 @@ date: "2011-05-04"
 categories: ["岡崎Today"]
 slug: "/okazaki-today/today-07"
 tags: ["信","写真集","哭","电影"]
-license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/today/today7.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://love.life.coocan.jp/today/today7.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/kasai2.gif)](./images/kasai2.gif)

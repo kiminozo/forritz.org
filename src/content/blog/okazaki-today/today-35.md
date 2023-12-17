@@ -4,7 +4,7 @@ date: "2020-09-07"
 categories: ["岡崎Today"]
 slug: "/okazaki-today/today-35"
 tags: ["林原","演奏会","吃","エレナー","饭冢雅弓","麻绩村真由子","栗子"]
-license: {type: "translated",author: "岡崎律子",translator: "貓总",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/today/today35.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "貓总",reproduced-url: "http://love.life.coocan.jp/today/today35.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/today35.jpg)](./images/today32.jpg)

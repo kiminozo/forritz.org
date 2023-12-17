@@ -4,7 +4,7 @@ date: "2020-09-04"
 categories: ["岡崎Today"]
 slug: "/okazaki-today/today-31"
 tags: ["井上喜久子","日剧","灵感","游泳"]
-license: {type: "translated",author: "岡崎律子",translator: "貓总",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/today/today31.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "貓总",reproduced-url: "http://love.life.coocan.jp/today/today31.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/today27.jpg)](./images/today27.jpg)

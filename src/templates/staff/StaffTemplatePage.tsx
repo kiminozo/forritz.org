@@ -34,6 +34,9 @@ function getPath(basePath: string, activePage: string | number | undefined) {
     return path;
 }
 
+export const Head = (props: TemplateProps) => <SEO title={props.title} />
+
+
 export class StaffTemplatePage extends Component<TemplateProps> {
     render() {
         const { title,
@@ -45,24 +48,23 @@ export class StaffTemplatePage extends Component<TemplateProps> {
         //     } tagged with "${staff}"`
         return (
             <Layout path="songs">
-                <SEO title={title} />
                 <h1>{title}</h1>
                 <h1>曲目列表</h1>
                 <List divided relaxed>
                     {nodes.map(({ song }) =>
-                        (
-                            <List.Item key={song.slug}>
-                                <List.Icon name="music" size="large" color='blue' />
-                                <List.Content>
-                                    <List.Header as="h3">
-                                        <Link to={song.slug}>{song.title}</Link>
-                                    </List.Header>
-                                    <List.Description>
-                                        <StaffList key={song.slug} staff={song} />
-                                    </List.Description>
-                                </List.Content>
-                            </List.Item>
-                        ))
+                    (
+                        <List.Item key={song.slug}>
+                            <List.Icon name="music" size="large" color='blue' />
+                            <List.Content>
+                                <List.Header as="h3">
+                                    <Link to={song.slug}>{song.title}</Link>
+                                </List.Header>
+                                <List.Description>
+                                    <StaffList key={song.slug} staff={song} />
+                                </List.Description>
+                            </List.Content>
+                        </List.Item>
+                    ))
                     }
                 </List>
                 {totalPages > 1 &&

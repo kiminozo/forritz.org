@@ -1,5 +1,4 @@
 import React from "react"
-import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 //import { SiteMetaQuery } from "../graphql"
 
@@ -65,15 +64,21 @@ function SEO({ description, lang = `zh-CN`, meta = [], title }: SEOProps): any {
     },
   ]
 
+  // htmlAttributes={{
+  //   lang,
+  // }}
+  // title={title}
+  // titleTemplate={`%s | ${siteMetadata.title} | ${siteMetadata.description}`}
+  // meta={constantMeta.concat(meta)}
+
   return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
-      titleTemplate={`%s | ${siteMetadata.title} | ${siteMetadata.description}`}
-      meta={constantMeta.concat(meta)}
-    />
+    <>
+      <html lang={lang} />
+      <title>{`${title} | ${siteMetadata.title} | ${siteMetadata.description}`}</title>
+      {
+        constantMeta.map(item => (<meta name="description" content={item.content} />))
+      }
+    </>
   )
 }
 

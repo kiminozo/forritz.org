@@ -30,7 +30,7 @@ jogfi2002(镜子)
 貓总  
 
 ## 资料网
-[岡崎律子Book](http://www.ne.jp/asahi/okazaki/book/)  
+[岡崎律子Book](http://love.life.coocan.jp/)  
 [ritzmail](http://ritzmail.nk2.org/)  
 [ritzstar](http://www.ritzstar.jp/)
 

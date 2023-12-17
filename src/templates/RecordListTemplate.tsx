@@ -50,6 +50,8 @@ interface TemplateProps {
   }
 }
 
+export const Head = (props: TemplateProps) => <SEO title={props.pageContext.title} />
+
 
 const RecordListTemplate = (props: TemplateProps) => {
   const { pageContext: { artist, title }, data } = props;
@@ -58,7 +60,6 @@ const RecordListTemplate = (props: TemplateProps) => {
   const songs = songGroup.map(p => p.frontmatter);
   return (
     <Layout path={`/discography/${_.kebabCase(title)}/`}>
-      <SEO title={title} />
       <Grid>
         <Grid.Column mobile={16} computer={11} tablet={11}>
           <Header as="h1">{title}</Header>
@@ -112,11 +113,11 @@ export default function Template(props: TemplateProps) {
   return (<RecordListTemplate {...props} />)
 }
 
-export const pageQuery = graphql`
-query ($categories: [String], $artist:String, $discographyIds:[String]) {
+export const pageQuery = graphql`query ($categories: [String], $artist: String, $discographyIds: [String]) {
   records: allMarkdownRemark(
-      sort: {fields: [frontmatter___order], order: ASC}, 
-      filter: {frontmatter: {categories: {in: $categories}, artist: {eq: $artist}}}) {
+    sort: {frontmatter: {order: ASC}}
+    filter: {frontmatter: {categories: {in: $categories}, artist: {eq: $artist}}}
+  ) {
     totalCount
     recordGroup: nodes {
       frontmatter {
@@ -132,18 +133,18 @@ query ($categories: [String], $artist:String, $discographyIds:[String]) {
       }
     }
   }
-
-  songs:allMarkdownRemark(sort: {fields: [frontmatter___order], order: ASC}, filter: {frontmatter: {type: {eq: "song"}, discographyId: {in: $discographyIds}}}) {
-          totalCount
+  songs: allMarkdownRemark(
+    sort: {frontmatter: {order: ASC}}
+    filter: {frontmatter: {type: {eq: "song"}, discographyId: {in: $discographyIds}}}
+  ) {
+    totalCount
     songGroup: nodes {
-          frontmatter {
-            slug
-            title
-            singer
-            discographyId
+      frontmatter {
+        slug
+        title
+        singer
+        discographyId
       }
     }
   }
-}
-
-`
+}`

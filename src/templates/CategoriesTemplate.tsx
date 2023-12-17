@@ -44,6 +44,9 @@ function getPath(basePath: string, activePage: string | number | undefined) {
     return path;
 }
 
+export const Head = (props: TemplateProps) => <SEO title={props.pageContext.category} />
+
+
 const CategoriesTemplatePage = (props: TemplateProps) => {
     const {
         pageContext: { category, basePath, activePage, totalPages },
@@ -54,8 +57,6 @@ const CategoriesTemplatePage = (props: TemplateProps) => {
     } = props;
     return (
         <Layout path={getPath(basePath, 1)}>
-            <SEO title={category} />
-
             <Grid container stackable>
                 <Grid.Column mobile={16} computer={11} tablet={11}>
                     <Header as="h1" >
@@ -74,17 +75,18 @@ const CategoriesTemplatePage = (props: TemplateProps) => {
 
                     {
                         nodes.map(({ frontmatter: { slug, title, tags }, excerpt }) => (
-                            <React.Fragment key={slug}>
+                            <Segment vertical key={slug}>
                                 <Header as="h3" size='medium'>
                                     <Header.Content><Link to={slug}>{title}</Link></Header.Content>
                                 </Header>
 
                                 <p>{excerpt}</p>
-                                <TagsLine tags={tags} />
 
                                 <Divider hidden />
-                                <Divider hidden />
-                            </React.Fragment>
+
+                                <TagsLine tags={tags} />
+
+                            </Segment>
                         ))
                     }
 
@@ -119,26 +121,29 @@ export default function CategoriesTemplate({ pageContext, data }: TemplateProps)
     return (<CategoriesTemplatePage pageContext={pageContext} data={data} />)
 }
 
-export const query = graphql`
-  query($category: String, $skip: Int!, $limit: Int!) {
-     meta: markdownRemark(frontmatter: {type: {eq: "meta"}, title: {eq: $category}}) {
-      frontmatter {
-        id
-        title
-      }
-      info:html
+export const query = graphql`query ($category: String, $skip: Int!, $limit: Int!) {
+  meta: markdownRemark(frontmatter: {type: {eq: "meta"}, title: {eq: $category}}) {
+    frontmatter {
+      id
+      title
     }
-    posts: allMarkdownRemark(limit: $limit, skip: $skip, sort: {fields: [frontmatter___slug], order: ASC}, filter: {frontmatter: {categories: {in: [$category]}}}) {
-      totalCount
-      nodes {
-        frontmatter {
-          slug
-          title
-          categories
-          tags
-        }
-        excerpt(truncate: true)
+    info: html
+  }
+  posts: allMarkdownRemark(
+    limit: $limit
+    skip: $skip
+    sort: {frontmatter: {slug: ASC}}
+    filter: {frontmatter: {categories: {in: [$category]}}}
+  ) {
+    totalCount
+    nodes {
+      frontmatter {
+        slug
+        title
+        categories
+        tags
       }
+      excerpt(truncate: true)
     }
   }
-`
+}`

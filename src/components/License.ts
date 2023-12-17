@@ -1,4 +1,4 @@
-declare interface License {
+export declare interface License {
     type: string
     author: string
     reproduced_url: string
@@ -6,4 +6,3 @@ declare interface License {
     translator: string
 }
 
-export { License }

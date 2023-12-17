@@ -26,22 +26,26 @@ interface QueryData {
     }
 }
 
-const query = graphql`
-  {
-    record: allMarkdownRemark(limit: 2000, filter: {frontmatter: {type: {eq: "record"}}}) {
-      recordList: group(field: frontmatter___categories) {
-        fieldValue
-        totalCount
-      }
-    }
-    post: allMarkdownRemark(limit: 2000, filter: {frontmatter: {type: {ne: "record"}}}) {
-       postList: group(field: frontmatter___categories) {
-        fieldValue
-        totalCount
-      }
+const query = graphql`{
+  record: allMarkdownRemark(
+    limit: 2000
+    filter: {frontmatter: {type: {eq: "record"}}}
+  ) {
+    recordList: group(field: {frontmatter: {categories: SELECT}}) {
+      fieldValue
+      totalCount
     }
   }
-`
+  post: allMarkdownRemark(
+    limit: 2000
+    filter: {frontmatter: {type: {ne: "record"}}}
+  ) {
+    postList: group(field: {frontmatter: {categories: SELECT}}) {
+      fieldValue
+      totalCount
+    }
+  }
+}`
 
 
 

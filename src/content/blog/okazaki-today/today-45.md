@@ -4,7 +4,7 @@ date: "2020-12-25"
 categories: ["岡崎Today"]
 slug: "/okazaki-today/today-45"
 tags: ["夏天","LoveHina","专辑","广告","面包"]
-license: {type: "translated",author: "岡崎律子",translator: "貓总",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/today/today45.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "貓总",reproduced-url: "http://love.life.coocan.jp/today/today45.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/jinbocho.jpg)](./images/jinbocho.jpg)

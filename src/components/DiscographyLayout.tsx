@@ -5,7 +5,7 @@ import _ from "lodash"
 import { Link } from "gatsby"
 import { CoverImage } from ".";
 import {
-    Card, Divider, Grid, Header, Icon, Label
+    Card, Segment, Divider, Grid, Header, Icon, Label
 } from 'semantic-ui-react'
 
 interface DiscographyInfo {
@@ -44,7 +44,7 @@ const Records = ({ single, category, artists }: RecordsProp) => (
         }
         {
             artists.map(({ artist, records }) => (
-                <React.Fragment key={artist}>
+                <Segment vertical key={artist}>
                     {artists.length > 1 && (
                         <Header as={single ? 'h2' : "h3"}>
                             <Header.Content>
@@ -57,14 +57,16 @@ const Records = ({ single, category, artists }: RecordsProp) => (
                     )}
                     <Card.Group itemsPerRow={5} doubling>
                         {records.map(item =>
-                            (
-                                <Card as={Link} key={item.id} to={item.slug}>
-                                    <CoverImage key={item.id} alt={item.title} coverimage={item.coverImage} />
-                                </Card>
-                            )
+                        (
+                            <Card as={Link} key={item.id} to={item.slug}>
+                                <CoverImage key={item.id} alt={item.title} coverimage={item.coverImage} />
+                            </Card>
+                        )
                         )}
                     </Card.Group>
-                </React.Fragment>
+                    <Divider hidden />
+
+                </Segment>
             ))
         }
     </>

@@ -4,7 +4,7 @@ date: "2020-09-07"
 categories: ["岡崎Today"]
 slug: "/okazaki-today/today-44"
 tags: ["老朋友","朱顶红","电影","特长","女装大佬"]
-license: {type: "translated",author: "岡崎律子",translator: "貓总",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/today/today44.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "貓总",reproduced-url: "http://love.life.coocan.jp/today/today44.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/mer-ph1.jpg)](./images/mer-ph1.jpg)

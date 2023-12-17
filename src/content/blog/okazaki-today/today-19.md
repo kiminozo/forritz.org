@@ -4,7 +4,7 @@ date: "2011-05-08"
 categories: ["岡崎Today"]
 slug: "/okazaki-today/today-19"
 tags: ["新专辑","春天","林原惠美","樱花","键盘"]
-license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/today/today19.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://love.life.coocan.jp/today/today19.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/curtain2.jpg)](./images/curtain2.jpg)

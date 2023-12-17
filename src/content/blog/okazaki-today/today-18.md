@@ -4,7 +4,7 @@ date: "2011-05-07"
 categories: ["岡崎Today"]
 slug: "/okazaki-today/today-18"
 tags: ["Ritzstar","原宿","感冒","皮卡丘","笑","车站","邮件"]
-license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/today/today18.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://love.life.coocan.jp/today/today18.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/curtain2.jpg)](./images/curtain2.jpg)

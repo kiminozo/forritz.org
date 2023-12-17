@@ -4,7 +4,7 @@ date: "2011-05-07"
 categories: ["岡崎Today"]
 slug: "/okazaki-today/today-15"
 tags: ["小森麻美","新干线","林原惠美","衣服","迪斯尼","雨"]
-license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/today/today15.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://love.life.coocan.jp/today/today15.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/selfshot.jpg)](./images/selfshot.jpg)  

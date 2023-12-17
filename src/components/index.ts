@@ -5,7 +5,6 @@ import CC from "./CC"
 import SEO from "./SEO"
 import CoverImage from './CoverImage'
 import { License } from "./License";
-//export default Layout
 export {
     License,
     Layout, TagsLine, CC, SEO, CoverImage, SideBar

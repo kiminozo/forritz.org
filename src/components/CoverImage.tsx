@@ -1,6 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import Img, { FluidObject } from "gatsby-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { useCoverImagesData } from '../hooks/useCoverImagesData'
 import demo from "../images/demo.png"
 import { Image, ImageProps, SemanticSIZES } from 'semantic-ui-react'
@@ -29,10 +29,14 @@ const CoverImage = (props: Props) => {
     useKeyOnly(bordered, 'bordered'),
     useKeyOnly(rounded, 'rounded'),
   )
+  const image = getImage(imageInfo.image)
   if (imageInfo) {
-    return imageInfo.image ?
-      <Img className={className} alt={alt} fluid={{ ...imageInfo.image.fluid, aspectRatio: 1 }} />
-      : <Image size={size} src={imageInfo.publicURL} />
+    return image ?
+      <GatsbyImage
+        image={image}
+        className={className}
+        alt={alt ?? ""} />
+      : <Image size={size} src={imageInfo.publicURL} />;
   }
   return <Image size={size} style={imgStyle} src={demo} ></Image>
 }

@@ -4,7 +4,7 @@ date: "2011-05-08"
 categories: ["岡崎Today"]
 slug: "/okazaki-today/today-22"
 tags: ["专辑","烟火","雨"]
-license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/today/today22.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://love.life.coocan.jp/today/today22.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/today20.jpg)](./images/today20.jpg)

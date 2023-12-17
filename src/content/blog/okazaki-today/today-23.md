@@ -4,7 +4,7 @@ date: "2011-05-08"
 categories: ["岡崎Today"]
 slug: "/okazaki-today/today-23"
 tags: ["Good Luck","人偶","天气","研讨会"]
-license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/today/today23.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://love.life.coocan.jp/today/today23.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/today20.jpg)](./images/today20.jpg)

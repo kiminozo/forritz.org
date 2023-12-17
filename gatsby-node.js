@@ -43,9 +43,11 @@ const createPages = async (createPage, graphql, reporter) => {
   }
 
 
-  const result = await graphql(`
-   {
-  metas:allMarkdownRemark(limit: 2000, filter: {frontmatter: {type: {eq: "meta"}}}) {
+  const result = await graphql(`{
+  metas: allMarkdownRemark(
+    limit: 2000
+    filter: {frontmatter: {type: {eq: "meta"}}}
+  ) {
     nodes {
       frontmatter {
         title
@@ -53,7 +55,11 @@ const createPages = async (createPage, graphql, reporter) => {
       }
     }
   }
-  posts:allMarkdownRemark(sort: {order: ASC, fields: [frontmatter___slug]}, limit: 1000, filter: {frontmatter: {type: {eq: null}}}) {
+  posts: allMarkdownRemark(
+    sort: {frontmatter: {slug: ASC}}
+    limit: 1000
+    filter: {frontmatter: {type: {eq: null}}}
+  ) {
     edges {
       node {
         frontmatter {
@@ -62,7 +68,11 @@ const createPages = async (createPage, graphql, reporter) => {
       }
     }
   }
-  songs:allMarkdownRemark(sort: {order: DESC, fields: [frontmatter___date]}, limit: 1000, filter: {frontmatter: {type: {eq: "song"}}}) {
+  songs: allMarkdownRemark(
+    sort: {frontmatter: {date: DESC}}
+    limit: 1000
+    filter: {frontmatter: {type: {eq: "song"}}}
+  ) {
     edges {
       node {
         frontmatter {
@@ -72,7 +82,11 @@ const createPages = async (createPage, graphql, reporter) => {
       }
     }
   }
-  records:allMarkdownRemark(sort: {order: DESC, fields: [frontmatter___date]}, limit: 1000, filter: {frontmatter: {type: {eq: "record"}}}) {
+  records: allMarkdownRemark(
+    sort: {frontmatter: {date: DESC}}
+    limit: 1000
+    filter: {frontmatter: {type: {eq: "record"}}}
+  ) {
     edges {
       node {
         frontmatter {
@@ -83,43 +97,49 @@ const createPages = async (createPage, graphql, reporter) => {
     }
   }
   tagsGroup: allMarkdownRemark(limit: 2000) {
-        group(field: frontmatter___tags) {
-          fieldValue
-          totalCount
-        }
+    group(field: {frontmatter: {tags: SELECT}}) {
+      fieldValue
+      totalCount
+    }
   }
-  categoriesGroup: allMarkdownRemark(limit: 2000, filter: {frontmatter: { type: {eq: null}}}) {
-    group(field: frontmatter___categories) {
+  categoriesGroup: allMarkdownRemark(
+    limit: 2000
+    filter: {frontmatter: {type: {eq: null}}}
+  ) {
+    group(field: {frontmatter: {categories: SELECT}}) {
       fieldValue
       totalCount
     }
   }
   singers: allMarkdownRemark(limit: 2000) {
-    group(field: frontmatter___singer) {
+    group(field: {frontmatter: {singer: SELECT}}) {
       fieldValue
       totalCount
     }
   }
   songWriters: allMarkdownRemark(limit: 2000) {
-    group(field: frontmatter___songwriter) {
+    group(field: {frontmatter: {songwriter: SELECT}}) {
       fieldValue
       totalCount
     }
   }
   lyricWriters: allMarkdownRemark(limit: 2000) {
-    group(field: frontmatter___lyricwriter) {
+    group(field: {frontmatter: {lyricwriter: SELECT}}) {
       fieldValue
       totalCount
     }
   }
   arrangers: allMarkdownRemark(limit: 2000) {
-    group(field: frontmatter___arranger) {
+    group(field: {frontmatter: {arranger: SELECT}}) {
       fieldValue
       totalCount
     }
   }
-  recordList: allMarkdownRemark(limit: 2000, filter: {frontmatter: {type: {eq: "record"}}}) {
-    group(field: frontmatter___categories) {
+  recordList: allMarkdownRemark(
+    limit: 2000
+    filter: {frontmatter: {type: {eq: "record"}}}
+  ) {
+    group(field: {frontmatter: {categories: SELECT}}) {
       fieldValue
       totalCount
       nodes {
@@ -130,8 +150,7 @@ const createPages = async (createPage, graphql, reporter) => {
       }
     }
   }
-}
-`)
+}`)
   // Handle errors
   if (result.errors) {
     reporter.panicOnBuild(`Error while running GraphQL query.`)

@@ -25,6 +25,9 @@ type TagsPageProp = {
     }
 }
 
+export const Head = () => <SEO title="Tags" />
+
+
 const TagsPage = (props: TagsPageProp) => {
     const {
         data: { allMarkdownRemark: { group },
@@ -33,7 +36,6 @@ const TagsPage = (props: TagsPageProp) => {
     } = props;
     return (
         <Layout>
-            <SEO title={title} />
             <div>
                 <h1>Tags</h1>
                 <Label.Group >
@@ -52,18 +54,16 @@ const TagsPage = (props: TagsPageProp) => {
 }
 export default TagsPage
 
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allMarkdownRemark(limit: 2000) {
-      group(field: frontmatter___tags) {
-        fieldValue
-        totalCount
-      }
+export const pageQuery = graphql`{
+  site {
+    siteMetadata {
+      title
     }
   }
-`
+  allMarkdownRemark(limit: 2000) {
+    group(field: {frontmatter: {tags: SELECT}}) {
+      fieldValue
+      totalCount
+    }
+  }
+}`

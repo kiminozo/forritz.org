@@ -5,13 +5,11 @@ import { SEO, Layout, CC, License } from "../components";
 import RecordGroup from "../components/RecordGroup"
 import StaffList, { StaffInfo } from '../components/StaffList'
 import {
-  Icon, Grid, Header, Container, Segment, Divider, Responsive,
+  Icon, Grid, Header, Container, Segment, Divider,
   Button, Card, Image, Label, Item, List
 } from 'semantic-ui-react'
 import _ from "lodash";
 
-import demo from "../images/demo.png"
-// this prop will be injected by the GraphQL query below.
 
 
 interface Record {
@@ -58,6 +56,9 @@ function split(html: string): Translator {
   }
 }
 
+export const Head = (props: TemplateProps) => <SEO title={props.data.markdownRemark.frontmatter.title} />
+
+
 const SongTemplatePage = ({ data }: TemplateProps) => {
 
   const { markdownRemark: { frontmatter, html } } = data;
@@ -68,7 +69,6 @@ const SongTemplatePage = ({ data }: TemplateProps) => {
 
   return (
     <Layout path={slug}>
-      <SEO title={title} />
       <Grid>
         <Grid.Column mobile={16} computer={14} tablet={14}>
           <Header as="h1">

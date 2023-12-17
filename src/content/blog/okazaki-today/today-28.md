@@ -4,7 +4,7 @@ date: "2011-05-14"
 categories: ["岡崎Today"]
 slug: "/okazaki-today/today-28"
 tags: ["买房","在家","春季"]
-license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/today/today28.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://love.life.coocan.jp/today/today28.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/today27.jpg)](./images/today27.jpg) 

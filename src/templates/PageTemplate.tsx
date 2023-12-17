@@ -6,7 +6,7 @@ import { SEO, Layout, TagsLine, CC, License } from "../components";
 import {
   Button, Grid, Header, Ref, Segment, Rail, Accordion,
   Label, Divider, Message,
-  Menu, Icon, Sticky, Visibility, VisibilityEventData, Responsive, Container
+  Menu, Icon, Sticky, Visibility, VisibilityEventData, Container
 } from 'semantic-ui-react'
 import _ from "lodash";
 
@@ -80,13 +80,13 @@ class TemplatePage extends Component<TemplateProps, TemplateState> {
     }
   }
 
-  componentDidMount() {
-    const { headings } = this.props.data.markdownRemark;
-    headings.forEach(element => {
-      let offset = document.getElementById(element.id)?.offsetTop ?? 0;
-      this.headerInfos.push({ id: element.id, offset });
-    });
-  }
+  // componentDidMount() {
+  //   const { headings } = this.props.data.markdownRemark;
+  //   // headings.forEach(element => {
+  //   //   let offset = document.getElementById(element.id)?.offsetTop ?? 0;
+  //   //   this.headerInfos.push({ id: element.id, offset });
+  //   // });
+  // }
 
   renderMenu(headings: Headings[]) {
     if (headings.length == 0) {
@@ -107,7 +107,7 @@ class TemplatePage extends Component<TemplateProps, TemplateState> {
     })
 
     return (
-      <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+      <Container>
         <Rail position='right'>
           <Sticky context={this.contextRef} offset={20}>
             <Menu as={Accordion} fluid style={sidebarStyle} text vertical>
@@ -118,9 +118,9 @@ class TemplatePage extends Component<TemplateProps, TemplateState> {
                   </Accordion.Title>
                   <Accordion.Content as={Menu.Menu} active={true}>
                     {h1.child.map(h2 =>
-                      (<Menu.Item href={`#${h2.id}`}
-                        content={h2.value} active={h2.id === activeId}
-                      />)
+                    (<Menu.Item href={`#${h2.id}`}
+                      content={h2.value} active={h2.id === activeId}
+                    />)
                     )}
                   </Accordion.Content>
                 </Menu.Item>
@@ -129,7 +129,7 @@ class TemplatePage extends Component<TemplateProps, TemplateState> {
             </Menu>
           </Sticky>
         </Rail>
-      </Responsive >
+      </Container>
     )
   }
 
@@ -169,7 +169,6 @@ class TemplatePage extends Component<TemplateProps, TemplateState> {
 
     return (
       <Layout>
-        <SEO title={frontmatter.title} />
         {frontmatter.toc ?
           (<Visibility onUpdate={this.handleUpdate}>
             {body}
@@ -205,6 +204,9 @@ class TemplatePage extends Component<TemplateProps, TemplateState> {
 export default function Template({ data }: TemplateProps) {
   return (<TemplatePage data={data} />)
 }
+
+export const Head = (props: TemplateProps) => <SEO title={props.data.markdownRemark.frontmatter.title} />
+
 
 // export const pageQuery = graphql`
 //   query($slug: String!) {

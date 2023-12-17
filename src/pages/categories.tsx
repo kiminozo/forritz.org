@@ -26,6 +26,9 @@ type CategoriesPageProp = {
     }
 }
 
+export const Head = () => <SEO title="Categories" />
+
+
 const CategoriesPage = (props: CategoriesPageProp) => {
     const {
         data: { allMarkdownRemark: { group },
@@ -34,7 +37,6 @@ const CategoriesPage = (props: CategoriesPageProp) => {
     } = props;
     return (
         <Layout>
-            <SEO title={title} />
             <div>
                 <h1>Categories</h1>
                 <Menu vertical>
@@ -51,18 +53,16 @@ const CategoriesPage = (props: CategoriesPageProp) => {
 }
 export default CategoriesPage
 
-export const CategoriesQuery = graphql`
-{
-    site {
-        siteMetadata {
-            title
-        }
+export const CategoriesQuery = graphql`{
+  site {
+    siteMetadata {
+      title
     }
-    allMarkdownRemark(limit: 2000, filter: { frontmatter: { type: { eq: null } } }) {
-        group(field: frontmatter___categories) {
-            fieldValue
-            totalCount
-        }
+  }
+  allMarkdownRemark(limit: 2000, filter: {frontmatter: {type: {eq: null}}}) {
+    group(field: {frontmatter: {categories: SELECT}}) {
+      fieldValue
+      totalCount
     }
-}
-`
+  }
+}`

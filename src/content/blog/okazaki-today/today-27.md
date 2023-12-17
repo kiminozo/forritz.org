@@ -4,7 +4,7 @@ date: "2011-05-09"
 categories: ["岡崎Today"]
 slug: "/okazaki-today/today-27"
 tags: ["多拉A梦","彼氏彼女","思恋 迷题","温泉旅行","湖"]
-license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/today/today27.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "loveritz",reproduced-url: "http://love.life.coocan.jp/today/today27.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/today27.jpg)](./images/today27.jpg)

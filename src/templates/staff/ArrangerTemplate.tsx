@@ -7,25 +7,23 @@ export default function ArrangerTemplate({ pageContext, data }: TemplateProps) {
     pageContext={pageContext} data={data} />)
 }
 
-export const pageQuery = graphql`
-  query($staff: String, $skip: Int!, $limit: Int!) {
-    songs: allMarkdownRemark(
-        limit: $limit,
-        skip: $skip,
-        filter: {frontmatter: {arranger: {in: [$staff]}}},
-        sort: {fields: frontmatter___order}
-        ) {
-      totalCount
-      nodes {
-        song:frontmatter {
-            slug
-            title
-            singer
-            songWriter: songwriter
-            lyricWriter: lyricwriter
-            arranger
-          }
+export const pageQuery = graphql`query ($staff: String, $skip: Int!, $limit: Int!) {
+  songs: allMarkdownRemark(
+    limit: $limit
+    skip: $skip
+    filter: {frontmatter: {arranger: {in: [$staff]}}}
+    sort: {frontmatter: {order: ASC}}
+  ) {
+    totalCount
+    nodes {
+      song: frontmatter {
+        slug
+        title
+        singer
+        songWriter: songwriter
+        lyricWriter: lyricwriter
+        arranger
       }
     }
   }
-`
+}`

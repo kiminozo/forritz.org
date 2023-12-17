@@ -4,7 +4,7 @@ date: "2020-09-07"
 categories: ["岡崎Today"]
 slug: "/okazaki-today/today-36"
 tags: ["ふわり","林原"]
-license: {type: "translated",author: "岡崎律子",translator: "貓总",reproduced-url: "http://www.ne.jp/asahi/okazaki/book/today/today36.html",reproduced-website: "岡崎律子Book"}
+license: {type: "translated",author: "岡崎律子",translator: "貓总",reproduced-url: "http://love.life.coocan.jp/today/today36.html",reproduced-website: "岡崎律子Book"}
 ---
 
 [![](./images/today35.jpg)](./images/today35.jpg)
