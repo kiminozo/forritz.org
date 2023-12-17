@@ -75,17 +75,18 @@ const CategoriesTemplatePage = (props: TemplateProps) => {
 
                     {
                         nodes.map(({ frontmatter: { slug, title, tags }, excerpt }) => (
-                            <React.Fragment key={slug}>
+                            <Segment vertical key={slug}>
                                 <Header as="h3" size='medium'>
                                     <Header.Content><Link to={slug}>{title}</Link></Header.Content>
                                 </Header>
 
                                 <p>{excerpt}</p>
-                                <TagsLine tags={tags} />
 
                                 <Divider hidden />
-                                <Divider hidden />
-                            </React.Fragment>
+
+                                <TagsLine tags={tags} />
+
+                            </Segment>
                         ))
                     }
 
