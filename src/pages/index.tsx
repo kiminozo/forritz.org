@@ -3,10 +3,10 @@ import { Link, PageProps, graphql } from "gatsby"
 import { Card, Icon, Image, Label, Button, Grid, Divider, Header, List, Container } from 'semantic-ui-react'
 
 import { SEO, Layout, CoverImage } from "../components";
-import AvatarImage from "../components/AvatarImage";
 
 //import logo from "../images/avatar/steps.jpg"
-import demo from "../images/demo.png"
+//import demo from "../images/demo.png"
+import { StaticImage } from "gatsby-plugin-image"
 
 import "./index.sass"
 interface Record {
@@ -28,7 +28,7 @@ interface Props extends PageProps {
 const RitzCard = () => (
   <Card centered>
     {/* <Image src={logo} wrapped ui={false} /> */}
-    <AvatarImage />
+    <StaticImage src="../images/steps.jpg" alt="avatar" />
     <Card.Content>
       <Card.Header>岡崎律子</Card.Header>
       <Card.Meta>
