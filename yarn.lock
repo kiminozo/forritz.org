@@ -7730,7 +7730,6 @@ __metadata:
     gatsby-plugin-sitemap: "npm:^6.12.3"
     gatsby-plugin-tslint: "npm:^0.0.2"
     gatsby-plugin-typescript: "npm:^5.12.1"
-    gatsby-remark-autolink-headers: "npm:^2.11.0"
     gatsby-remark-copy-linked-files: "npm:^6.12.0"
     gatsby-remark-images: "npm:^7.12.3"
     gatsby-source-filesystem: "npm:^5.12.1"
@@ -8276,21 +8275,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gatsby-remark-autolink-headers@npm:^2.11.0":
-  version: 2.11.0
-  resolution: "gatsby-remark-autolink-headers@npm:2.11.0"
-  dependencies:
-    "@babel/runtime": "npm:^7.12.5"
-    github-slugger: "npm:^1.3.0"
-    lodash: "npm:^4.17.20"
-    mdast-util-to-string: "npm:^1.1.0"
-    unist-util-visit: "npm:^1.4.1"
-  peerDependencies:
-    gatsby: ^2.0.0
-  checksum: 5ca2689c2f3554e1302eb14ded15eaa31d8ebb2d0adca1afdc9d93bbcac6807ee65fdb421199ba6a6cc2b0b8641c518411be5bae5cf5dc1bdb23a34c03981cda
-  languageName: node
-  linkType: hard
-
 "gatsby-remark-copy-linked-files@npm:^6.12.0":
   version: 6.12.0
   resolution: "gatsby-remark-copy-linked-files@npm:6.12.0"
@@ -8771,7 +8755,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"github-slugger@npm:^1.2.1, github-slugger@npm:^1.3.0":
+"github-slugger@npm:^1.2.1":
   version: 1.5.0
   resolution: "github-slugger@npm:1.5.0"
   checksum: 116f99732925f939cbfd6f2e57db1aa7e111a460db0d103e3b3f2fce6909d44311663d4542350706cad806345b9892358cc3b153674f88eeae77f43380b3bfca
@@ -11207,13 +11191,6 @@ __metadata:
     unist-util-position: "npm:^3.0.0"
     vfile-location: "npm:^3.1.0"
   checksum: 0182e9f9fe53a8ba1a4d8c4b33c163a467ab041d3920f187769759703ba84d7bce62a239793d17c3a50de1497b68eeb002b8eadb6a5ecae1d1a763246620c4ee
-  languageName: node
-  linkType: hard
-
-"mdast-util-to-string@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "mdast-util-to-string@npm:1.1.0"
-  checksum: 5dad9746ec0839792a8a35f504564e8d2b8c30013652410306c111963d33f1ee7b5477aa64ed77b64e13216363a29395809875ffd80e2031a08614657628a121
   languageName: node
   linkType: hard
 
@@ -16161,13 +16138,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unist-util-is@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "unist-util-is@npm:3.0.0"
-  checksum: e46186214fabcef3c4947ab188ae272965465ec5c40652934025f6382c58dff6edca40860528f72718e42f858d1ce7db2754d5198beb96eff0379e4c3c34218f
-  languageName: node
-  linkType: hard
-
 "unist-util-is@npm:^4.0.0":
   version: 4.1.0
   resolution: "unist-util-is@npm:4.1.0"
@@ -16229,15 +16199,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unist-util-visit-parents@npm:^2.0.0":
-  version: 2.1.2
-  resolution: "unist-util-visit-parents@npm:2.1.2"
-  dependencies:
-    unist-util-is: "npm:^3.0.0"
-  checksum: ca88e2f88f3c4849f1bb4e90edb3f5fa66bf94656165dd74027971c393274d25b1b34974b18da336c4e2b45771495d5dac2f80571fa25f86c8cec859287c25f8
-  languageName: node
-  linkType: hard
-
 "unist-util-visit-parents@npm:^3.0.0, unist-util-visit-parents@npm:^3.1.1":
   version: 3.1.1
   resolution: "unist-util-visit-parents@npm:3.1.1"
@@ -16245,15 +16206,6 @@ __metadata:
     "@types/unist": "npm:^2.0.0"
     unist-util-is: "npm:^4.0.0"
   checksum: 231c80c5ba8e79263956fcaa25ed2a11ad7fe77ac5ba0d322e9d51bbc4238501e3bb52f405e518bcdc5471e27b33eff520db0aa4a3b1feb9fb6e2de6ae385d49
-  languageName: node
-  linkType: hard
-
-"unist-util-visit@npm:^1.4.1":
-  version: 1.4.1
-  resolution: "unist-util-visit@npm:1.4.1"
-  dependencies:
-    unist-util-visit-parents: "npm:^2.0.0"
-  checksum: 8fb61725270059034d987813816e6c2d6362f55d4d19936db9ce23a5ace0ae4d584064ceb94dee6618e3318aef087505607f7ccc8c4305fbb644c3b643ae0059
   languageName: node
   linkType: hard
 
