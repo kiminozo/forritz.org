@@ -29,8 +29,8 @@ const CoverImage = (props: Props) => {
     useKeyOnly(bordered, 'bordered'),
     useKeyOnly(rounded, 'rounded'),
   )
-  const image = getImage(imageInfo.image)
   if (imageInfo) {
+    const image = getImage(imageInfo.image)
     return image ?
       <GatsbyImage
         image={image}
