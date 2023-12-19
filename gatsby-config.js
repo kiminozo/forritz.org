@@ -66,7 +66,7 @@ module.exports = {
           {
             resolve: `gatsby-remark-copy-linked-files`,
             options: {
-              destinationDir: "files",
+              destinationDir: f => `files/${f.hash}`,
               ignoreFileExtensions: [],
             },
           },
