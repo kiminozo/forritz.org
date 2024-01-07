@@ -1710,6 +1710,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@gfx/zopfli@npm:^1.0.15":
+  version: 1.0.15
+  resolution: "@gfx/zopfli@npm:1.0.15"
+  dependencies:
+    base64-js: "npm:^1.3.0"
+  checksum: b1ae57c68d144887e8c3752f7cc88dc6af3d75d523c665b5ab6e5fbc84d9de3459c84cb2dee677579a6d7f29b9e445faac1aabecf0ee4eafd1fb0c3f61f8988a
+  languageName: node
+  linkType: hard
+
 "@graphql-codegen/add@npm:^3.2.3":
   version: 3.2.3
   resolution: "@graphql-codegen/add@npm:3.2.3"
@@ -4741,7 +4750,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"base64-js@npm:^1.3.1":
+"base64-js@npm:^1.2.0, base64-js@npm:^1.3.0, base64-js@npm:^1.3.1":
   version: 1.5.1
   resolution: "base64-js@npm:1.5.1"
   checksum: f23823513b63173a001030fae4f2dabe283b99a9d324ade3ad3d148e218134676f1ee8568c877cd79ec1c53158dcf2d2ba527a97c606618928ba99dd930102bf
@@ -7226,6 +7235,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eventemitter-asyncresource@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "eventemitter-asyncresource@npm:1.0.0"
+  checksum: 827f6f24dd8bccd762b009c8e15d472821c47c068ca8e7d2892d3164f1ad4ed9f4e06d291c6ffcb8aec51f62396b785fb7f3feea925197c1e2b559764aae6264
+  languageName: node
+  linkType: hard
+
 "events@npm:^3.2.0":
   version: 3.3.0
   resolution: "events@npm:3.3.0"
@@ -7739,6 +7755,7 @@ __metadata:
     gatsby-plugin-sitemap: "npm:^6.13.0"
     gatsby-plugin-tslint: "npm:^0.0.2"
     gatsby-plugin-typescript: "npm:^5.13.0"
+    gatsby-plugin-zopfli: "npm:^2.0.0"
     gatsby-remark-copy-linked-files: "npm:^6.13.0"
     gatsby-remark-images: "npm:^7.13.0"
     gatsby-source-filesystem: "npm:^5.13.0"
@@ -8267,6 +8284,18 @@ __metadata:
     gatsby: ^5.0.0-next
     graphql: ^16.0.0
   checksum: 1ae72e2c5c18a92413f7b0bc9e5c7b62b64cf23bc580d11fa6a4eb24302b6a3b6e7079ebde4874c98763277f6210eb65be15e3ad2416104c8ec24f3f4c545e57
+  languageName: node
+  linkType: hard
+
+"gatsby-plugin-zopfli@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "gatsby-plugin-zopfli@npm:2.0.0"
+  dependencies:
+    "@gfx/zopfli": "npm:^1.0.15"
+    glob: "npm:^7.1.6"
+    mkdirp: "npm:^1.0.4"
+    piscina: "npm:^1.6.3"
+  checksum: 8d5af1ea5e500721b55e87c0928a6cea05f9178bbf18466e3147d2c1791fa243c88fedaa2bc0cb968a9b610f5eee79017e2488475133f6d44d6abc4f04b98c0e
   languageName: node
   linkType: hard
 
@@ -9251,6 +9280,25 @@ __metadata:
     property-information: "npm:^5.0.0"
     space-separated-tokens: "npm:^1.0.0"
   checksum: f76d9cf373cb075c8523c8ad52709f09f7e02b7c9d3152b8d35c65c265b9f1878bed6023f215a7d16523921036d40a7da292cb6f4399af9b5eccac2a5a5eb330
+  languageName: node
+  linkType: hard
+
+"hdr-histogram-js@npm:^1.0.0, hdr-histogram-js@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "hdr-histogram-js@npm:1.2.0"
+  dependencies:
+    base64-js: "npm:^1.2.0"
+    pako: "npm:^1.0.3"
+  checksum: 71e3eb792c9f10d5c7d30bfac7da285831817ce133a20e02e8dc6298b2791436eb960b938b8807dd3c852a100bed4db0a93f39c902ee30be995b5e1fd9d77187
+  languageName: node
+  linkType: hard
+
+"hdr-histogram-percentiles-obj@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "hdr-histogram-percentiles-obj@npm:2.0.1"
+  dependencies:
+    hdr-histogram-js: "npm:^1.0.0"
+  checksum: b6d9fd97865bbb319ff52c85546bf0687adad1d8f336d7945853a1854341142e73833b934977cfde9761844b275e5659e678bb440fb8b16b0db282c593e5e149
   languageName: node
   linkType: hard
 
@@ -11889,6 +11937,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nice-napi@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "nice-napi@npm:1.0.2"
+  dependencies:
+    node-addon-api: "npm:^3.0.0"
+    node-gyp: "npm:latest"
+    node-gyp-build: "npm:^4.2.2"
+  conditions: "!os=win32"
+  languageName: node
+  linkType: hard
+
 "nice-try@npm:^1.0.4":
   version: 1.0.5
   resolution: "nice-try@npm:1.0.5"
@@ -11919,6 +11978,15 @@ __metadata:
   dependencies:
     semver: "npm:^7.3.5"
   checksum: 29fbc10dce6def79e164478a219ff8bc65ef219d536c6f906db255eb26b54ac667cf220f6c47910e4cbcea5125a123c5c624c10a9aedb4cdc8f8acef9c10c2cb
+  languageName: node
+  linkType: hard
+
+"node-addon-api@npm:^3.0.0":
+  version: 3.2.1
+  resolution: "node-addon-api@npm:3.2.1"
+  dependencies:
+    node-gyp: "npm:latest"
+  checksum: 41f21c9d12318875a2c429befd06070ce367065a3ef02952cfd4ea17ef69fa14012732f510b82b226e99c254da8d671847ea018cad785f839a5366e02dd56302
   languageName: node
   linkType: hard
 
@@ -11982,6 +12050,17 @@ __metadata:
     node-gyp-build-optional-packages-optional: optional.js
     node-gyp-build-optional-packages-test: build-test.js
   checksum: e0edb57358dfa8e31c26b38310ddc5ae81d19fd13b3bf095c41215dfd6a033b1269b510c3ce5e73f7a4ed3d36f101ea47716ec75be38f5e31916d185e7f18905
+  languageName: node
+  linkType: hard
+
+"node-gyp-build@npm:^4.2.2":
+  version: 4.7.1
+  resolution: "node-gyp-build@npm:4.7.1"
+  bin:
+    node-gyp-build: bin.js
+    node-gyp-build-optional: optional.js
+    node-gyp-build-test: build-test.js
+  checksum: b8e4a3f889237cd08edde3775e2b4e1e39a0571580584e33e29979f0c532a254ce3c5ec9435bd526254ad0b3f0b4a7e7fe14e53bd400f6ea9445f3bfd88a6b1e
   languageName: node
   linkType: hard
 
@@ -12528,6 +12607,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pako@npm:^1.0.3":
+  version: 1.0.11
+  resolution: "pako@npm:1.0.11"
+  checksum: 86dd99d8b34c3930345b8bbeb5e1cd8a05f608eeb40967b293f72fe469d0e9c88b783a8777e4cc7dc7c91ce54c5e93d88ff4b4f060e6ff18408fd21030d9ffbe
+  languageName: node
+  linkType: hard
+
 "param-case@npm:^3.0.4":
   version: 3.0.4
   resolution: "param-case@npm:3.0.4"
@@ -12809,6 +12895,21 @@ __metadata:
   version: 2.3.1
   resolution: "picomatch@npm:2.3.1"
   checksum: 26c02b8d06f03206fc2ab8d16f19960f2ff9e81a658f831ecb656d8f17d9edc799e8364b1f4a7873e89d9702dff96204be0fa26fe4181f6843f040f819dac4be
+  languageName: node
+  linkType: hard
+
+"piscina@npm:^1.6.3":
+  version: 1.6.3
+  resolution: "piscina@npm:1.6.3"
+  dependencies:
+    eventemitter-asyncresource: "npm:^1.0.0"
+    hdr-histogram-js: "npm:^1.2.0"
+    hdr-histogram-percentiles-obj: "npm:^2.0.1"
+    nice-napi: "npm:^1.0.2"
+  dependenciesMeta:
+    nice-napi:
+      optional: true
+  checksum: 1f49664fcc295158d61406ba0dd4d8a8558d3e60466cf6131c8e91b3ddedbfa216e5e1fc8af6245cdbda8e4aaa5b18a2e6303b871f513f249d586f4f9250cc05
   languageName: node
   linkType: hard
 

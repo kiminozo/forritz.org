@@ -78,6 +78,12 @@ module.exports = {
       options: {
         excludes: [`/category/*`, `/categories`, `/tags/*`, `/arranger/*`, `/lyric-writer/*`, `/song-writer/*`, `/singer/*`],
       }
+    },
+    {
+      resolve: 'gatsby-plugin-zopfli',
+      options: {
+        extensions: ['css', 'html', 'js', 'svg']
+      }
     }
   ],
 }

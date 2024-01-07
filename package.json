@@ -17,6 +17,7 @@
     "gatsby-plugin-sharp": "^5.13.0",
     "gatsby-plugin-sitemap": "^6.13.0",
     "gatsby-plugin-typescript": "^5.13.0",
+    "gatsby-plugin-zopfli": "^2.0.0",
     "gatsby-remark-copy-linked-files": "^6.13.0",
     "gatsby-remark-images": "^7.13.0",
     "gatsby-source-filesystem": "^5.13.0",
