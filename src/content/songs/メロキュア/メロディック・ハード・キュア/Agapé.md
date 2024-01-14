@@ -13,7 +13,7 @@ arranger: ["西脇辰弥"]
 slug: "/songs/agape"
 tags: []
 remarks: "Chorus・Main Vocal:日向めぐみ"
-license: {type: "reproduced",author: "Orika",reproduced-url: "http://orikamushi.myweb.hinet.net/",reproduced-website: "織歌蟲網站"}
+license: {type: "reproduced",author: "Orika",reproduced-url: "https://orikamushi.netlify.app/",reproduced-website: "織歌蟲網站"}
 ---
 
 ★ Would you call me if you need my love?   

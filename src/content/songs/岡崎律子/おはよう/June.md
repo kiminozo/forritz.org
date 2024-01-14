@@ -13,7 +13,7 @@ arranger: ["蓮沼健介"]
 slug: "/songs/june"
 tags: []
 remarks: "1996.6.23(Sun)14:00～ On Air"
-license: {type: "reproduced",author: "Orika",reproduced-url: "http://orikamushi.myweb.hinet.net/",reproduced-website: "織歌蟲網站"}
+license: {type: "reproduced",author: "Orika",reproduced-url: "https://orikamushi.netlify.app/",reproduced-website: "織歌蟲網站"}
 ---
 
 6月は雨続きで　あなたが恋しくなる   

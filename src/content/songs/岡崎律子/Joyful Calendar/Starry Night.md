@@ -14,7 +14,7 @@ slug: "/songs/starry-night"
 tags: []
 remarks: "Chorus
 原本是岡崎律子小姐为エレナー写的曲子"
-license: {type: "reproduced",author: "Orika",reproduced-url: "http://orikamushi.myweb.hinet.net/",reproduced-website: "織歌蟲網站"}
+license: {type: "reproduced",author: "Orika",reproduced-url: "https://orikamushi.netlify.app/",reproduced-website: "織歌蟲網站"}
 ---
 
 肩よせて歩く道　駅の灯がみえるわ   

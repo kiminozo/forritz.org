@@ -13,7 +13,7 @@ arranger: ["AKIO"]
 slug: "/songs/can-you-hear-me"
 tags: []
 remarks: ""
-license: {type: "reproduced",author: "Orika",reproduced-url: "http://orikamushi.myweb.hinet.net",reproduced-website: "織歌蟲"}
+license: {type: "reproduced",author: "Orika",reproduced-url: "https://orikamushi.netlify.app",reproduced-website: "織歌蟲"}
 ---
 
 時間なんていくらでもあると思ってたんだ   

@@ -13,7 +13,7 @@ arranger: ["長谷川智樹"]
 slug: "/songs/blue-point"
 tags: []
 remarks: ""
-license: {type: "reproduced",author: "Orika",reproduced-url: "http://orikamushi.myweb.hinet.net/",reproduced-website: "あだち充の屋根裏部屋"}
+license: {type: "reproduced",author: "Orika",reproduced-url: "https://orikamushi.netlify.app/",reproduced-website: "あだち充の屋根裏部屋"}
 ---
 
 通りの向こう　見慣れた人波が   

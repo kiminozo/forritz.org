@@ -13,7 +13,7 @@ arranger: ["村山達哉"]
 slug: "/songs/romantic-flight"
 tags: []
 remarks: "radio「堀江由衣的天使蛋」OP"
-license: {type: "reproduced",author: "Orika",reproduced-url: "http://orikamushi.myweb.hinet.net",reproduced-website: "織歌蟲"}
+license: {type: "reproduced",author: "Orika",reproduced-url: "https://orikamushi.netlify.app",reproduced-website: "織歌蟲"}
 ---
 
 約束の時刻よ　部屋の窓をあけて   

@@ -14,7 +14,7 @@ slug: "/songs/good-luck"
 tags: []
 remarks: "Chorus
 林原めぐみ『Iravati』"
-license: {type: "reproduced",author: "Orika",reproduced-url: "http://orikamushi.myweb.hinet.net/",reproduced-website: "織歌蟲網站"}
+license: {type: "reproduced",author: "Orika",reproduced-url: "https://orikamushi.netlify.app/",reproduced-website: "織歌蟲網站"}
 ---
 
 Good Luck！　旅立って　一番輝く場所へ   

@@ -14,7 +14,7 @@ slug: "/songs/sunday-sundae"
 tags: []
 remarks: "Chorus・Main Vocal:岡崎律子
 『メロキュアの沈黙のradio』主题曲"
-license: {type: "reproduced",author: "Orika",reproduced-url: "http://orikamushi.myweb.hinet.net/",reproduced-website: "織歌蟲網站"}
+license: {type: "reproduced",author: "Orika",reproduced-url: "https://orikamushi.netlify.app/",reproduced-website: "織歌蟲網站"}
 ---
 
 I just wanna be with you on Sunday   

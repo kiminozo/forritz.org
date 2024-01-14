@@ -13,7 +13,7 @@ arranger: ["松浦有希"]
 slug: "/songs/angel-koi-woshita"
 tags: []
 remarks: ""
-license: {type: "reproduced",author: "Orika",reproduced-url: "http://orikamushi.myweb.hinet.net",reproduced-website: "織歌蟲"}
+license: {type: "reproduced",author: "Orika",reproduced-url: "https://orikamushi.netlify.app",reproduced-website: "織歌蟲"}
 ---
 
 静かな静かな夜に　あなたを想っている   

@@ -13,7 +13,7 @@ arranger: ["京田誠一"]
 slug: "/songs/nowadays"
 tags: []
 remarks: "Chorus"
-license: {type: "reproduced",author: "Orika",reproduced-url: "http://orikamushi.myweb.hinet.net/",reproduced-website: "織歌蟲網站"}
+license: {type: "reproduced",author: "Orika",reproduced-url: "https://orikamushi.netlify.app/",reproduced-website: "織歌蟲網站"}
 ---
 
 眩しい午後の陽光(ひかり)　急ぎ足の街角   
