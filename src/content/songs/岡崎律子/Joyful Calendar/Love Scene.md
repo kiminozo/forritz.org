@@ -13,7 +13,7 @@ arranger: ["京田誠一"]
 slug: "/songs/love-scene"
 tags: []
 remarks: "Chorus"
-license: {type: "reproduced",author: "Orika",reproduced-url: "http://orikamushi.myweb.hinet.net/",reproduced-website: "織歌蟲網站"}
+license: {type: "reproduced",author: "Orika",reproduced-url: "https://orikamushi.netlify.app/",reproduced-website: "織歌蟲網站"}
 ---
 
 ねえ　時間なら　いつでも足りないわ   

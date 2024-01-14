@@ -13,7 +13,7 @@ arranger: ["島健"]
 slug: "/songs/shall-we-step-in-the-rain"
 tags: []
 remarks: ""
-license: {type: "reproduced",author: "Orika",reproduced-url: "http://orikamushi.myweb.hinet.net",reproduced-website: "織歌蟲"}
+license: {type: "reproduced",author: "Orika",reproduced-url: "https://orikamushi.netlify.app",reproduced-website: "織歌蟲"}
 ---
 
 雨が降りだして　傘がない日の君は   

@@ -13,7 +13,7 @@ arranger: ["岩本正樹"]
 slug: "/songs/life"
 tags: []
 remarks: ""
-license: {type: "reproduced",author: "Orika",reproduced-url: "http://orikamushi.myweb.hinet.net/",reproduced-website: "織歌蟲網站"}
+license: {type: "reproduced",author: "Orika",reproduced-url: "https://orikamushi.netlify.app/",reproduced-website: "織歌蟲網站"}
 ---
 
 青い空の下を　視線落とし歩いてた   

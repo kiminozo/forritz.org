@@ -14,7 +14,7 @@ slug: "/songs/agape-mizu-no-wakusei-ver"
 tags: []
 remarks: "Chorus・Main Vocal:岡崎律子
 圆盘皇女OVA插曲"
-license: {type: "reproduced",author: "Orika",reproduced-url: "http://orikamushi.myweb.hinet.net/",reproduced-website: "織歌蟲網站"}
+license: {type: "reproduced",author: "Orika",reproduced-url: "https://orikamushi.netlify.app/",reproduced-website: "織歌蟲網站"}
 ---
 
 ★ Would you call me if you need my love?   

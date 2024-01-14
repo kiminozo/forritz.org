@@ -14,7 +14,7 @@ slug: "/songs/so-far-so-near"
 tags: []
 remarks: "Chorus)・Main Vocal:岡崎律子
 『STRATOS 4』插曲"
-license: {type: "reproduced",author: "Orika",reproduced-url: "http://orikamushi.myweb.hinet.net/",reproduced-website: "織歌蟲網站"}
+license: {type: "reproduced",author: "Orika",reproduced-url: "https://orikamushi.netlify.app/",reproduced-website: "織歌蟲網站"}
 ---
 
 僕等に見えてるのは   

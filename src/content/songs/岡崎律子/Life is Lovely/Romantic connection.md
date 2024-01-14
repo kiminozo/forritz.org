@@ -13,7 +13,7 @@ arranger: ["村山達哉"]
 slug: "/songs/romantic-connection"
 tags: []
 remarks: ""
-license: {type: "reproduced",author: "Orika",reproduced-url: "http://orikamushi.myweb.hinet.net/",reproduced-website: "織歌蟲網站"}
+license: {type: "reproduced",author: "Orika",reproduced-url: "https://orikamushi.netlify.app/",reproduced-website: "織歌蟲網站"}
 ---
 
 ほんとうは　もう少し一緒にいたかった   

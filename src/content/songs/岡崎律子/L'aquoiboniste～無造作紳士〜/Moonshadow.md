@@ -13,7 +13,7 @@ arranger: ["加藤敏樹","加藤道明","村山達哉","磯江俊道"]
 slug: "/songs/moonshadow"
 tags: []
 remarks: ""
-license: {type: "reproduced",author: "Orika",reproduced-url: "http://orikamushi.myweb.hinet.net/",reproduced-website: "織歌蟲網站"}
+license: {type: "reproduced",author: "Orika",reproduced-url: "https://orikamushi.netlify.app/",reproduced-website: "織歌蟲網站"}
 ---
 
 暗い夜　月あかり   

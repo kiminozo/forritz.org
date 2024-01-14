@@ -13,7 +13,7 @@ arranger: ["山本健司"]
 slug: "/songs/love-bird"
 tags: []
 remarks: ""
-license: {type: "reproduced",author: "Orika",reproduced-url: "http://orikamushi.myweb.hinet.net",reproduced-website: "織歌蟲"}
+license: {type: "reproduced",author: "Orika",reproduced-url: "https://orikamushi.netlify.app",reproduced-website: "織歌蟲"}
 ---
 
 僕が座るはずの　座席ひとつ残し  
