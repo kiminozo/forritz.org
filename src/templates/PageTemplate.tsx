@@ -1,24 +1,38 @@
-import React, { Component, createRef } from "react"
-import { graphql, PageProps, Link } from "gatsby"
+import React, {
+  Component,
+  createRef,
+} from "react"
 
-import { SEO, Layout, TagsLine, CC, License } from "../components";
+import { graphql } from "gatsby"
 
 import {
-  Button, Grid, Header, Ref, Segment, Rail, Accordion,
-  Label, Divider, Message,
-  Menu, Icon, Sticky, Visibility, VisibilityEventData, Container
-} from 'semantic-ui-react'
-import _ from "lodash";
+  SEO,
+  Layout,
+  TagsLine,
+  CC,
+  License,
+} from "../components"
 
-// this prop will be injected by the GraphQL query below.
+import {
+  Box,
+  Container,
+  Divider,
+  Grid,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Typography,
+} from "@mui/material"
+
 type Headings = {
-  depth: number;
-  id: string;
-  value: string;
+  depth: number
+  id: string
+  value: string
 }
 
 type Item = {
-  h: Headings;
+  h: Headings
   child: Headings[]
 }
 
@@ -26,15 +40,14 @@ type TemplateProps = {
   data: {
     markdownRemark: {
       frontmatter: {
-        title: string;
-        slug: string;
-        date?: string;
-        toc?: boolean;
-        categories?: string[];
-        tags?: string[];
+        title: string
+        slug: string
+        date?: string
+        categories?: string[]
+        tags?: string[]
         license?: License
       }
-      html: string;
+      html: string
       headings: Headings[]
     }
   }
@@ -45,194 +58,324 @@ type TemplateState = {
 }
 
 type HeaderInfo = {
-  id: string;
-  offset: number;
+  id: string
+  offset: number
 }
 
 const sidebarStyle = {
-  background: '#fff',
-  boxShadow: '0 2px 2px rgba(0, 0, 0, 0.1)',
-  paddingLeft: '1em',
-  paddingBottom: '0.1em',
-  paddingTop: '0.1em',
+  backgroundColor: "background.paper",
+  boxShadow: "0 2px 2px rgba(0, 0, 0, 0.1)",
+  px: 2,
+  py: 1,
 }
 
-class TemplatePage extends Component<TemplateProps, TemplateState> {
-  contextRef = createRef<HTMLDivElement>()
-  headerInfos: HeaderInfo[] = [];
+// class TemplatePage extends Component<
+//   TemplateProps,
+//   TemplateState
+// > {
+//   contextRef = createRef<HTMLDivElement>()
 
-  constructor(props: Readonly<TemplateProps>) {
-    super(props);
-    this.state = { activeId: "" }
-  }
+//   headerInfos: HeaderInfo[] = []
 
-  handleUpdate = (nothing: null, { calculations }: VisibilityEventData) => {
-    if (calculations && this.headerInfos.length > 0) {
-      let offsetTop = calculations.pixelsPassed;//data.children.toString();
-      let id = this.headerInfos[0].id;
-      for (const headerInfo of this.headerInfos) {
-        if (headerInfo.offset > offsetTop) {
-          break;
-        }
-        id = headerInfo.id;
-      }
-      this.setState({ activeId: id })
-    }
-  }
 
-  // componentDidMount() {
-  //   const { headings } = this.props.data.markdownRemark;
-  //   // headings.forEach(element => {
-  //   //   let offset = document.getElementById(element.id)?.offsetTop ?? 0;
-  //   //   this.headerInfos.push({ id: element.id, offset });
-  //   // });
-  // }
+//   constructor(props: Readonly<TemplateProps>) {
+//     super(props)
 
-  renderMenu(headings: Headings[]) {
-    if (headings.length == 0) {
-      return;
-    }
+//     this.state = {
+//       activeId: "",
+//     }
+//   }
 
-    const { activeId } = this.state;
+//   componentDidMount() {
+//     if (!this.props.data.markdownRemark.frontmatter.toc) {
+//       return
+//     }
 
-    let h1s: Item[] = []
-    let h1: Item | null = null;
-    headings.forEach(h => {
-      if (h.depth === 1) {
-        h1 = { h, child: [] };
-        h1s.push(h1);
-      } else if (h.depth === 2 && h1) {
-        (h1 as Item).child.push(h);
-      }
-    })
+//     this.setupHeadingsObserver()
+//   }
 
-    return (
-      <Container>
-        <Rail position='right'>
-          <Sticky context={this.contextRef} offset={20}>
-            <Menu as={Accordion} fluid style={sidebarStyle} text vertical>
-              {h1s.map(h1 => (
-                <Menu.Item>
-                  <Accordion.Title active={true}>
-                    {h1.h.id === activeId ? (<b>{h1.h.value}</b>) : h1.h.value}
-                  </Accordion.Title>
-                  <Accordion.Content as={Menu.Menu} active={true}>
-                    {h1.child.map(h2 =>
-                    (<Menu.Item href={`#${h2.id}`}
-                      content={h2.value} active={h2.id === activeId}
-                    />)
-                    )}
-                  </Accordion.Content>
-                </Menu.Item>
-              ))
-              }
-            </Menu>
-          </Sticky>
-        </Rail>
-      </Container>
-    )
-  }
+//   componentWillUnmount() {
+//     this.observer?.disconnect()
+//   }
 
-  renderTags() {
-    const { markdownRemark } = this.props.data;
-    const { frontmatter } = markdownRemark
-    const { categories, tags, license } = frontmatter
+//   setupHeadingsObserver = () => {
+//     const { headings } = this.props.data.markdownRemark
 
-    return (
-      <>
-        <Divider />
-        <TagsLine categories={categories} tags={tags} />
-        <CC license={license} />
-      </>
-    )
-  }
+//     if (!headings.length) {
+//       return
+//     }
 
-  render() {
-    const { markdownRemark } = this.props.data; // data.markdownRemark holds your post data
-    const { frontmatter, html, headings } = markdownRemark
+//     const elements = headings
+//       .map((heading) =>
+//         document.getElementById(heading.id)
+//       )
+//       .filter(
+//         (element): element is HTMLElement =>
+//           element !== null
+//       )
 
-    const body = (<Grid container>
-      <Ref innerRef={this.contextRef}>
-        <Grid.Column mobile={16} computer={10}>
-          <Header as="h1">{frontmatter.title}</Header>
-          <Divider />
-          {/* <p>{frontmatter.date}</p> */}
-          <div
-            className="blog-post-content"
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
-          {this.renderTags()}
-          {frontmatter.toc && this.renderMenu(headings)}
-        </Grid.Column>
-      </Ref>
-    </Grid>)
+//     if (!elements.length) {
+//       return
+//     }
 
-    return (
-      <Layout>
-        {frontmatter.toc ?
-          (<Visibility onUpdate={this.handleUpdate}>
-            {body}
-          </Visibility>) :
-          body
-        }
-      </Layout>
-    )
-  }
-}
+//     this.headerInfos = elements.map((element) => ({
+//       id: element.id,
+//       offset:
+//         element.getBoundingClientRect().top +
+//         window.scrollY,
+//     }))
 
-// class MobileTemplatePage extends Component<TemplateProps, TemplateState> {
-//   render() {
-//     const { markdownRemark } = this.props.data; // data.markdownRemark holds your post data
-//     const { frontmatter, html, headings } = markdownRemark
-//     return (
-//       <Layout>
-//         <SEO title={frontmatter.title} />
-//         <Grid container>
-//           <Grid.Column width={10}>
-//             <Header as="h1">{frontmatter.title}</Header>
-//             <div
-//               className="blog-post-content"
-//               dangerouslySetInnerHTML={{ __html: html }}
-//             />
-//           </Grid.Column>
-//         </Grid>
-//       </Layout>
+//     this.observer = new IntersectionObserver(
+//       (entries) => {
+//         const visibleHeadings = entries
+//           .filter((entry) => entry.isIntersecting)
+//           .sort(
+//             (a, b) =>
+//               a.boundingClientRect.top -
+//               b.boundingClientRect.top
+//           )
+
+//         if (visibleHeadings.length > 0) {
+//           this.setState({
+//             activeId: visibleHeadings[0].target.id,
+//           })
+//         }
+//       },
+//       {
+//         rootMargin: "-80px 0px -70% 0px",
+//         threshold: 0,
+//       }
 //     )
+
+//     elements.forEach((element) => {
+//       this.observer?.observe(element)
+//     })
+//   }
+
+//   renderMenu(headings: Headings[]) {
+//     if (headings.length === 0) {
+//       return null
+//     }
+
+//     const { activeId } = this.state
+
+//     const h1s: Item[] = []
+//     let h1: Item | null = null
+
+//     headings.forEach((h) => {
+//       if (h.depth === 1) {
+//         h1 = {
+//           h,
+//           child: [],
+//         }
+
+//         h1s.push(h1)
+//       } else if (h.depth === 2 && h1) {
+//         h1.child.push(h)
+//       }
+//     })
+
+//     return (
+//       <Container>
+//         <Box
+//           sx={{
+//             position: "sticky",
+//             top: 20,
+//           }}
+//         >
+//           <Box sx={sidebarStyle}>
+//             <List
+//               disablePadding
+//               sx={{
+//                 width: "100%",
+//               }}
+//             >
+//               {h1s.map((item) => (
+//                 <React.Fragment key={item.h.id}>
+//                   <ListItem
+//                     disablePadding
+//                     sx={{
+//                       fontWeight:
+//                         item.h.id === activeId
+//                           ? "bold"
+//                           : "normal",
+//                     }}
+//                   >
+//                     <ListItemText
+//                       primary={item.h.value}
+//                       primaryTypographyProps={{
+//                         fontWeight:
+//                           item.h.id === activeId
+//                             ? 700
+//                             : 400,
+//                       }}
+//                     />
+//                   </ListItem>
+
+//                   {item.child.length > 0 && (
+//                     <List
+//                       disablePadding
+//                       sx={{
+//                         pl: 2,
+//                       }}
+//                     >
+//                       {item.child.map((h2) => (
+//                         <ListItem
+//                           key={h2.id}
+//                           disablePadding
+//                         >
+//                           <ListItemButton
+//                             component="a"
+//                             href={`#${h2.id}`}
+//                             selected={
+//                               h2.id === activeId
+//                             }
+//                             sx={{
+//                               py: 0.5,
+//                               px: 1,
+//                             }}
+//                           >
+//                             <ListItemText
+//                               primary={h2.value}
+//                               primaryTypographyProps={{
+//                                 fontSize:
+//                                   "0.9rem",
+//                               }}
+//                             />
+//                           </ListItemButton>
+//                         </ListItem>
+//                       ))}
+//                     </List>
+//                   )}
+//                 </React.Fragment>
+//               ))}
+//             </List>
+//           </Box>
+//         </Box>
+//       </Container>
+//     )
+//   }
+
+//   renderTags() {
+//     const { markdownRemark } = this.props.data
+
+//     const {
+//       categories,
+//       tags,
+//       license,
+//     } = markdownRemark.frontmatter
+
+//     return (
+//       <>
+//         <Divider sx={{ my: 3 }} />
+
+//         <TagsLine
+//           categories={categories}
+//           tags={tags}
+//         />
+
+//         <CC license={license} />
+//       </>
+//     )
+//   }
+
+//   render() {
+//     const { markdownRemark } = this.props.data
+
+//     const {
+//       frontmatter,
+//       html,
+//       headings,
+//     } = markdownRemark
+
+//     const body = (
+//       <Grid container>
+//         <Grid
+//           size={{
+//             xs: 12,
+//             md: 10,
+//           }}
+//           ref={this.contextRef}
+//         >
+//           <Typography
+//             variant="h1"
+//             component="h1"
+//           >
+//             {frontmatter.title}
+//           </Typography>
+
+//           <Divider sx={{ my: 2 }} />
+
+//           {/*
+//           <Typography component="p">
+//             {frontmatter.date}
+//           </Typography>
+//           */}
+
+//           <Box
+//             className="blog-post-content"
+//             dangerouslySetInnerHTML={{
+//               __html: html,
+//             }}
+//           />
+
+//           {this.renderTags()}
+
+//           {frontmatter.toc &&
+//             this.renderMenu(headings)}
+//         </Grid>
+//       </Grid>
+//     )
+
+//     return <Layout>{body}</Layout>
 //   }
 // }
 
-export default function Template({ data }: TemplateProps) {
-  return (<TemplatePage data={data} />)
+export default function Template({
+  data,
+}: TemplateProps) {
+  //return <TemplatePage data={data} />
+  return <div/>
 }
 
-export const Head = (props: TemplateProps) => <SEO title={props.data.markdownRemark.frontmatter.title} />
+export const Head = (props: TemplateProps) => (
+  <SEO
+    title={
+      props.data.markdownRemark.frontmatter.title
+    }
+  />
+)
 
+export const pageQuery = graphql`
+  query ($slug: String!) {
+    markdownRemark(
+      frontmatter: {
+        slug: { eq: $slug }
+      }
+    ) {
+      html
 
-// export const pageQuery = graphql`
-//   query($slug: String!) {
-//     markdownRemark(frontmatter: { slug: { eq: $slug } }) {
-//       html
-//       frontmatter {
-//         date(formatString: "MMMM DD, YYYY")
-//         slug
-//         title
-//         categories
-//         tags
-//         toc
-//         license {
-//           type
-//           author
-//           translator
-//           reproduced_url
-//           reproduced_website
-//         }
+      frontmatter {
+        date(formatString: "MMMM DD, YYYY")
+        slug
+        title
+        categories
+        tags
 
-//       }
-//       headings {
-//         depth
-//         id
-//         value
-//       }
-//     }
-//   }
-// `
+        license {
+          type
+          author
+          translator
+          reproduced_url
+          reproduced_website
+        }
+      }
+
+      headings {
+        depth
+        id
+        value
+      }
+    }
+  }
+`

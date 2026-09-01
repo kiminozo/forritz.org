@@ -8000,6 +8000,7 @@ __metadata:
     gatsby-plugin-sharp: "npm:^5.16.0"
     gatsby-plugin-sitemap: "npm:^6.16.0"
     gatsby-plugin-typescript: "npm:^5.16.0"
+    gatsby-remark-copy-linked-files: "npm:^6.16.0"
     gatsby-source-filesystem: "npm:^5.16.0"
     gatsby-transformer-remark: "npm:^6.16.0"
     gatsby-transformer-sharp: "npm:^5.16.0"
@@ -8530,6 +8531,24 @@ __metadata:
     react: ^18.0.0 || ^19.0.0 || ^0.0.0
     react-dom: ^18.0.0 || ^19.0.0 || ^0.0.0
   checksum: 10c0/9b75c2038d9a6e66d759e879f457639d8602742e67e2a85ffcbc31e63c6aaa2f0debee73b3cd38c692434c94629132d8d3bcc305bf94efcadd1dfa08afc6d2ee
+  languageName: node
+  linkType: hard
+
+"gatsby-remark-copy-linked-files@npm:^6.16.0":
+  version: 6.16.0
+  resolution: "gatsby-remark-copy-linked-files@npm:6.16.0"
+  dependencies:
+    "@babel/runtime": "npm:^7.20.13"
+    cheerio: "npm:1.0.0-rc.12"
+    fs-extra: "npm:^11.2.0"
+    is-relative-url: "npm:^3.0.0"
+    lodash: "npm:^4.17.21"
+    path-is-inside: "npm:^1.0.2"
+    probe-image-size: "npm:^7.2.3"
+    unist-util-visit: "npm:^2.0.3"
+  peerDependencies:
+    gatsby: ^5.0.0-next
+  checksum: 10c0/354f09321a3a366b37ec4b5b373bfd408b2e41937ac221975ab6d7111c3881c999d8811edb09b9fb929b03407fd89216dc4bb9f82692ef73bf109bf0d9650bc9
   languageName: node
   linkType: hard
 
@@ -12965,6 +12984,13 @@ __metadata:
   version: 1.0.1
   resolution: "path-is-absolute@npm:1.0.1"
   checksum: 10c0/127da03c82172a2a50099cddbf02510c1791fc2cc5f7713ddb613a56838db1e8168b121a920079d052e0936c23005562059756d653b7c544c53185efe53be078
+  languageName: node
+  linkType: hard
+
+"path-is-inside@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "path-is-inside@npm:1.0.2"
+  checksum: 10c0/7fdd4b41672c70461cce734fc222b33e7b447fa489c7c4377c95e7e6852d83d69741f307d88ec0cc3b385b41cb4accc6efac3c7c511cd18512e95424f5fa980c
   languageName: node
   linkType: hard
 

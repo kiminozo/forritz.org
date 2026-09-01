@@ -27,6 +27,7 @@
     "gatsby-plugin-sharp": "^5.16.0",
     "gatsby-plugin-sitemap": "^6.16.0",
     "gatsby-plugin-typescript": "^5.16.0",
+    "gatsby-remark-copy-linked-files": "^6.16.0",
     "gatsby-source-filesystem": "^5.16.0",
     "gatsby-transformer-remark": "^6.16.0",
     "gatsby-transformer-sharp": "^5.16.0",

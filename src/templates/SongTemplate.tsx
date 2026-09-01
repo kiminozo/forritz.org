@@ -1,41 +1,55 @@
-import React, { Component } from "react"
-import { graphql, useStaticQuery, Link } from "gatsby"
+import React from "react"
 
-import { SEO, Layout, CC, License } from "../components";
-import RecordGroup from "../components/RecordGroup"
-import StaffList, { StaffInfo } from '../components/StaffList'
+import { graphql } from "gatsby"
+
 import {
-  Icon, Grid, Header, Container, Segment, Divider,
-  Button, Card, Image, Label, Item, List
-} from 'semantic-ui-react'
-import _ from "lodash";
+  SEO,
+  Layout,
+  CC,
+  License,
+} from "../components"
 
+import RecordGroup from "../components/RecordGroup"
 
+import StaffList, {
+  StaffInfo,
+} from "../components/StaffList"
+
+import {
+  Box,
+  Chip,
+  Divider,
+  Grid,
+  Typography,
+} from "@mui/material"
 
 interface Record {
-  discography: string[];
-  discographyId: string[];
+  discography: string[]
+  discographyId: string[]
 }
 
 interface MarkdownRemark {
-  frontmatter: StaffInfo & Record & {
-    title: string;
-    titlech?: string;
-    slug: string;
-    date: string;
-    lang: string;
-    license?: License
-    quote?: string;
-    remarks?: string
-  }
-  html: string;
+  frontmatter: StaffInfo &
+    Record & {
+      title: string
+      titlech?: string
+      slug: string
+      date: string
+      lang: string
+      license?: License
+      quote?: string
+      remarks?: string
+    }
+
+  html: string
 }
 
 interface TemplateProps {
   data: {
     markdownRemark: MarkdownRemark
+
     quoteData: {
-      html: string;
+      html: string
     }
   }
 }
@@ -48,81 +62,217 @@ interface Translator {
 }
 
 function split(html: string): Translator {
-  const strings = html.split(splitKey);
-  if (strings && strings.length == 2) {
-    return { jp: strings[0], cn: strings[1] }
-  } else {
-    return { jp: html, cn: "" }
+  const strings = html.split(splitKey)
+
+  if (strings.length === 2) {
+    return {
+      jp: strings[0],
+      cn: strings[1],
+    }
+  }
+
+  return {
+    jp: html,
+    cn: "",
   }
 }
 
-export const Head = (props: TemplateProps) => <SEO title={props.data.markdownRemark.frontmatter.title} />
+export const Head = (props: TemplateProps) => (
+  <SEO
+    title={
+      props.data.markdownRemark.frontmatter.title
+    }
+  />
+)
 
+const SongTemplatePage = ({
+  data,
+}: TemplateProps) => {
+  const {
+    markdownRemark: {
+      frontmatter,
+      html,
+    },
+  } = data
 
-const SongTemplatePage = ({ data }: TemplateProps) => {
+  const {
+    title,
+    titlech,
+    discographyId,
+    license,
+    slug,
+    quote,
+  } = frontmatter
 
-  const { markdownRemark: { frontmatter, html } } = data;
-  const { title, titlech, discographyId, license, slug, quote, remarks } = frontmatter;
-  const { quoteData } = data;
-  const htmlData = (quote && quoteData && quoteData.html) ? quoteData.html : html;
-  const { jp, cn } = split(htmlData);
+  const { quoteData } = data
+
+  const htmlData =
+    quote &&
+    quoteData &&
+    quoteData.html
+      ? quoteData.html
+      : html
+
+  const { jp, cn } = split(htmlData)
 
   return (
     <Layout path={slug}>
-      <Grid>
-        <Grid.Column mobile={16} computer={14} tablet={14}>
-          <Header as="h1">
-            {title}
-            {titlech && <Label basic size='large'>{titlech}</Label>}
-          </Header>
-          <StaffList staff={frontmatter} />
-          {htmlData &&
-            <>
-              <Segment style={{ fontSize: "1.2rem" }} >
-                <Grid columns={2} centered stackable>
-                  <Grid.Column>
-                    <div
-                      className="song-content"
-                      dangerouslySetInnerHTML={{ __html: jp }}
-                    />
-                  </Grid.Column>
-                  <Divider vertical>翻译</Divider>
-                  <Grid.Column>
-                    <div
-                      className="song-content"
-                      dangerouslySetInnerHTML={{ __html: cn }}
-                    />
+      <Grid
+        container
+        columns={16}
+        spacing={4}
+      >
+        {/* Song Content */}
+        <Grid size={{ xs: 16, md: 14 }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+            }}
+          >
+            <Typography
+              variant="h1"
+              component="h1"
+            >
+              {title}
+            </Typography>
 
-                  </Grid.Column>
-                </Grid>
-              </Segment>
-              <Divider hidden />
+            {titlech && (
+              <Chip
+                label={titlech}
+                variant="outlined"
+                size="medium"
+              />
+            )}
+          </Box>
+
+          <Box sx={{ mt: 1 }}>
+            <StaffList staff={frontmatter} />
+          </Box>
+
+          {htmlData && (
+            <>
+              <Box
+                sx={{
+                  mt: 3,
+                  p: 3,
+                  fontSize: "1.2rem",
+                  borderRadius: 1,
+                  backgroundColor:
+                    "background.paper",
+                  boxShadow:
+                    "0 1px 3px rgba(0, 0, 0, 0.12)",
+                }}
+              >
+                <div
+                 
+                >
+                  {/* Japanese */}
+                  <Grid size={{ xs: 12, md: 6 }}>
+                    <Box
+                      className="song-content"
+                      dangerouslySetInnerHTML={{
+                        __html: jp,
+                      }}
+                    />
+                  </Grid>
+
+                  {/* Translation Divider */}
+                  <Grid
+                    size={{ xs: 12, md: 0 }}
+                    sx={{
+                      display: {
+                        xs: "none",
+                        md: "block",
+                      },
+                    }}
+                  />
+
+                  {/* Chinese */}
+                  <Grid size={{ xs: 12, md: 6 }}>
+                    <Box
+                      className="song-content"
+                      dangerouslySetInnerHTML={{
+                        __html: cn,
+                      }}
+                    />
+                  </Grid>
+                </div>
+
+                {/* Translation label */}
+                {cn && (
+                  <Box
+                    sx={{
+                      position: "relative",
+                      display: {
+                        xs: "block",
+                        md: "none",
+                      },
+                      my: 3,
+                      textAlign: "center",
+                    }}
+                  >
+                    <Divider>
+                      翻译
+                    </Divider>
+                  </Box>
+                )}
+
+                {cn && (
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      display: {
+                        xs: "none",
+                        md: "block",
+                      },
+                    }}
+                  />
+                )}
+              </Box>
+
+              <Divider sx={{ my: 3 }} />
+
               <CC license={license} />
             </>
-          }
-        </Grid.Column>
+          )}
+        </Grid>
 
-        <Grid.Column mobile={16} computer={2} tablet={14}>
-          <RecordGroup discographyId={discographyId} />
-        </Grid.Column>
+        {/* Discography */}
+        <Grid size={{ xs: 16, md: 2 }}>
+          <RecordGroup
+            discographyId={discographyId}
+          />
+        </Grid>
       </Grid>
-    </Layout >
+    </Layout>
   )
 }
 
-export default function SongTemplate({ data }: TemplateProps) {
-  return (<SongTemplatePage data={data} />)
+export default function SongTemplate({
+  data,
+}: TemplateProps) {
+  return (
+    <SongTemplatePage data={data} />
+  )
 }
 
 export const query = graphql`
-  query($slug: String!,$quote: String) {
-    markdownRemark(frontmatter: {slug: {eq: $slug}}) {
+  query ($slug: String!, $quote: String) {
+    markdownRemark(
+      frontmatter: {
+        slug: { eq: $slug }
+      }
+    ) {
       html
+
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         slug
         title
         titlech
+
         license {
           type
           author
@@ -130,6 +280,7 @@ export const query = graphql`
           reproduced_url
           reproduced_website
         }
+
         singer
         songWriter: songwriter
         lyricWriter: lyricwriter
@@ -140,7 +291,12 @@ export const query = graphql`
         remarks
       }
     }
-    quoteData: markdownRemark(frontmatter: {slug: {eq: $quote}}) {
+
+    quoteData: markdownRemark(
+      frontmatter: {
+        slug: { eq: $quote }
+      }
+    ) {
       html
     }
   }
