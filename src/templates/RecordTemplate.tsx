@@ -205,8 +205,8 @@ class RecordTemplate extends Component<TemplateProps> {
           {/* Main Content */}
           <Grid size={{ xs: 16, md: 12 }}>
             <Typography
-              variant="h1"
-              component="h1"
+              variant="h5"
+              component="h5"
             >
               简介
             </Typography>
@@ -221,8 +221,8 @@ class RecordTemplate extends Component<TemplateProps> {
             <Divider sx={{ my: 3 }} />
 
             <Typography
-              variant="h1"
-              component="h1"
+              variant="h5"
+              component="h5"
             >
               曲目列表
             </Typography>

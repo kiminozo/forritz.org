@@ -13,7 +13,7 @@ interface Props {
   bordered?: boolean
   rounded?: boolean
   alt?: string
-  style?: CSSProperties | undefined;
+  sx?: CSSProperties | undefined;
 }
 
 const imgStyle = { maxHeight: 200 }
@@ -29,13 +29,13 @@ const sizeMap = {
 
 const CoverImage = (props: Props) => {
   const data = useCoverImagesData();
-  const { coverimage: coverImage, size = "medium", bordered, rounded, alt } = props
+  const { coverimage: coverImage, bordered, rounded, alt } = props
   const imageInfo = data.filter(p => p.base === coverImage)[0];
   const commonSx = {
     maxHeight: 200,
-    width: sizeMap[size],
     border: bordered ? "1px solid rgba(0,0,0,0.2)" : "none",
     borderRadius: rounded ? 2 : 0,
+    aspectRatio: '1 / 1',
   }
 
   if (imageInfo) {
@@ -46,7 +46,12 @@ const CoverImage = (props: Props) => {
         <GatsbyImage
           image={image}
           alt={alt ?? ""}
-          style={props.style ?? { height: "100%", width: "100%" }}
+          style={props.sx ?? { height: "100%", width: "100%" }}
+          imgStyle={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+          }}
         />
       </Box>
     ) : (

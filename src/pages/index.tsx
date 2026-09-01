@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, PageProps, graphql } from "gatsby"
 import { SEO, Layout, CoverImage } from "../components"
-import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image"
 import {
   Grid,
   Divider,
@@ -10,20 +10,17 @@ import {
   CardContent,
   CardMedia,
   CardActions,
+  CardActionArea,
   Button,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-  ImageList,
-  ImageListItem,
-  ImageListItemBar,
+  Container,
   Box
 } from "@mui/material"
 import ArrowRightIcon from "@mui/icons-material/ArrowRight"
 import PublicIcon from "@mui/icons-material/Public"
-import IconButton from '@mui/material/IconButton';
-import InfoIcon from '@mui/icons-material/Info';
 
 interface Record {
   coverImage: string
@@ -82,26 +79,51 @@ const RitzCard = () => (
   </Card>
 )
 
+const AlbumCard = ({ record }: { record: Record }) => (
+  <Card sx={{
+    borderRadius: 2,
+    overflow: 'hidden',
+  }}>
+    <CardActionArea sx={{
+      aspectRatio: '1 / 1',
+    }}>
+      <CoverImage
+        coverimage={record.coverImage}
+        alt={record.title}
+        sx={{
+          width: '100%',
+          height: '100%',
+        }}
+      />
+    </CardActionArea>
+  </Card >
+)
+
 // 专辑卡列表
-const AlbumCard = ({ records }: { records: Record[] }) => (
-  <ImageList sx={{ width: "100%", height: "auto" }} cols={6} gap={8}>
-    {records.map((item) => (
-      <ImageListItem key={item.title} style={{ width: "100px", height: "100px" }}>
-        <CoverImage coverimage={item.coverImage} alt={item.title} />
-        <ImageListItemBar
-          title={item.title}
-          actionIcon={
-            <IconButton
-              sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-              aria-label={`info about ${item.title}`}
-            >
-              <InfoIcon />
-            </IconButton>
-          }
-        />
-      </ImageListItem>
-    ))}
-  </ImageList>
+const AlbumCardList = ({ records }: { records: Record[] }) => (
+  <Container maxWidth="xl" sx={{ py: 4 }}>
+    <Grid container spacing={{ xs: 2, md: 3 }}>
+      {records.map((item) => (
+        <Grid key={item.title} size={{ xs: 6, sm: 4, md: 2 }}>
+          <AlbumCard record={item} />
+        </Grid>
+      ))}
+    </Grid >
+  </Container>
+
+  // <ImageList variant="quilted" sx={{ md: 2 }} cols={6} gap={10}>
+  //   {records.map((item) => (
+  //     <ImageListItem key={item.title} >
+  //       <Card sx={{ borderRadius: 2 }} >
+  //         <CardActionArea>
+  //           <CardMedia>
+  //             <CoverImage coverimage={item.coverImage} alt={item.title} style={{ width: "100%", height: "100%" }} />
+  //           </CardMedia>
+  //         </CardActionArea>
+  //       </Card>
+  //     </ImageListItem>
+  //   ))}
+  // </ImageList>
 )
 
 export const Head = () => <SEO title="首页" />
@@ -165,7 +187,7 @@ const IndexPage = (props: Props) => (
         <Typography variant="h4" gutterBottom>
           唱片集
         </Typography>
-        <AlbumCard records={props.data.records.nodes.map(p => p.frontmatter)} />
+        <AlbumCardList records={props.data.records.nodes.map(p => p.frontmatter)} />
         <Divider sx={{ my: 3 }} />
 
         <Button
