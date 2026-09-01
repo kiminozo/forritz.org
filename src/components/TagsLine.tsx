@@ -1,33 +1,43 @@
 import React from "react"
-import { Link } from "gatsby"
-import {
-    Label, Icon,
-} from 'semantic-ui-react'
+import { Link as GatsbyLink } from "gatsby"
+import { Stack, Chip } from "@mui/material"
+import BookmarkIcon from "@mui/icons-material/Bookmark"
 import kebabCase from "lodash/kebabCase"
-import { getMetaId } from "../hooks/useMetaData";
+import { getMetaId } from "../hooks/useMetaData"
 
 interface Props {
-    categories?: string[];
-    tags?: string[];
+  categories?: string[]
+  tags?: string[]
 }
 
 const TagsLine = ({ categories, tags }: Props) => (
-    <Label.Group >
-        {
-            categories &&
-            categories.map(category =>
-                (<Label as={Link} key={category} color='teal' to={`/category/${getMetaId(category)}/`} >
-                    <Icon name='bookmark' />{category}
-                </Label>)
-            )
-        }
-        {
-            tags &&
-            tags.map(tag =>
-                (<Label as={Link} key={tag} to={`/tags/${kebabCase(tag)}/`}>{tag}</Label>)
-            )
-        }
-    </Label.Group>
-);
+  <Stack direction="row" spacing={1} flexWrap="wrap">
+    {categories &&
+      categories.map(category => (
+        <Chip
+          key={category}
+          label={category}
+          icon={<BookmarkIcon />}
+          component={GatsbyLink}
+          to={`/category/${getMetaId(category)}/`}
+          color="primary"
+          size="small"
+          clickable
+        />
+      ))}
+    {tags &&
+      tags.map(tag => (
+        <Chip
+          key={tag}
+          label={tag}
+          component={GatsbyLink}
+          to={`/tags/${kebabCase(tag)}/`}
+          variant="outlined"
+          size="small"
+          clickable
+        />
+      ))}
+  </Stack>
+)
 
-export default TagsLine;
+export default TagsLine

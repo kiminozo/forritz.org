@@ -1,56 +1,67 @@
 import React from "react"
-// Utilities
-import kebabCase from "lodash/kebabCase"
-// Components
-import { Link, graphql } from "gatsby"
-import { SEO, Layout } from "../components";
-import {
-    Menu, Label, List
-} from 'semantic-ui-react'
-import { getMetaId } from "../hooks/useMetaData";
+import { Link as GatsbyLink ,graphql} from "gatsby"
+import { SEO, Layout } from "../components"
+import { Stack, List, ListItemButton, ListItemText, Chip } from "@mui/material"
+import { getMetaId } from "../hooks/useMetaData"
+
 type CategoriesGroup = {
-    fieldValue: string;
-    totalCount: number;
+  fieldValue: string
+  totalCount: number
 }
 
 type CategoriesPageProp = {
-    data: {
-        allMarkdownRemark: {
-            group: CategoriesGroup[]
-        },
-        site: {
-            siteMetadata: {
-                title: string
-            },
-        },
+  data: {
+    allMarkdownRemark: {
+      group: CategoriesGroup[]
     }
+    site: {
+      siteMetadata: {
+        title: string
+      }
+    }
+  }
 }
 
 export const Head = () => <SEO title="Categories" />
 
-
 const CategoriesPage = (props: CategoriesPageProp) => {
-    const {
-        data: { allMarkdownRemark: { group },
-            site: { siteMetadata: { title } }
-        }
-    } = props;
-    return (
-        <Layout>
-            <div>
-                <h1>Categories</h1>
-                <Menu vertical>
-                    {group.map(category => (
-                        <Menu.Item as={Link} to={`/category/${getMetaId(category.fieldValue)}/`} >
-                            {category.fieldValue}
-                            <Label circular color='teal' >{category.totalCount} </Label>
-                        </Menu.Item>
-                    ))}
-                </Menu>
-            </div>
-        </Layout >
-    )
+  const {
+    data: {
+      allMarkdownRemark: { group },
+      site: {
+        siteMetadata: { title }
+      }
+    }
+  } = props
+
+  return (
+    <Layout>
+      <div>
+        <h1>Categories</h1>
+        <List>
+          <Stack spacing={1}>
+            {group.map(category => (
+              <ListItemButton
+                key={category.fieldValue}
+                component={GatsbyLink}
+                to={`/category/${getMetaId(category.fieldValue)}/`}
+              >
+                <ListItemText primary={category.fieldValue} />
+                <Chip
+                  label={category.totalCount}
+                  size="small"
+                  color="primary"
+                  variant="outlined"
+                />
+              </ListItemButton>
+            ))}
+          </Stack>
+        </List>
+      </div>
+    </Layout>
+  )
 }
+
 export default CategoriesPage
 
 export const CategoriesQuery = graphql`{

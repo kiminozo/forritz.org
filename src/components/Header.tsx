@@ -1,156 +1,128 @@
-import { Link, PageProps, useStaticQuery, graphql } from "gatsby"
 import React from "react"
-import { Menu, Container, Dropdown, Divider, Header as UIHeader, Icon, Image }
-  from 'semantic-ui-react'
-
-import "./header.sass"
-import styles from "./header.module.sass"
-import { menusConfig, MenuConfig } from "../menu";
-import { WindowLocation } from "@reach/router"
+import { Link } from "gatsby"
+import {
+  AppBar,
+  Toolbar,
+  Container,
+  Typography,
+  Button,
+  Menu,
+  MenuItem,
+  Box
+} from "@mui/material"
 
 import logo from "../assets/logo.jpg"
-import _ from "lodash";
-
+import { menusConfig, MenuConfig } from "../menu"
+import _ from "lodash"
 
 type Props = {
-  siteTitle: string;
+  siteTitle: string
   pathName: string
-};
-// type State = {
-//   activeItem: string;
-// }
+}
+
 function getPath(pathName: string) {
-  const start = pathName.startsWith("/") ? 1 : 0;
-  const end = pathName.endsWith("/") ? pathName.length - 1 : pathName.length;
-  const path = pathName.substring(start, end);
-  return path;
+  const start = pathName.startsWith("/") ? 1 : 0
+  const end = pathName.endsWith("/") ? pathName.length - 1 : pathName.length
+  return pathName.substring(start, end)
 }
 
 function isActive(item: MenuConfig, pathName: string): boolean {
-  const path = getPath(pathName);
-  const dir = path.split("/")[0];
-  const part = (array: string[] | undefined): boolean => array ?
-    _.findIndex(array, x => x === dir) >= 0 : false;
+  const path = getPath(pathName)
+  const dir = path.split("/")[0]
 
-  //console.log("dir:" + dir);
-  //console.log(pathName);
-  // console.log("getPath:" + getPath("/categories/rain-or-shine"));
-
-  // console.log(path === getPath("/categories/rain-or-shine"));
+  const part = (array?: string[]) =>
+    array ? _.findIndex(array, x => x === dir) >= 0 : false
 
   if (item.sub) {
-    return _.findIndex(item.sub, p => getPath(p.link) === path) >= 0
-      || _.findIndex(item.sub, p => part(p.active)) >= 0
-  }
-  return item.link === pathName
-    || getPath(item.link) === dir
-    || part(item.active);
-}
-
-class Header extends React.Component<Props> {
-  static defaultProps = {
-    siteTitle: ''
-  };
-
-  // state = ({ activeItem: '' })
-
-  render() {
-    const menus = menusConfig;
-    const { pathName } = this.props;
-    // const { activeItem } = this.state;
-
     return (
-      <header>
-        {/* <h6>path:{pathName}</h6> */}
-        <Container>
-          <UIHeader as="h2" style={{ paddingTop: 10 }}>
-            {/* <Icon name='settings' /> */}
-            <Image src={logo} size="big" alt='logo' />
-            <UIHeader.Content>
-              For RITZ
-            <UIHeader.Subheader>岡崎律子的非官方中文资料站</UIHeader.Subheader>
-            </UIHeader.Content>
-          </UIHeader>
-
-        </Container>
-        <Menu secondary pointing color="pink" size='large'>
-          <Container>
-            {menus.map(item => item.sub ?
-              (
-                <Dropdown
-                  text={item.name}
-                  key={item.name}
-                  className={`link item ${isActive(item, pathName) ? 'active' : undefined}`}>
-                  <Dropdown.Menu>{
-                    item.sub.map(sub => (
-                      <Dropdown.Item as={Link} key={sub.name} to={sub.link}>{sub.name}</Dropdown.Item>
-                    ))
-                  }
-                  </Dropdown.Menu>
-                </Dropdown>
-              )
-              :
-              (<Menu.Item as={Link}
-                key={item.name}
-                name={item.name}
-                active={isActive(item, pathName)}
-                link={true}
-                to={item.link}
-              />))
-            }
-          </Container>
-        </Menu>
-        {/* <Menu inverted pointing size="small" style={{ marginBottom: 20 }}>
-          <Container>
-            {
-              menus.map(item => item.sub ?
-                item.sub.map(sub =>
-                  (
-                    <Menu.Item as={Link}
-                      name={sub.name}
-                      activeClassName='active'
-                      link={true}
-                      to={sub.link}
-                    />
-                  ))
-                : (<></>)
-              )
-              // (
-              //   <Dropdown text={item.name} className='link item' >
-              //     <Dropdown.Menu>{
-              //       item.sub.map(sub => (
-              //         <Dropdown.Item as={Link} to={sub.link}>{sub.name}</Dropdown.Item>
-              //       ))
-              //     }
-              //     </Dropdown.Menu>
-              //   </Dropdown>
-              // )
-              // (<Menu.Item as={Link}
-              //   name={item.name}
-              //   activeClassName='active'
-              //   link={true}
-              //   to={item.link}
-              // />))
-            }
-          </Container>
-        </Menu> */}
-
-      </header>
-
-    );
+      _.findIndex(item.sub, p => getPath(p.link) === path) >= 0 ||
+      _.findIndex(item.sub, p => part(p.active)) >= 0
+    )
   }
+
+  return (
+    item.link === pathName ||
+    getPath(item.link) === dir ||
+    part(item.active)
+  )
 }
 
-// const HeaderHook = () => {
-//   const data = useStaticQuery(graphql`
-//     query {
-//         sitePage {
-//             path
-//         }       
-//     }
-//   `)
+export default function Header({ siteTitle, pathName }: Props) {
+  const menus = menusConfig
 
-//   return <Header path={data.sitePage.path} />
-// }
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  const [openIndex, setOpenIndex] = React.useState<number | null>(null)
 
-export default Header;
+  const handleOpen = (event: React.MouseEvent<HTMLElement>, index: number) => {
+    setAnchorEl(event.currentTarget)
+    setOpenIndex(index)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+    setOpenIndex(null)
+  }
+
+  return (
+    <>
+      {/* 顶部 */}
+      <Container>
+        <Box display="flex" alignItems="center" py={2}>
+          <img src={logo} style={{ height: 60, marginRight: 16 }} />
+          <Box>
+            <Typography variant="h5">For RITZ</Typography>
+            <Typography variant="subtitle2">
+              岡崎律子的非官方中文资料站
+            </Typography>
+          </Box>
+        </Box>
+      </Container>
+
+      {/* 菜单 */}
+      <AppBar position="static" color="default">
+        <Toolbar>
+          <Container sx={{ display: "flex" }}>
+            {menus.map((item, index) =>
+              item.sub ? (
+                <Box key={item.name}>
+                  <Button
+                    onClick={(e) => handleOpen(e, index)}
+                    color={isActive(item, pathName) ? "primary" : "inherit"}
+                  >
+                    {item.name}
+                  </Button>
+
+                  <Menu
+                    anchorEl={anchorEl}
+                    open={openIndex === index}
+                    onClose={handleClose}
+                  >
+                    {item.sub.map(sub => (
+                      <MenuItem
+                        key={sub.name}
+                        component={Link}
+                        to={sub.link}
+                        onClick={handleClose}
+                      >
+                        {sub.name}
+                      </MenuItem>
+                    ))}
+                  </Menu>
+                </Box>
+              ) : (
+                <Button
+                  key={item.name}
+                  component={Link}
+                  to={item.link}
+                  color={isActive(item, pathName) ? "primary" : "inherit"}
+                >
+                  {item.name}
+                </Button>
+              )
+            )}
+          </Container>
+        </Toolbar>
+      </AppBar>
+    </>
+  )
+}

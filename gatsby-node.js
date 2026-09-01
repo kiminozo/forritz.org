@@ -6,12 +6,6 @@
 const _ = require("lodash")
 const path = require('path');
 
-// function getId(path) {
-//   let pathName = path;
-//   const end = pathName.endsWith("/") ? pathName.length - 1 : pathName.length;
-//   const start = pathName.substring(0, end).lastIndexOf('/')
-//   return pathName.substring(start, end);
-// }
 Map.prototype.addListValue = function (key, value) {
   let values = this.get(key);
   if (!values) {

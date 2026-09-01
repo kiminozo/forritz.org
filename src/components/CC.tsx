@@ -1,5 +1,6 @@
 import React, { Component } from "react"
-import { Message, Icon } from 'semantic-ui-react'
+import { Alert, AlertTitle, Link, Box, Typography } from "@mui/material"
+import CopyrightIcon from "@mui/icons-material/Copyright"
 import "./CC.sass"
 import { License } from "./License";
 import _ from "lodash";
@@ -22,15 +23,18 @@ const CC = ({ license }: { license?: License }) => {
     }
 
     return (
-        <Message info >
-            <Message.Header>
-                <Icon name='cc' size="large" />
-                <a href={byncsa} target="_Blank">BY-NC-SA 4.0</a>
-            </Message.Header>
-            <Message.Content>
-                {content}
-            </Message.Content>
-        </Message >
+        <Alert
+            severity="info"
+            icon={<CopyrightIcon fontSize="inherit" />}
+            sx={{ mt: 2 }}
+        >
+            <AlertTitle>
+                <Link href={byncsa} target="_blank" rel="noopener">
+                 BY-NC-SA 4.0
+            </Link>
+        </AlertTitle>
+        <Typography variant="body2">{content}</Typography>
+        </Alert>
     )
 };
 

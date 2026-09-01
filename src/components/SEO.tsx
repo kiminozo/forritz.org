@@ -1,6 +1,5 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-//import { SiteMetaQuery } from "../graphql"
 
 type MetaProps = JSX.IntrinsicElements["meta"]
 

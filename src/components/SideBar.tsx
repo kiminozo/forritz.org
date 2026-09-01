@@ -1,32 +1,24 @@
 import React from "react"
-import { Menu, Label } from "semantic-ui-react"
-import { graphql, useStaticQuery, Link } from "gatsby"
+import { graphql, useStaticQuery, Link as GatsbyLink } from "gatsby"
+import { List, ListSubheader, ListItemButton, ListItemText, Chip, Box, Divider } from "@mui/material"
 import { getMetaId } from "../hooks/useMetaData"
 
 interface CategoriesGroup {
-    fieldValue: string;
-    totalCount: number;
+  fieldValue: string
+  totalCount: number
 }
-
 
 interface QueryData {
-    record: {
-        recordList: CategoriesGroup[]
-    },
-    post: {
-        postList: CategoriesGroup[]
-    }
-    metas: {
-        metaList: {
-            frontmatter: {
-                title: string
-                id: string
-            }
-        }
-    }
+  record: {
+    recordList: CategoriesGroup[]
+  }
+  post: {
+    postList: CategoriesGroup[]
+  }
 }
 
-const query = graphql`{
+const query = graphql`
+{
   record: allMarkdownRemark(
     limit: 2000
     filter: {frontmatter: {type: {eq: "record"}}}
@@ -45,45 +37,52 @@ const query = graphql`{
       totalCount
     }
   }
-}`
-
-
-
+}
+`
 
 const SideBar = () => {
-    const data = useStaticQuery<QueryData>(query);
-    const { record: { recordList }, post: { postList } } = data;
-    return (
-        <Menu vertical size='massive'>
-            <Menu.Item>
-                <Menu.Header>作品列表</Menu.Header>
-                <Menu.Menu>
-                    {
-                        recordList.map(({ fieldValue, totalCount }) => (
-                            <Menu.Item as={Link} key={fieldValue} to={`/discography/${getMetaId(fieldValue)}/`} >
-                                {fieldValue}
-                                <Label color='teal' circular>{totalCount} </Label>
-                            </Menu.Item>
-                        ))
-                    }
-                </Menu.Menu>
-            </Menu.Item>
+  const data = useStaticQuery<QueryData>(query)
+  const { record: { recordList }, post: { postList } } = data
 
-            <Menu.Item>
-                <Menu.Header>文章分类</Menu.Header>
-                <Menu.Menu>
-                    {
-                        postList.map(({ fieldValue, totalCount }) => (
-                            <Menu.Item as={Link} key={fieldValue} to={`/category/${getMetaId(fieldValue)}/`} >
-                                {fieldValue}
-                                <Label color='teal' circular >{totalCount} </Label>
-                            </Menu.Item>
-                        ))
-                    }
-                </Menu.Menu>
-            </Menu.Item>
-        </Menu>
-    )
+  return (
+    <Box sx={{ width: "100%", maxWidth: 360 }}>
+      {/* 作品列表 */}
+      <List
+        component="nav"
+        subheader={<ListSubheader component="div">作品列表</ListSubheader>}
+      >
+        {recordList.map(({ fieldValue, totalCount }) => (
+          <ListItemButton
+            key={fieldValue}
+            component={GatsbyLink}
+            to={`/discography/${getMetaId(fieldValue)}/`}
+          >
+            <ListItemText primary={fieldValue} />
+            <Chip label={totalCount} color="primary" size="small" />
+          </ListItemButton>
+        ))}
+      </List>
+
+      <Divider sx={{ my: 2 }} />
+
+      {/* 文章分类 */}
+      <List
+        component="nav"
+        subheader={<ListSubheader component="div">文章分类</ListSubheader>}
+      >
+        {postList.map(({ fieldValue, totalCount }) => (
+          <ListItemButton
+            key={fieldValue}
+            component={GatsbyLink}
+            to={`/category/${getMetaId(fieldValue)}/`}
+          >
+            <ListItemText primary={fieldValue} />
+            <Chip label={totalCount} color="primary" size="small" />
+          </ListItemButton>
+        ))}
+      </List>
+    </Box>
+  )
 }
 
-export default SideBar;
+export default SideBar

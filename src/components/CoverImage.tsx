@@ -1,14 +1,15 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { useCoverImagesData } from '../hooks/useCoverImagesData'
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { useCoverImagesData } from "../hooks/useCoverImagesData"
 import demo from "../images/demo.png"
-import { Image, ImageProps, SemanticSIZES } from 'semantic-ui-react'
+import { Box } from "@mui/material"
+
 import cx from 'classnames'
 
 interface Props {
   coverimage: string
-  size?: SemanticSIZES
+  size?: "small" | "medium" | "large"
   bordered?: boolean
   rounded?: boolean
   alt?: string
@@ -18,27 +19,51 @@ const imgStyle = { maxHeight: 200 }
 
 const useKeyOnly = (val: any, key: string) => val && key;
 
+// 模拟 semantic size
+const sizeMap = {
+  small: 120,
+  medium: 200,
+  large: 300,
+}
+
 const CoverImage = (props: Props) => {
   const data = useCoverImagesData();
-  const { coverimage: coverImage, size, bordered, rounded, alt } = props;
+  const { coverimage: coverImage, size = "medium", bordered, rounded, alt } = props
   const imageInfo = data.filter(p => p.base === coverImage)[0];
-  const className = cx(
-    'ui',
-    size ? size : 'medium',
-    'image',
-    useKeyOnly(bordered, 'bordered'),
-    useKeyOnly(rounded, 'rounded'),
-  )
+  const commonSx = {
+    maxHeight: 200,
+    width: sizeMap[size],
+    border: bordered ? "1px solid rgba(0,0,0,0.2)" : "none",
+    borderRadius: rounded ? 2 : 0,
+  }
+ 
   if (imageInfo) {
     const image = getImage(imageInfo.image)
-    return image ?
-      <GatsbyImage
-        image={image}
-        className={className}
-        alt={alt ?? ""} />
-      : <Image size={size} src={imageInfo.publicURL} />;
+    
+    return image ? (
+      <Box sx={commonSx}>
+        <GatsbyImage
+          image={image}
+          alt={alt ?? ""}
+          style={{ height: "100%" }}
+        />
+      </Box>
+    ) : (
+      <Box
+        component="img"
+        src={imageInfo.publicURL}
+        alt={alt ?? ""}
+        sx={commonSx}
+      />
+    )
   }
-  return <Image size={size} style={imgStyle} src={demo} ></Image>
-}
+ return (
+    <Box
+      component="img"
+      src={demo}
+      alt=""
+      sx={commonSx}
+    />
+  )}
 
 export default CoverImage
