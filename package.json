@@ -4,61 +4,50 @@
   "description": "",
   "version": "3.0.0",
   "author": "kiminozo<kiminozoeien@gmail.com>",
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "typecheck": "tsc --noEmit"
+  },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^9.4.0",
     "@mui/material": "^9.4.0",
-    "anchor-js": "^5.0.0",
-    "classnames": "^2.5.1",
     "gatsby": "^5.16.1",
-    "gatsby-image": "^3.11.0",
     "gatsby-plugin-image": "^3.16.0",
     "gatsby-plugin-lodash": "^6.16.0",
     "gatsby-plugin-manifest": "^5.16.0",
+    "gatsby-plugin-mdx": "^5.16.0",
     "gatsby-plugin-offline": "^6.16.0",
     "gatsby-plugin-sass": "^6.16.0",
     "gatsby-plugin-sharp": "^5.16.0",
     "gatsby-plugin-sitemap": "^6.16.0",
     "gatsby-plugin-typescript": "^5.16.0",
-    "gatsby-remark-copy-linked-files": "^6.16.0",
-    "gatsby-remark-images": "^7.16.0",
     "gatsby-source-filesystem": "^5.16.0",
-    "gatsby-transformer-json": "^5.16.0",
     "gatsby-transformer-remark": "^6.16.0",
     "gatsby-transformer-sharp": "^5.16.0",
     "lodash": "^4.18.1",
-    "prop-types": "^15.8.1",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "react-visibility-sensor": "^5.1.1"
+    "sass": "^1.103.1"
   },
   "devDependencies": {
-    "@types/anchor-js": "^5.0.3",
     "@types/classnames": "^2.3.4",
     "@types/graphql": "^14.5.0",
-    "@types/jest": "^30.0.0",
     "@types/lodash": "^4.17.25",
     "@types/node": "^26.4.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.5",
-    "gatsby-plugin-tslint": "^0.0.2",
-    "prettier": "3.9.6",
     "typescript": "^7.0.2"
   },
   "keywords": [
     "gatsby"
   ],
   "license": "MIT",
-  "scripts": {
-    "build": "gatsby clean && gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "gatsby clean && gatsby develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/kiminozo/forritz.org"
@@ -66,5 +55,5 @@
   "bugs": {
     "url": "https://github.com/kiminozo/forritz.org/issues"
   },
-  "packageManager": "yarn@4.0.2"
+  "packageManager": "yarn@4.18.0"
 }
