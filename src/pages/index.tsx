@@ -15,10 +15,15 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  ImageList,
+  ImageListItem,
+  ImageListItemBar,
   Box
 } from "@mui/material"
 import ArrowRightIcon from "@mui/icons-material/ArrowRight"
 import PublicIcon from "@mui/icons-material/Public"
+import IconButton from '@mui/material/IconButton';
+import InfoIcon from '@mui/icons-material/Info';
 
 interface Record {
   coverImage: string
@@ -43,7 +48,10 @@ const RitzCard = () => (
       <StaticImage src="../images/steps.jpg" alt="avatar" />
     </CardMedia>
     <CardContent>
-      <Typography variant="h5">岡崎律子</Typography>
+      <Typography gutterBottom variant="h5" component="div">
+        岡崎律子
+      </Typography>
+      <Divider />
       <Typography variant="subtitle1" color="text.secondary">
         1959 ~ 2004
       </Typography>
@@ -76,15 +84,24 @@ const RitzCard = () => (
 
 // 专辑卡列表
 const AlbumCard = ({ records }: { records: Record[] }) => (
-  <Grid container spacing={2}>
-    {records.map(item => (
-      <Grid  size={{ xs: 6,sm:4, md: 2 }}  key={item.title}>
-        <Card component={Link} to={item.slug} sx={{ textDecoration: "none" }}>
-          <CoverImage coverimage={item.coverImage} alt={item.title} />
-        </Card>
-      </Grid>
+  <ImageList sx={{ width: "100%", height: "auto" }} cols={6} gap={8}>
+    {records.map((item) => (
+      <ImageListItem key={item.title} style={{ width: "100px", height: "100px" }}>
+        <CoverImage coverimage={item.coverImage} alt={item.title} />
+        <ImageListItemBar
+          title={item.title}
+          actionIcon={
+            <IconButton
+              sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+              aria-label={`info about ${item.title}`}
+            >
+              <InfoIcon />
+            </IconButton>
+          }
+        />
+      </ImageListItem>
     ))}
-  </Grid>
+  </ImageList>
 )
 
 export const Head = () => <SEO title="首页" />
@@ -93,12 +110,12 @@ const IndexPage = (props: Props) => (
   <Layout path={props.location.pathname}>
     <Grid container spacing={2}>
       {/* 左侧个人卡 */}
-      <Grid  size={{ xs: 12, md: 3 }}>
+      <Grid size={{ xs: 12, md: 3 }}>
         <RitzCard />
       </Grid>
 
       {/* 右侧内容 */}
-      <Grid  size={{ xs: 12, md: 9 }} >
+      <Grid size={{ xs: 12, md: 9 }} >
         <Box sx={{ mb: 2 }}>
           <Typography >
             ●她于1959年12月29日,在日本长崎县出生。

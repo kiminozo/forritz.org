@@ -1,4 +1,4 @@
-import React from "react"
+import React, { CSSProperties } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { useCoverImagesData } from "../hooks/useCoverImagesData"
@@ -13,6 +13,7 @@ interface Props {
   bordered?: boolean
   rounded?: boolean
   alt?: string
+  style?: CSSProperties | undefined;
 }
 
 const imgStyle = { maxHeight: 200 }
@@ -36,16 +37,16 @@ const CoverImage = (props: Props) => {
     border: bordered ? "1px solid rgba(0,0,0,0.2)" : "none",
     borderRadius: rounded ? 2 : 0,
   }
- 
+
   if (imageInfo) {
     const image = getImage(imageInfo.image)
-    
+
     return image ? (
       <Box sx={commonSx}>
         <GatsbyImage
           image={image}
           alt={alt ?? ""}
-          style={{ height: "100%" }}
+          style={props.style ?? { height: "100%", width: "100%" }}
         />
       </Box>
     ) : (
@@ -57,13 +58,14 @@ const CoverImage = (props: Props) => {
       />
     )
   }
- return (
+  return (
     <Box
       component="img"
       src={demo}
       alt=""
       sx={commonSx}
     />
-  )}
+  )
+}
 
 export default CoverImage
