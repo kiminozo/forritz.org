@@ -10,14 +10,16 @@ interface StaffInfo {
 }
 
 const StaffList = ({ staff: { songWriter, lyricWriter, singer, arranger } }: { staff: StaffInfo }) => (
-  <Stack direction="row" spacing={2} flexWrap="wrap">
+  <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap" }}>
     {songWriter.length > 0 && (
+      //Lyrics
       <Typography component="span" variant="body2">
         <b>作曲</b>{" "}
         <StaffLink type="song-writer" names={songWriter} />
       </Typography>
     )}
     {lyricWriter.length > 0 && (
+      //Lyrics
       <Typography component="span" variant="body2">
         <b>作词</b>{" "}
         <StaffLink type="lyric-writer" names={lyricWriter} />

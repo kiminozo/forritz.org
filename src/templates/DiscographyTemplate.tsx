@@ -13,6 +13,8 @@ import DiscographyLayout, {
   DiscographyInfo,
 } from "../components/DiscographyLayout"
 
+
+
 interface ContextProps {
   pageContext: {
     category: string

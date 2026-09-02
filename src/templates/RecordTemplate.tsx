@@ -30,7 +30,7 @@ import {
   Typography,
 } from "@mui/material"
 
-import MusicNoteIcon from "@mui/icons-material/MusicNote"
+import QueueMusicNoteIcon from "@mui/icons-material/QueueMusic"
 
 import _ from "lodash"
 
@@ -258,7 +258,7 @@ class RecordTemplate extends Component<TemplateProps> {
                     }}
                   >
                     <Avatar>
-                      <MusicNoteIcon />
+                      <QueueMusicNoteIcon />
                     </Avatar>
                   </ListItemAvatar>
 

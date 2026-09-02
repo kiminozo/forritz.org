@@ -1,6 +1,6 @@
 import React from "react"
 
-import { graphql, Link } from "gatsby"
+import { graphql, Link as GLink } from "gatsby"
 
 import {
   SEO,
@@ -18,7 +18,11 @@ import {
   ListItemButton,
   ListItemText,
   Typography,
+  Chip,
+  Link,
+  ListItemIcon
 } from "@mui/material"
+import AlbumCard from "../components/AlbumCard"
 
 import _ from "lodash"
 
@@ -97,8 +101,8 @@ const RecordListTemplate = (props: TemplateProps) => {
         {/* Main Content */}
         <Grid size={{ xs: 16, md: 11 }}>
           <Typography
-            variant="h1"
-            component="h1"
+            variant="h4"
+            component="h4"
           >
             {title}
           </Typography>
@@ -138,15 +142,7 @@ const RecordListTemplate = (props: TemplateProps) => {
                         width: 160,
                       }}
                     >
-                      <Link to={slug}>
-                        <CoverImage
-                          alt={title}
-                          bordered
-                          rounded
-                          size="small"
-                          coverimage={coverImage}
-                        />
-                      </Link>
+                      <AlbumCard coverImage={coverImage} slug={slug} title={title} />
                     </Box>
 
                     {/* Record Content */}
@@ -158,12 +154,12 @@ const RecordListTemplate = (props: TemplateProps) => {
                     >
                       {/* Record Title */}
                       <Typography
-                        variant="h3"
-                        component={Link}
+                        variant="h4"
+                        component={GLink}
                         to={slug}
                         sx={{
                           display: "inline-block",
-                          fontSize: "1.25rem",
+                          fontSize: "1.5rem",
                           fontWeight: 500,
                           textDecoration: "none",
                           color: "text.primary",
@@ -179,9 +175,12 @@ const RecordListTemplate = (props: TemplateProps) => {
                       <Typography
                         variant="body2"
                         color="text.secondary"
-                        sx={{ mt: 0.5 }}
+                        sx={{ mt: 1 }}
                       >
                         <Link
+                          color="secondary"
+                          underline="hover"
+                          component={GLink}
                           to={`/singer/${_.kebabCase(
                             artist
                           )}/`}
@@ -201,26 +200,25 @@ const RecordListTemplate = (props: TemplateProps) => {
                       {/* Songs */}
                       {recordSongs.length > 0 && (
                         <List
-                          component="ol"
-                          dense
                           sx={{
                             mt: 1,
                             mb: 0,
-                            pl: 3,
                           }}
                         >
                           {recordSongs.map(
                             ({
                               title,
                               slug,
-                            }) => (
+                            }, index) => (
                               <ListItem
                                 key={slug}
-                                component="li"
                                 disablePadding
                               >
+                                <ListItemIcon>
+                                  <Chip label={index + 1} size="small" />
+                                </ListItemIcon>
                                 <ListItemButton
-                                  component={Link}
+                                  component={GLink}
                                   to={slug}
                                   sx={{
                                     py: 0.25,

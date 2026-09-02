@@ -22,6 +22,8 @@ import {
 } from "@mui/material"
 import ArrowRightIcon from "@mui/icons-material/ArrowRight"
 import PublicIcon from "@mui/icons-material/Public"
+import AlbumCard from "../components/AlbumCard"
+
 
 interface Record {
   coverImage: string
@@ -99,28 +101,7 @@ const RitzCard = () => (
   </Card>
 )
 
-const AlbumCard = ({ record }: { record: Record }) => (
-  <Card sx={{
-    borderRadius: 2,
-    overflow: 'hidden',
-  }}>
-    <CardActionArea
-      component={Link}
-      to={record.slug}
-      sx={{
-        aspectRatio: '1 / 1',
-      }}>
-      <CoverImage
-        coverimage={record.coverImage}
-        alt={record.title}
-        sx={{
-          width: '100%',
-          height: '100%',
-        }}
-      />
-    </CardActionArea>
-  </Card >
-)
+
 
 // 专辑卡列表
 const AlbumCardList = ({ records }: { records: Record[] }) => (
@@ -131,7 +112,7 @@ const AlbumCardList = ({ records }: { records: Record[] }) => (
     <Grid container spacing={{ xs: 2, md: 3 }}>
       {records.map((item) => (
         <Grid key={item.title} size={{ xs: 6, sm: 4, md: 2 }}>
-          <AlbumCard record={item} />
+          <AlbumCard coverImage={item.coverImage} slug={item.slug} title={item.title} />
         </Grid>
       ))}
     </Grid >

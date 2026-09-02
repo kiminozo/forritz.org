@@ -14,6 +14,7 @@ import {
   Box,
   Link,
 } from "@mui/material"
+import AlbumCard from "../components/AlbumCard"
 
 
 interface DiscographyInfo {
@@ -73,16 +74,7 @@ const Records = ({ single, category, artists }: RecordsProp) => (
         <Grid container spacing={2}>
           {records.map(item => (
             <Grid key={item.id} size={{ xs: 6, sm: 4, md: 2.4 }}>
-              <Card sx={{
-                borderRadius: 2,
-              }}>
-                <CardActionArea component={GatsbyLink} to={item.slug}>
-                  <CoverImage
-                    alt={item.title}
-                    coverimage={item.coverImage}
-                  />
-                </CardActionArea>
-              </Card>
+              <AlbumCard coverImage={item.coverImage} slug={item.slug} title={item.title} />
             </Grid>
           ))}
         </Grid>
