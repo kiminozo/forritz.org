@@ -9,7 +9,9 @@ import {
   Menu,
   MenuItem,
   Divider,
-  Box
+  Box,
+  Tabs,
+  Tab
 } from "@mui/material"
 
 import logo from "../assets/logo.jpg"
@@ -79,11 +81,31 @@ export default function Header({ siteTitle, pathName }: Props) {
             </Typography>
           </Box>
         </Box>
-
       </Container>
-      <Divider sx={{ my: 1 }} />
 
       {/* 菜单 */}
+      <Container>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+          <Tabs value={menus.findIndex(item => isActive(item, pathName))}
+            textColor="secondary"
+            indicatorColor="secondary"
+            aria-label="nav tabs">
+            {menus.map((item, index) =>
+              item.sub ? (
+                <Tab key={item.name} label={item.name} />
+              ) : (
+                <Tab
+                  value={index}
+                  key={item.name}
+                  label={item.name}
+                  component={Link}
+                  to={item.link}
+                />
+              )
+            )}
+          </Tabs>
+        </Box>
+      </Container>
       {/* <AppBar position="static" color="transparent" elevation={0}>
         <Toolbar>
           <Container sx={{ display: "flex" }}>
