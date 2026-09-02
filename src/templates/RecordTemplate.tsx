@@ -288,19 +288,15 @@ class RecordTemplate extends Component<TemplateProps> {
                       </Typography>
                     }
                     secondary={
-                      <Box sx={{ mt: 0.5 }}>
+                      <Box sx={{ mt: 1 }}>
                         <StaffList
                           staff={song}
                         />
 
                         {song.remarks && (
-                          <Box sx={{ mt: 1 }}>
-                            <Chip
-                              label={song.remarks}
-                              variant="outlined"
-                              color="primary"
-                              size="small"
-                            />
+                          <Box sx={{ mt: 1, fontSize: "0.9rem" }}
+                          >
+                            {song.remarks}
                           </Box>
                         )}
                       </Box>
@@ -311,7 +307,7 @@ class RecordTemplate extends Component<TemplateProps> {
             </List>
           </Grid>
         </Grid>
-      </Layout>
+      </Layout >
     )
   }
 }
