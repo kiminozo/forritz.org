@@ -127,7 +127,7 @@ const SongTemplatePage = ({
           <Box
             sx={{
               display: "flex",
-              alignItems: "center",
+              alignItems: "baseline",
               gap: 1,
             }}
           >
@@ -139,11 +139,12 @@ const SongTemplatePage = ({
             </Typography>
 
             {titlech && (
-              <Chip
-                label={titlech}
-                variant="outlined"
-                size="medium"
-              />
+              <Typography
+                variant="subtitle1"
+                component="h6"
+              >
+                {titlech}
+              </Typography>
             )}
           </Box>
 
@@ -155,14 +156,12 @@ const SongTemplatePage = ({
             <>
               <Box
                 sx={{
-                  mt: 3,
-                  p: 3,
+                  mt: 2,
+                  p: 1,
                   fontSize: "1.2rem",
                   borderRadius: 1,
                   backgroundColor:
                     "background.paper",
-                  boxShadow:
-                    "0 1px 3px rgba(0, 0, 0, 0.12)",
                 }}
               >
                 <div>

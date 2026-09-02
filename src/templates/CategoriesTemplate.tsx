@@ -79,7 +79,7 @@ const CategoriesTemplatePage = (props: TemplateProps) => {
               gap: 1,
             }}
           >
-            <Typography variant="h1" component="h1">
+            <Typography variant="h4" component="h4">
               {category}
             </Typography>
 
@@ -93,7 +93,7 @@ const CategoriesTemplatePage = (props: TemplateProps) => {
           <Divider sx={{ my: 2 }} />
 
           {/* Introduction */}
-          <Typography variant="h2" component="h2">
+          <Typography variant="h5" component="h5">
             简介
           </Typography>
 
@@ -106,7 +106,7 @@ const CategoriesTemplatePage = (props: TemplateProps) => {
           <Divider sx={{ my: 3 }} />
 
           {/* Article List */}
-          <Typography variant="h2" component="h2">
+          <Typography variant="h5" component="h5">
             文章列表
           </Typography>
 
