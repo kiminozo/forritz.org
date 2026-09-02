@@ -5,43 +5,45 @@ import _ from "lodash"
 import { Link as GatsbyLink } from "gatsby"
 import { CoverImage } from ".";
 import {
+  Container,
   Typography,
   Divider,
   Grid,
   Card,
   CardActionArea,
-  Box
+  Box,
+  Link,
 } from "@mui/material"
 
 
 interface DiscographyInfo {
-    coverImage: string;
-    id: string;
-    title: string;
-    slug: string;
-    artist: string
-    categories: string[]
+  coverImage: string;
+  id: string;
+  title: string;
+  slug: string;
+  artist: string
+  categories: string[]
 }
 
 interface DiscographyProps {
-    records: DiscographyInfo[];
+  records: DiscographyInfo[];
 }
 
 //const cardSize = { width: 150, height: 150 };
 interface RecordsProp {
-    single?: boolean;
-    category: string;
-    artists: {
-        artist: string;
-        records: DiscographyInfo[];
-    }[]
+  single?: boolean;
+  category: string;
+  artists: {
+    artist: string;
+    records: DiscographyInfo[];
+  }[]
 }
 
 
 const Records = ({ single, category, artists }: RecordsProp) => (
   <>
     {!single && (
-      <Box mb={2}>
+      <Box sx={{ mb: 2 }}>
         <Typography
           variant="h5"
           sx={{
@@ -49,26 +51,31 @@ const Records = ({ single, category, artists }: RecordsProp) => (
             pb: 1
           }}
         >
-          <GatsbyLink to={`/discography/${_.kebabCase(category)}/`}>
+          <Link color="inherit" underline="hover" component={GatsbyLink}
+            to={`/discography/${_.kebabCase(category)}/`}>
             {category}
-          </GatsbyLink>
+          </Link>
         </Typography>
       </Box>
     )}
 
     {artists.map(({ artist, records }) => (
-      <Box key={artist} mb={4}>
+      <Box key={artist} sx={{ mb: 4 }}>
         {artists.length > 1 && (
-          <Typography variant={single ? "h5" : "h6"} mb={2}>
-            <GatsbyLink to={`/discography/${_.kebabCase(artist)}/`}>
+          <Typography variant={single ? "h5" : "h6"} sx={{ mb: 2 }}>
+            <Link color="inherit" underline="hover" component={GatsbyLink}
+              to={`/discography/${_.kebabCase(artist)}/`}>
               {artist}
-            </GatsbyLink>
+            </Link>
           </Typography>
         )}
 
         <Grid container spacing={2}>
           {records.map(item => (
-              <Card>
+            <Grid key={item.id} size={{ xs: 6, sm: 4, md: 2.4 }}>
+              <Card sx={{
+                borderRadius: 2,
+              }}>
                 <CardActionArea component={GatsbyLink} to={item.slug}>
                   <CoverImage
                     alt={item.title}
@@ -76,6 +83,7 @@ const Records = ({ single, category, artists }: RecordsProp) => (
                   />
                 </CardActionArea>
               </Card>
+            </Grid>
           ))}
         </Grid>
 
@@ -87,26 +95,26 @@ const Records = ({ single, category, artists }: RecordsProp) => (
 
 
 const DiscographyLayout = ({ records }: DiscographyProps) => {
-    // const { records: { nodes } } = props;
-    // const records = nodes.map(p => p.frontmatter);
+  // const { records: { nodes } } = props;
+  // const records = nodes.map(p => p.frontmatter);
 
-    const group = _.groupBy(records, p => p.categories[0]);
-    const groupArtist = (records: DiscographyInfo[]) => {
-        const g = _.groupBy(records, p => p.artist);
-        return _.map(g, (value, key) => ({ artist: key, records: value }))
-    }
-    const categories = _.map(group, (value, key) => ({ category: key, artists: groupArtist(value) }));
-    return (
-        <>
-            {
-                categories.length == 1 ?
-                    <Records single {...categories[0]} />
-                    : categories.map(prop => (
-                        <Records key={prop.category} {...prop} />
-                    ))
-            }
-        </>
-    )
+  const group = _.groupBy(records, p => p.categories[0]);
+  const groupArtist = (records: DiscographyInfo[]) => {
+    const g = _.groupBy(records, p => p.artist);
+    return _.map(g, (value, key) => ({ artist: key, records: value }))
+  }
+  const categories = _.map(group, (value, key) => ({ category: key, artists: groupArtist(value) }));
+  return (
+    <Container sx={{ px: 0, py: 1, mx: 0, my: 0 }} maxWidth="xl">
+      {
+        categories.length == 1 ?
+          <Records single {...categories[0]} />
+          : categories.map(prop => (
+            <Records key={prop.category} {...prop} />
+          ))
+      }
+    </Container>
+  )
 }
 
 export { DiscographyInfo };

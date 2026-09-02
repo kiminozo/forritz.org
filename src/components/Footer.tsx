@@ -22,13 +22,13 @@ const Footer = () => (
             </Typography>
 
             <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-              <Link underline="hover" href="https://bbs.forritz.org">
+              <Link underline="hover" href="https://bbs.forritz.org" color="gray" target="_blank" rel="noopener">
                 加入讨论
               </Link>
-              <Link underline="hover" component={GatsbyLink} to="/about">
+              <Link underline="hover" component={GatsbyLink} to="/about" color="gray">
                 特别感谢
               </Link>
-              <Link underline="hover" href="/sitemap-index.xml">
+              <Link underline="hover" href="/sitemap-index.xml" color="gray">
                 网站地图
               </Link>
             </Box>
@@ -46,6 +46,7 @@ const Footer = () => (
                 href="https://github.com/kiminozo/forritz.org"
                 target="_blank"
                 rel="noopener"
+                color="gray"
               >
                 Source Code
               </Link>
@@ -54,6 +55,7 @@ const Footer = () => (
                 href="https://mui.com"
                 target="_blank"
                 rel="noopener"
+                color="gray"
               >
                 MUI
               </Link>
@@ -62,6 +64,7 @@ const Footer = () => (
                 href="https://www.gatsbyjs.org/"
                 target="_blank"
                 rel="noopener"
+                color="gray"
               >
                 GatsbyJS
               </Link>

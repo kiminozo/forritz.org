@@ -3,7 +3,7 @@ import _ from "lodash"
 import { Link, graphql, PageProps } from "gatsby"
 import { SEO, Layout, CoverImage, SideBar } from "../components"
 import DiscographyLayout, { DiscographyInfo } from "../components/DiscographyLayout"
-import { Grid, Divider } from "@mui/material"
+import { Grid, Divider, Typography } from "@mui/material"
 
 interface Props extends PageProps {
   data: {
@@ -25,14 +25,16 @@ const DiscographyPage = (props: Props) => {
     <Layout path={props.location.pathname}>
       <Grid container spacing={2}>
         {/* 主内容 */}
-        <Grid size={{ xs: 6, md: 8 }} >
-          <h1>唱片集</h1>
-          <Divider sx={{ my: 2 }} />
+        <Grid size={{ xs: 12, md: 10 }} >
+          <Typography variant="h4" sx={{ px: 3 }}>
+            唱片集
+          </Typography>
+          <Divider sx={{ my: 1, px: 3 }} />
           <DiscographyLayout records={records} />
         </Grid>
 
         {/* 侧边栏 */}
-        <Grid size={{ xs: 12, md: 4 }} >
+        <Grid size={{ xs: 12, md: 2 }} >
           <SideBar />
         </Grid>
       </Grid>
