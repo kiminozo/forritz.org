@@ -11,7 +11,7 @@ interface Props {
 }
 
 const TagsLine = ({ categories, tags }: Props) => (
-  <Stack direction="row" spacing={1} flexWrap="wrap">
+  <Stack direction="row" spacing={1} sx={{ flexWrap: "wrap" }}>
     {categories &&
       categories.map(category => (
         <Chip

@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 
 import {
-  Link,
+  Link as GLink,
   navigate,
 } from "gatsby"
 
@@ -17,17 +17,26 @@ import StaffList, {
 import {
   List,
   ListItem,
+  ListItemAvatar,
+  Avatar,
   ListItemButton,
   ListItemIcon,
   ListItemText,
   Pagination,
   Typography,
+  Box, Chip,
+  Tabs, Tab
 } from "@mui/material"
 
-import MusicNoteIcon from "@mui/icons-material/MusicNote"
+import QueueMusicNoteIcon from '@mui/icons-material/QueueMusic';
+import LyricsIcon from '@mui/icons-material/Lyrics';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import MicIcon from '@mui/icons-material/Mic';
+import TuneIcon from '@mui/icons-material/Tune';
 
 export interface TemplateProps {
   title: string
+  staffType: "song-writer" | "lyric-writer" | "singer" | "arranger"
 
   pageContext: {
     staff: string
@@ -56,7 +65,7 @@ function getPath(
 ) {
   const path =
     activePage === 1 ||
-    activePage === "1"
+      activePage === "1"
       ? basePath
       : basePath + "/" + activePage
 
@@ -73,6 +82,7 @@ export class StaffTemplatePage extends Component<TemplateProps> {
   render() {
     const {
       title,
+      staffType,
       pageContext: {
         basePath,
         activePage,
@@ -89,20 +99,65 @@ export class StaffTemplatePage extends Component<TemplateProps> {
     return (
       <Layout path="songs">
         <Typography
-          variant="h1"
-          component="h1"
+          variant="h4"
+          component="h4"
           sx={{ mb: 1 }}
         >
-          {title}
+          {title} 的作品
         </Typography>
 
-        <Typography
-          variant="h2"
-          component="h2"
-          sx={{ mb: 2 }}
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+          <Tabs value={staffType} aria-label="staff tabs"
+            sx={{
+              '& .MuiTab-root': {
+                minHeight: 40,
+                padding: '0px',
+                margin: 0,
+              },
+            }}>
+            <Tab
+              value="song-writer"
+              icon={<MusicNoteIcon />}
+              iconPosition="start"
+              label="作曲"
+              component={GLink}
+              to={`/song-writer/${title}`}
+            />
+            <Tab
+              value="lyric-writer"
+              icon={<LyricsIcon />}
+              iconPosition="start"
+              label="作词"
+              component={GLink}
+              to={`/lyric-writer/${title}`}
+            />
+            <Tab
+              value="singer"
+              icon={<MicIcon />}
+              iconPosition="start"
+              label="演唱"
+              component={GLink}
+              to={`/singer/${title}`}
+            />
+            <Tab
+              value="arranger"
+              icon={<TuneIcon />}
+              iconPosition="start"
+              label="编曲"
+              component={GLink}
+              to={`/arranger/${title}`}
+            />
+          </Tabs>
+        </Box>
+
+
+        {/* <Typography
+          variant="h6"
+          component="h6"
+          sx={{ mt: 2, mb: 1 }}
         >
           曲目列表
-        </Typography>
+        </Typography> */}
 
         <List
           disablePadding
@@ -112,82 +167,77 @@ export class StaffTemplatePage extends Component<TemplateProps> {
             <ListItem
               key={song.slug}
               divider
-              disablePadding
-              alignItems="flex-start"
+              sx={{
+                px: 1,
+              }}
             >
-              <ListItemIcon
+              <ListItemAvatar
                 sx={{
                   minWidth: 40,
-                  pt: 1.5,
+                  pt: 0.5,
+                  pr: 2,
                 }}
               >
-                <MusicNoteIcon
-                  color="primary"
-                />
-              </ListItemIcon>
+                <Avatar>
+                  <QueueMusicNoteIcon />
+                </Avatar>
+              </ListItemAvatar>
 
-              <ListItemButton
-                component="div"
-                disableGutters
-                sx={{
-                  display: "block",
-                  py: 1.5,
-                  px: 0,
-                }}
-              >
-                <ListItemText
-                  primary={
-                    <Typography
-                      component={Link}
-                      to={song.slug}
-                      variant="h3"
-                      sx={{
-                        display: "block",
-                        fontSize: "1.1rem",
-                        fontWeight: 500,
+              <ListItemText
+                primary={
+                  <Typography
+                    component={GLink}
+                    to={song.slug}
+                    variant="h3"
+                    sx={{
+                      fontSize: "1.2rem",
+                      fontWeight: 500,
+                      textDecoration:
+                        "none",
+                      color: "text.primary",
+                      "&:hover": {
                         textDecoration:
-                          "none",
-                        color: "text.primary",
-                        "&:hover": {
-                          textDecoration:
-                            "underline",
-                        },
-                      }}
-                    >
-                      {song.title}
-                    </Typography>
-                  }
-                  secondary={
+                          "underline",
+                      },
+                    }}
+                  >
+                    {song.title}
+                  </Typography>
+                }
+                secondary={
+                  <Box sx={{ mt: 1 }}>
                     <StaffList
                       key={song.slug}
                       staff={song}
                     />
-                  }
-                />
-              </ListItemButton>
+                  </Box>
+                }
+              />
             </ListItem>
           ))}
         </List>
 
-        {totalPages > 1 && (
-          <Pagination
-            count={totalPages}
-            page={activePage}
-            color="primary"
-            onChange={(_, page) => {
-              navigate(
-                getPath(
-                  basePath,
-                  page
+        {
+          totalPages > 1 && (
+            <Pagination
+              count={totalPages}
+              page={activePage}
+              color="primary"
+              onChange={(_, page) => {
+                navigate(
+                  getPath(
+                    basePath,
+                    page
+                  )
                 )
-              )
-            }}
-            sx={{
-              mt: 3,
-            }}
-          />
-        )}
-      </Layout>
+              }}
+              sx={{
+                mt: 3,
+              }}
+            />
+          )
+        }
+      </Layout >
     )
   }
 }
