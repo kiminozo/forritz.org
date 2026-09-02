@@ -5,7 +5,6 @@ import { useCoverImagesData } from "../hooks/useCoverImagesData"
 import demo from "../images/demo.png"
 import { Box } from "@mui/material"
 
-import cx from 'classnames'
 
 interface Props {
   coverimage: string
@@ -32,7 +31,6 @@ const CoverImage = (props: Props) => {
   const { coverimage: coverImage, bordered, rounded, alt } = props
   const imageInfo = data.filter(p => p.base === coverImage)[0];
   const commonSx = {
-    maxHeight: 200,
     border: bordered ? "1px solid rgba(0,0,0,0.2)" : "none",
     borderRadius: rounded ? 2 : 0,
     aspectRatio: '1 / 1',

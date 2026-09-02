@@ -1,6 +1,6 @@
 import React from "react"
-import { Link } from "gatsby"
-import { Grid, Card, CardMedia, CardContent, Typography, Box } from "@mui/material"
+import { Link as GLink } from "gatsby"
+import { Grid, Card, CardMedia, CardActionArea, Typography, Box } from "@mui/material"
 import _ from "lodash"
 import { useRecordsData } from "../hooks/useRecordsData"
 import CoverImage from "./CoverImage"
@@ -25,20 +25,27 @@ const RecordGroup = ({ discographyId }: Props) => {
   const list = records.filter(p => discographyId.includes(p.id))
 
   return (
-    <Grid container spacing={2} justifyContent="center">
+    <Grid container spacing={2} sx={{ justifyContent: "center" }}>
       {list.map(item => (
-        <Grid  size={{xs:12,sm:6}} key={item.id}>
-          <Card component={Link} to={item.slug} sx={{ position: "relative" }}>
-            <CardMedia>
-              <CoverImage coverimage={item.coverImage} alt={item.title} />
-            </CardMedia>
-            <Box sx={labelStyle}>{item.title}</Box>
+        <Grid size={12} key={item.id}>
+          <Card sx={{ position: "relative", borderRadius: 2, overflow: 'hidden' }}>
+            <CardActionArea
+              component={GLink}
+              to={item.slug}
+              sx={{
+                aspectRatio: '1 / 1',
+              }}>
+              <CardMedia>
+                <CoverImage coverimage={item.coverImage} alt={item.title} />
+              </CardMedia>
+              <Box sx={labelStyle}>{item.title}</Box>
+            </CardActionArea>
           </Card>
         </Grid>
       ))}
     </Grid>
 
-    
+
   )
 }
 

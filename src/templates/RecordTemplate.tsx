@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 
-import { graphql, Link } from "gatsby"
+import { graphql, Link as GatsbyLink } from "gatsby"
 
 import {
   SEO,
@@ -14,6 +14,7 @@ import StaffList, {
 
 import {
   Box,
+  Link,
   Card,
   CardContent,
   CardMedia,
@@ -23,6 +24,8 @@ import {
   List,
   ListItem,
   ListItemIcon,
+  ListItemAvatar,
+  Avatar,
   ListItemText,
   Typography,
 } from "@mui/material"
@@ -93,25 +96,29 @@ const Record = ({
   info: RecordInfo
   artist: string
 }) => (
-  <Card>
-    <Box
+  <Card sx={{ width: '100%' }}>
+    <CardMedia
+      component="div"
       sx={{
-        display: "flex",
-        justifyContent: "center",
+        width: '100%',
       }}
     >
       <CoverImage
         alt={title}
         coverimage={info.coverImage}
+        sx={{
+          display: 'block',
+          width: '100%',
+        }}
       />
-    </Box>
+    </CardMedia>
 
     <CardContent>
       <Typography
         variant="h2"
         component="h2"
         sx={{
-          fontSize: "1.25rem",
+          fontSize: "1.5rem",
           fontWeight: 500,
         }}
       >
@@ -124,6 +131,9 @@ const Record = ({
         sx={{ mt: 0.5 }}
       >
         <Link
+          color="secondary"
+          underline="hover"
+          component={GatsbyLink}
           to={`/discography/${_.kebabCase(
             artist
           )}/`}
@@ -241,28 +251,32 @@ class RecordTemplate extends Component<TemplateProps> {
                     py: 2,
                   }}
                 >
-                  <ListItemIcon
+                  <ListItemAvatar
                     sx={{
                       minWidth: 40,
                       pt: 0.5,
                     }}
                   >
-                    <MusicNoteIcon
-                      color="primary"
-                    />
-                  </ListItemIcon>
+                    <Avatar>
+                      <MusicNoteIcon />
+                    </Avatar>
+                  </ListItemAvatar>
 
                   <ListItemText
+                    sx={{ mx: 2 }}
                     primary={
                       <Typography
                         variant="h3"
                         component="h3"
                         sx={{
-                          fontSize: "1.1rem",
+                          fontSize: "1.2rem",
                           fontWeight: 500,
                         }}
                       >
                         <Link
+                          color="subtitle1"
+                          underline="hover"
+                          component={GatsbyLink}
                           to={song.slug}
                           style={{
                             textDecoration:

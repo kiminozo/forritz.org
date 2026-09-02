@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component, JSX } from "react"
 import { Alert, AlertTitle, Link, Box, Typography } from "@mui/material"
 import CopyrightIcon from "@mui/icons-material/Copyright"
 import "./CC.sass"
@@ -30,10 +30,10 @@ const CC = ({ license }: { license?: License }) => {
         >
             <AlertTitle>
                 <Link href={byncsa} target="_blank" rel="noopener">
-                 BY-NC-SA 4.0
-            </Link>
-        </AlertTitle>
-        <Typography variant="body2">{content}</Typography>
+                    BY-NC-SA 4.0
+                </Link>
+            </AlertTitle>
+            <Typography variant="body2">{content}</Typography>
         </Alert>
     )
 };

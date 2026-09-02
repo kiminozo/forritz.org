@@ -30,16 +30,16 @@ interface Record {
 
 interface MarkdownRemark {
   frontmatter: StaffInfo &
-    Record & {
-      title: string
-      titlech?: string
-      slug: string
-      date: string
-      lang: string
-      license?: License
-      quote?: string
-      remarks?: string
-    }
+  Record & {
+    title: string
+    titlech?: string
+    slug: string
+    date: string
+    lang: string
+    license?: License
+    quote?: string
+    remarks?: string
+  }
 
   html: string
 }
@@ -108,8 +108,8 @@ const SongTemplatePage = ({
 
   const htmlData =
     quote &&
-    quoteData &&
-    quoteData.html
+      quoteData &&
+      quoteData.html
       ? quoteData.html
       : html
 
@@ -119,11 +119,11 @@ const SongTemplatePage = ({
     <Layout path={slug}>
       <Grid
         container
-        columns={16}
+        columns={12}
         spacing={4}
       >
         {/* Song Content */}
-        <Grid size={{ xs: 16, md: 14 }}>
+        <Grid size={{ xs: 12, md: 10 }}>
           <Box
             sx={{
               display: "flex",
@@ -132,8 +132,8 @@ const SongTemplatePage = ({
             }}
           >
             <Typography
-              variant="h1"
-              component="h1"
+              variant="h4"
+              component="h4"
             >
               {title}
             </Typography>
@@ -165,64 +165,67 @@ const SongTemplatePage = ({
                     "0 1px 3px rgba(0, 0, 0, 0.12)",
                 }}
               >
-                <div
-                 
-                >
-                  {/* Japanese */}
-                  <Grid size={{ xs: 12, md: 6 }}>
+                <div>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: {
+                        xs: 'column',
+                        md: 'row',
+                      },
+                      alignItems: {
+                        xs: 'stretch',
+                        md: 'center',
+                      },
+                      gap: 2,
+                    }}
+                  >
                     <Box
+                      sx={{
+                        width: {
+                          xs: '100%',
+                          md: '40%',
+                        },
+                      }}
                       className="song-content"
                       dangerouslySetInnerHTML={{
                         __html: jp,
                       }}
                     />
-                  </Grid>
 
-                  {/* Translation Divider */}
-                  <Grid
-                    size={{ xs: 12, md: 0 }}
-                    sx={{
-                      display: {
-                        xs: "none",
-                        md: "block",
-                      },
-                    }}
-                  />
 
-                  {/* Chinese */}
-                  <Grid size={{ xs: 12, md: 6 }}>
+                    <Divider
+                      orientation="vertical"
+                      flexItem
+                      sx={{
+                        mx: 1,
+                      }}>
+                      <Chip label="翻译" size="small" />
+                    </Divider>
+
                     <Box
+                      sx={{
+                        width: {
+                          xs: '100%',
+                          md: '40%',
+                        },
+                      }}
                       className="song-content"
                       dangerouslySetInnerHTML={{
                         __html: cn,
                       }}
                     />
-                  </Grid>
+                  </Box>
+
                 </div>
 
                 {/* Translation label */}
-                {cn && (
-                  <Box
-                    sx={{
-                      position: "relative",
-                      display: {
-                        xs: "block",
-                        md: "none",
-                      },
-                      my: 3,
-                      textAlign: "center",
-                    }}
-                  >
-                    <Divider>
-                      翻译
-                    </Divider>
-                  </Box>
-                )}
 
                 {cn && (
                   <Box
                     sx={{
                       position: "absolute",
+                      backgroundColor: "red",
                       display: {
                         xs: "none",
                         md: "block",
@@ -245,8 +248,8 @@ const SongTemplatePage = ({
             discographyId={discographyId}
           />
         </Grid>
-      </Grid>
-    </Layout>
+      </Grid >
+    </Layout >
   )
 }
 
