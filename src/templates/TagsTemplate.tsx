@@ -68,8 +68,8 @@ const TagsTemplatePage = (
         {/* Main Content */}
         <Grid size={{ xs: 16, md: 11 }}>
           <Typography
-            variant="h1"
-            component="h1"
+            variant="h4"
+            component="h4"
             sx={{
               display: "flex",
               alignItems: "center",

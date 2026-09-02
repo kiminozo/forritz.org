@@ -17,6 +17,7 @@ import {
   Divider,
   Grid,
   Typography,
+  Chip
 } from "@mui/material"
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
@@ -89,8 +90,8 @@ class PostTemplate extends Component<TemplateProps> {
           {/* Main Content */}
           <Grid size={{ xs: 12, md: 8 }}>
             <Typography
-              variant="h1"
-              component="h1"
+              variant="h4"
+              component="h4"
             >
               {frontmatter.title}
             </Typography>
