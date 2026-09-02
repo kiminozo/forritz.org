@@ -126,12 +126,12 @@ const Record = ({
       </Typography>
 
       <Typography
-        variant="body2"
+        variant="subtitle1"
         color="text.secondary"
         sx={{ mt: 0.5 }}
       >
         <Link
-          color="secondary"
+          color="subtitle1"
           underline="hover"
           component={GatsbyLink}
           to={`/discography/${_.kebabCase(

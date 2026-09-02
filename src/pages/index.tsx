@@ -48,7 +48,7 @@ const RitzCard = () => (
       <StaticImage src="../images/steps.jpg" alt="avatar" />
     </CardMedia>
     <CardContent>
-      <Typography gutterBottom variant="h5" component="div">
+      <Typography gutterBottom variant="h4" component="div">
         岡崎律子
       </Typography>
       <Divider />
