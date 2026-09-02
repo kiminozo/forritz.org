@@ -8,6 +8,7 @@ import {
   Button,
   Menu,
   MenuItem,
+  Divider,
   Box
 } from "@mui/material"
 
@@ -67,19 +68,23 @@ export default function Header({ siteTitle, pathName }: Props) {
     <>
       {/* 顶部 */}
       <Container>
-        <Box display="flex" alignItems="center" py={2}>
+        <Box sx={{ display: "flex", alignItems: "center", py: 2 }}>
           <img src={logo} style={{ height: 60, marginRight: 16 }} />
           <Box>
-            <Typography variant="h5">For RITZ</Typography>
-            <Typography variant="subtitle2">
+            <Typography variant="h5" color="textPrimary" sx={{ fontWeight: "bold" }}>
+              For RITZ
+            </Typography>
+            <Typography variant="subtitle2" color="textSecondary">
               岡崎律子的非官方中文资料站
             </Typography>
           </Box>
         </Box>
+
       </Container>
+      <Divider sx={{ my: 1 }} />
 
       {/* 菜单 */}
-      <AppBar position="static" color="default">
+      {/* <AppBar position="static" color="transparent" elevation={0}>
         <Toolbar>
           <Container sx={{ display: "flex" }}>
             {menus.map((item, index) =>
@@ -122,7 +127,7 @@ export default function Header({ siteTitle, pathName }: Props) {
             )}
           </Container>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
     </>
   )
 }
