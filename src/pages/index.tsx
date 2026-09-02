@@ -48,10 +48,9 @@ const RitzCard = () => (
       <StaticImage src="../images/steps.jpg" alt="avatar" />
     </CardMedia>
     <CardContent>
-      <Typography gutterBottom variant="h4" component="div">
+      <Typography gutterBottom variant="h5" component="h5">
         岡崎律子
       </Typography>
-      <Divider />
       <Typography variant="subtitle1" color="text.secondary">
         1959 ~ 2004
       </Typography>
@@ -62,13 +61,13 @@ const RitzCard = () => (
         出生: 1959年12月29日
       </Typography>
       <Typography variant="body1" color="text.secondary">
-        祭日: 2004年5月5日（44岁）
+        祭日: 2004年5月5日(44岁)
       </Typography>
       <Typography variant="body1" color="text.secondary">
         血型: B型
       </Typography>
       <Typography variant="body1" color="text.secondary">
-        出身地: 日本長崎県西彼杵郡高島町
+        出身地: 日本 長崎県 端島
       </Typography>
       <Typography variant="body1" color="text.secondary">
         流派: animation

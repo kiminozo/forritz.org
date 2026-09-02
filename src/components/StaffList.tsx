@@ -19,7 +19,7 @@ const StaffList = ({ staff: { songWriter, lyricWriter, singer, arranger } }: { s
   <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap" }}>
     {songWriter.length > 0 && (
       //songWriter
-      <Chip icon={<MusicNoteIcon />}
+      <Chip icon={<PianoIcon />}
         variant="outlined"
         label={<StaffLink type="song-writer" names={songWriter} />}
         size="small"

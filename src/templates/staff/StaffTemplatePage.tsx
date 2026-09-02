@@ -30,7 +30,7 @@ import {
 
 import QueueMusicNoteIcon from '@mui/icons-material/QueueMusic';
 import LyricsIcon from '@mui/icons-material/Lyrics';
-import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import PianoIcon from '@mui/icons-material/Piano';
 import MicIcon from '@mui/icons-material/Mic';
 import TuneIcon from '@mui/icons-material/Tune';
 
@@ -117,7 +117,7 @@ export class StaffTemplatePage extends Component<TemplateProps> {
             }}>
             <Tab
               value="song-writer"
-              icon={<MusicNoteIcon />}
+              icon={<PianoIcon />}
               iconPosition="start"
               label="作曲"
               component={GLink}
