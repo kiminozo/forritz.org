@@ -4,8 +4,10 @@ import TagsLine from "./TagsLine"
 import CC from "./CC"
 import SEO from "./SEO"
 import CoverImage from './CoverImage'
+import StaffList from "./StaffList"
+import StaffTab from "./StaffTab"
 import { License } from "./License";
 export {
-    Layout, TagsLine, CC, SEO, CoverImage, SideBar
+    Layout, TagsLine, CC, SEO, CoverImage, SideBar, StaffList, StaffTab
 }
 

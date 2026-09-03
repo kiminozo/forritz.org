@@ -26,4 +26,44 @@ export const pageQuery = graphql`query ($staff: String, $skip: Int!, $limit: Int
       }
     }
   }
+
+  singer: allMarkdownRemark(
+    filter: {
+      frontmatter: {
+        singer: { eq: $staff }
+      }
+    }
+  ) {
+    totalCount
+  }
+
+  songWriter: allMarkdownRemark(
+    filter: {
+      frontmatter: {
+        songwriter: { eq: $staff }
+      }
+    }
+  ) {
+    totalCount
+  }
+
+  lyricWriter: allMarkdownRemark(
+    filter: {
+      frontmatter: {
+        lyricwriter: { eq: $staff }
+      }
+    }
+  ) {
+    totalCount
+  }
+
+  arranger: allMarkdownRemark(
+    filter: {
+      frontmatter: {
+        arranger: { eq: $staff }
+      }
+    }
+  ) {
+    totalCount
+  }
 }`

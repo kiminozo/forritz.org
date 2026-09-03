@@ -8,11 +8,10 @@ import {
 import {
   SEO,
   Layout,
+  StaffList,
+  StaffTab
 } from "../../components"
 
-import StaffList, {
-  StaffInfo,
-} from "../../components/StaffList"
 
 import {
   List,
@@ -29,10 +28,12 @@ import {
 } from "@mui/material"
 
 import QueueMusicNoteIcon from '@mui/icons-material/QueueMusic';
-import LyricsIcon from '@mui/icons-material/Lyrics';
-import PianoIcon from '@mui/icons-material/Piano';
-import MicIcon from '@mui/icons-material/Mic';
-import TuneIcon from '@mui/icons-material/Tune';
+import { StaffInfo } from "../../components/StaffList";
+import { StaffWorks } from "../../components/StaffTab";
+
+interface ArtistCount {
+  totalCount: number;
+}
 
 export interface TemplateProps {
   title: string
@@ -45,7 +46,7 @@ export interface TemplateProps {
     totalPages: number
   }
 
-  data: {
+  data: StaffWorks & {
     songs: {
       totalCount: number
 
@@ -88,13 +89,13 @@ export class StaffTemplatePage extends Component<TemplateProps> {
         activePage,
         totalPages,
       },
-      data: {
-        songs: {
-          nodes,
-          totalCount,
-        },
-      },
+      data
     } = this.props
+    const {
+      songs: {
+        nodes,
+      },
+    } = data
 
     return (
       <Layout path="songs">
@@ -106,49 +107,7 @@ export class StaffTemplatePage extends Component<TemplateProps> {
           {title} 的作品
         </Typography>
 
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs value={staffType} aria-label="staff tabs"
-            sx={{
-              '& .MuiTab-root': {
-                minHeight: 40,
-                padding: '0px',
-                margin: 0,
-              },
-            }}>
-            <Tab
-              value="song-writer"
-              icon={<PianoIcon />}
-              iconPosition="start"
-              label="作曲"
-              component={GLink}
-              to={`/song-writer/${title}`}
-            />
-            <Tab
-              value="lyric-writer"
-              icon={<LyricsIcon />}
-              iconPosition="start"
-              label="作词"
-              component={GLink}
-              to={`/lyric-writer/${title}`}
-            />
-            <Tab
-              value="singer"
-              icon={<MicIcon />}
-              iconPosition="start"
-              label="演唱"
-              component={GLink}
-              to={`/singer/${title}`}
-            />
-            <Tab
-              value="arranger"
-              icon={<TuneIcon />}
-              iconPosition="start"
-              label="编曲"
-              component={GLink}
-              to={`/arranger/${title}`}
-            />
-          </Tabs>
-        </Box>
+        <StaffTab staffName={title} staffType={staffType} staffWork={data} />
 
 
         {/* <Typography

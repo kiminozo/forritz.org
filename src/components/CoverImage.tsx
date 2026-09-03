@@ -1,5 +1,4 @@
 import React, { CSSProperties } from "react"
-import { useStaticQuery, graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { useCoverImagesData } from "../hooks/useCoverImagesData"
 import demo from "../images/demo.png"
