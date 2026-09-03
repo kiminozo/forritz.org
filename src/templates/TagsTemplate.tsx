@@ -98,7 +98,6 @@ const TagsTemplatePage = (
                 <ListItem
                   key={slug}
                   disablePadding
-                  divider
                 >
                   <ListItemButton
                     component={Link}

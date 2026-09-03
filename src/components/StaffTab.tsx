@@ -2,15 +2,13 @@ import React from "react"
 import { Link as GLink, graphql, useStaticQuery, } from "gatsby"
 import { Stack, Avatar, Link, Badge, Box, Tabs, Tab } from "@mui/material"
 
+import { StaffIcon, StaffType } from "./StaffList";
 
-import LyricsIcon from '@mui/icons-material/Lyrics';
-import PianoIcon from '@mui/icons-material/Piano';
-import MicIcon from '@mui/icons-material/Mic';
-import TuneIcon from '@mui/icons-material/Tune';
+
 
 interface StaffTabProp {
     staffName: String
-    staffType: "song-writer" | "lyric-writer" | "singer" | "arranger"
+    staffType: StaffType
     staffWork: StaffWorks
 }
 
@@ -26,7 +24,8 @@ interface StaffWorks {
 }
 
 
-const StaffTab = (props: StaffTabProp) => {
+
+const StaffTabs = (props: StaffTabProp) => {
     const { staffName, staffType, staffWork } = props;
 
     return (<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -41,16 +40,16 @@ const StaffTab = (props: StaffTabProp) => {
             }}>
             <Tab
                 value="song-writer"
-                icon={<PianoIcon />}
+                icon={<StaffIcon type="song-writer" />}
                 iconPosition="start"
-                label={`作曲(${staffWork.lyricWriter.totalCount})`}
+                label={`作曲(${staffWork.songWriter.totalCount})`}
                 component={GLink}
                 to={`/song-writer/${staffName}`}
                 disabled={staffWork.songWriter.totalCount == 0}
             />
             <Tab
                 value="lyric-writer"
-                icon={<LyricsIcon />}
+                icon={<StaffIcon type="lyric-writer" />}
                 iconPosition="start"
                 label={`作词(${staffWork.lyricWriter.totalCount})`}
                 component={GLink}
@@ -59,7 +58,7 @@ const StaffTab = (props: StaffTabProp) => {
             />
             <Tab
                 value="singer"
-                icon={<MicIcon />}
+                icon={<StaffIcon type="singer" />}
                 iconPosition="start"
                 label={`演唱(${staffWork.singer.totalCount})`}
                 component={GLink}
@@ -69,7 +68,7 @@ const StaffTab = (props: StaffTabProp) => {
             />
             <Tab
                 value="arranger"
-                icon={<TuneIcon />}
+                icon={<StaffIcon type="arranger" />}
                 iconPosition="start"
                 label={`编曲(${staffWork.arranger.totalCount})`}
                 component={GLink}
@@ -83,4 +82,4 @@ const StaffTab = (props: StaffTabProp) => {
 }
 
 export { StaffWorks }
-export default StaffTab
+export default StaffTabs

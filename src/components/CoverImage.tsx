@@ -1,53 +1,59 @@
 import React, { CSSProperties } from "react"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { useCoverImagesData } from "../hooks/useCoverImagesData"
-import demo from "../images/demo.png"
-import { Box } from "@mui/material"
 
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+
+import { useCoverImagesData } from "../hooks/useCoverImagesData"
+
+import demo from "../images/demo.png"
+
+import { Box } from "@mui/material"
 
 interface Props {
   coverimage: string
   size?: "small" | "medium" | "large"
   bordered?: boolean
   rounded?: boolean
+  square?: boolean
   alt?: string
-  sx?: CSSProperties | undefined;
+  sx?: CSSProperties
 }
 
-const imgStyle = { maxHeight: 200 }
+const CoverImage = ({
+  coverimage: coverImage,
+  bordered,
+  rounded,
+  square,
+  alt,
+  sx
+}: Props) => {
 
-const useKeyOnly = (val: any, key: string) => val && key;
+  const data = useCoverImagesData()
 
-// 模拟 semantic size
-const sizeMap = {
-  small: 120,
-  medium: 200,
-  large: 300,
-}
+  const imageInfo = data.find(p => p.base === coverImage)
 
-const CoverImage = (props: Props) => {
-  const data = useCoverImagesData();
-  const { coverimage: coverImage, bordered, rounded, alt } = props
-  const imageInfo = data.filter(p => p.base === coverImage)[0];
   const commonSx = {
     border: bordered ? "1px solid rgba(0,0,0,0.2)" : "none",
     borderRadius: rounded ? 2 : 0,
-    aspectRatio: '1 / 1',
+    width: "100%",
   }
 
   if (imageInfo) {
-    const image = getImage(imageInfo.image)
-
+    const image = getImage(
+      square ? imageInfo.square : imageInfo.image
+    )
     return image ? (
       <Box sx={commonSx}>
         <GatsbyImage
           image={image}
           alt={alt ?? ""}
-          style={props.sx ?? { height: "100%", width: "100%" }}
+          style={{
+            width: "100%",
+            height: "auto",
+            ...sx,
+          }}
           imgStyle={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
+            width: "100%",
+            height: "auto",
           }}
         />
       </Box>
@@ -56,16 +62,23 @@ const CoverImage = (props: Props) => {
         component="img"
         src={imageInfo.publicURL}
         alt={alt ?? ""}
-        sx={commonSx}
+        sx={{
+          ...commonSx,
+          height: "auto",
+        }}
       />
     )
   }
+
   return (
     <Box
       component="img"
       src={demo}
       alt=""
-      sx={commonSx}
+      sx={{
+        ...commonSx,
+        height: "auto",
+      }}
     />
   )
 }

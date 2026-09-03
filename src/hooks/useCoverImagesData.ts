@@ -8,6 +8,7 @@ interface CoverImageInfo {
   extension: string
   base: string
   image: ImageDataLike
+  square: ImageDataLike
 }
 
 interface Data {
@@ -16,37 +17,42 @@ interface Data {
   }
 }
 
-// export const squareImage = graphql`
-//   fragment squareImage on File {
-//     childImageSharp {
-//       fluid(maxWidth: 200, maxHeight: 200) {
-//         ...GatsbyImageSharpFluid
-//       }
-//     }
-//   }
-// `
 
-export const query = graphql`{
-  coverImages: allFile(
-    filter: {relativeDirectory: {regex: "/record.+/"}, extension: {in: ["png", "jpg"]}}
-  ) {
-    nodes {
-      name
-      publicURL
-      extension
-      base
-      image: childImageSharp {
-        gatsbyImageData(
-          width: 300
-          height: 300
-          transformOptions: {cropFocus: CENTER}
-          layout: CONSTRAINED,
-          placeholder: BLURRED
-        )
+export const query = graphql`
+  {
+    coverImages: allFile(
+      filter: {
+        relativeDirectory: { regex: "/record.+/" }
+        extension: { in: ["png", "jpg", "webm"] }
+      }
+    ) {
+      nodes {
+        name
+        publicURL
+        extension
+        base
+
+        image: childImageSharp {
+          gatsbyImageData(
+            width: 300
+            layout: CONSTRAINED
+            placeholder: BLURRED
+          )
+        }
+
+        square: childImageSharp { 
+          gatsbyImageData(
+            width: 300
+            height: 300
+            transformOptions: { cropFocus: CENTER }
+            layout: CONSTRAINED
+            placeholder: BLURRED
+          )
+        }
       }
     }
   }
-}`
+`
 
 export const useCoverImagesData = (): CoverImageInfo[] => {
   const data = useStaticQuery<Data>(query)

@@ -9,7 +9,7 @@ import {
   SEO,
   Layout,
   StaffList,
-  StaffTab
+  StaffTabs
 } from "../../components"
 
 
@@ -29,7 +29,7 @@ import {
 } from "@mui/material"
 
 import QueueMusicNoteIcon from '@mui/icons-material/QueueMusic';
-import { StaffInfo } from "../../components/StaffList";
+import { StaffInfo, StaffType } from "../../components/StaffList";
 import { StaffWorks } from "../../components/StaffTab";
 
 interface ArtistCount {
@@ -38,7 +38,7 @@ interface ArtistCount {
 
 export interface TemplateProps {
   title: string
-  staffType: "song-writer" | "lyric-writer" | "singer" | "arranger"
+  staffType: StaffType
 
   pageContext: {
     staff: string
@@ -113,7 +113,7 @@ export class StaffTemplatePage extends Component<TemplateProps> {
           sx={{ my: 1 }}
           subheader={
             <ListSubheader component="div" id="nested-list-subheader">
-              <StaffTab staffName={title} staffType={staffType} staffWork={data} />
+              <StaffTabs staffName={title} staffType={staffType} staffWork={data} />
             </ListSubheader>
 
           }

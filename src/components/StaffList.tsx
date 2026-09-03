@@ -1,12 +1,17 @@
 import React from "react"
-import { Link as GatsbyLink } from "gatsby"
+import { Link as GLink } from "gatsby"
 import { Stack, Avatar, Link, Chip, Box } from "@mui/material"
 
 import LyricsIcon from '@mui/icons-material/Lyrics';
-import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import MicIcon from '@mui/icons-material/Mic';
 import PianoIcon from '@mui/icons-material/Piano';
 import TuneIcon from '@mui/icons-material/Tune';
+
+export type StaffType =
+  | "song-writer"
+  | "lyric-writer"
+  | "singer"
+  | "arranger"
 
 interface StaffInfo {
   songWriter: string[]
@@ -15,53 +20,35 @@ interface StaffInfo {
   arranger: string[]
 }
 
-const StaffList = ({ staff: { songWriter, lyricWriter, singer, arranger } }: { staff: StaffInfo }) => (
-  <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap" }}>
-    {songWriter.length > 0 && (
-      //songWriter
-      <Chip icon={<PianoIcon />}
-        variant="outlined"
-        label={<StaffLink type="song-writer" names={songWriter} />}
-        size="small"
-      />
-      // <Typography component="span" variant="body2">
-      //   <b>作曲</b>{" "}
-      //   <StaffLink type="song-writer" names={songWriter} />
-      // </Typography>
-    )}
-    {lyricWriter.length > 0 && (
-      //Lyrics
-      <Chip icon={<LyricsIcon />}
-        variant="outlined"
-        size="small"
-        label={<StaffLink type="lyric-writer" names={lyricWriter} />}
-      />
-      // <Typography component="span" variant="body2">
-      //   <b>作词</b>{" "}
-      //   <StaffLink type="lyric-writer" names={lyricWriter} />
-      // </Typography>
-    )}
-    {singer.length > 0 && (
-      <Chip avatar={<MicIcon />}
-        variant="outlined"
-        size="small"
-        label={<StaffLink type="singer" names={singer} />} />
-      // <Typography component="span" variant="body2">
-      //   <b>演唱</b>{" "}
-      //   <StaffLink type="singer" names={singer} />
-      // </Typography>
-    )}
-    {arranger.length > 0 && (
-      <Chip avatar={<TuneIcon />}
-        variant="outlined" size="small"
-        label={<StaffLink type="arranger" names={arranger} />} />
-      // <Typography component="span" variant="body2">
-      //   <b>编曲</b>{" "}
-      //   <StaffLink type="arranger" names={arranger} />
-      // </Typography>
-    )}
-  </Stack>
+interface StaffIconProps {
+  type: StaffType
+}
+
+const StaffIcon = ({ type }: StaffIconProps) => {
+  switch (type) {
+    case "song-writer":
+      return <PianoIcon />
+
+    case "lyric-writer":
+      return <LyricsIcon />
+
+    case "singer":
+      return <MicIcon />
+
+    case "arranger":
+      return <TuneIcon />
+  }
+}
+
+
+const StaffLinks = ({ type, names }: { type: StaffType; names: string[] }) => (
+  <Chip
+    variant="outlined" size="small"
+    label={<StaffLink type={type} names={names} />}
+    avatar={<StaffIcon type={type} />}
+  />
 )
+
 
 const StaffLink = ({ type, names }: { type: string; names: string[] }) => (
   <>
@@ -70,7 +57,7 @@ const StaffLink = ({ type, names }: { type: string; names: string[] }) => (
       return (
         <React.Fragment key={path}>
           <Link
-            component={GatsbyLink}
+            component={GLink}
             to={path}
             underline="hover"
             color="inherit"
@@ -85,5 +72,25 @@ const StaffLink = ({ type, names }: { type: string; names: string[] }) => (
   </>
 )
 
-export { StaffInfo, StaffLink }
+const StaffList = ({ staff: { songWriter, lyricWriter, singer, arranger } }: { staff: StaffInfo }) => (
+  <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap" }}>
+    {songWriter.length > 0 && (
+      //songWriter
+      <StaffLinks type="song-writer" names={songWriter} />
+    )}
+    {lyricWriter.length > 0 && (
+      <StaffLinks type="lyric-writer" names={lyricWriter} />
+    )}
+    {singer.length > 0 && (
+      <StaffLinks type="singer" names={singer} />
+    )}
+    {arranger.length > 0 && (
+      <StaffLinks type="arranger" names={arranger} />
+    )}
+  </Stack>
+)
+
+
+
+export { StaffInfo, StaffIcon }
 export default StaffList

@@ -42,7 +42,7 @@ const TagsPage = (props: TagsPageProp) => {
   return (
     <Layout>
       <Box>
-        <Typography variant="h1" component="h1" gutterBottom>
+        <Typography variant="h4" component="h4" gutterBottom>
           Tags
         </Typography>
 
