@@ -29,14 +29,14 @@ interface StaffWorks {
 const StaffTab = (props: StaffTabProp) => {
     const { staffName, staffType, staffWork } = props;
 
-    return (<Box sx={{ borderBottom: 1, p: 0, m: 0, borderColor: 'divider' }}>
+    return (<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={staffType} aria-label="staff tabs"
             sx={{
+                padding: 0,
+                margin: 0,
                 '& .MuiTab-root': {
-                    minHeight: 12,
-                    minWidth: 150,
-                    padding: 0,
-                    margin: 0,
+                    minHeight: 8,
+                    px: 2
                 },
             }}>
             <Tab

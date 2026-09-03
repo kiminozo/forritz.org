@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 
-import { graphql, Link as GatsbyLink } from "gatsby"
+import { graphql, Link as GLink } from "gatsby"
 
 import {
   SEO,
@@ -28,6 +28,7 @@ import {
   Avatar,
   ListItemText,
   Typography,
+  ListItemButton,
 } from "@mui/material"
 
 import QueueMusicNoteIcon from "@mui/icons-material/QueueMusic"
@@ -133,7 +134,7 @@ const Record = ({
         <Link
           color="subtitle1"
           underline="hover"
-          component={GatsbyLink}
+          component={GLink}
           to={`/discography/${_.kebabCase(
             artist
           )}/`}
@@ -242,11 +243,12 @@ class RecordTemplate extends Component<TemplateProps> {
               sx={{ mt: 1 }}
             >
               {songs.map((song) => (
-                <ListItem
+                <ListItemButton
                   key={song.slug}
                   alignItems="flex-start"
-                  divider
                   disableGutters
+                  component={GLink}
+                  to={song.slug}
                   sx={{
                     py: 2,
                   }}
@@ -276,7 +278,7 @@ class RecordTemplate extends Component<TemplateProps> {
                         <Link
                           color="subtitle1"
                           underline="hover"
-                          component={GatsbyLink}
+                          component={GLink}
                           to={song.slug}
                           style={{
                             textDecoration:
@@ -302,7 +304,7 @@ class RecordTemplate extends Component<TemplateProps> {
                       </Box>
                     }
                   />
-                </ListItem>
+                </ListItemButton>
               ))}
             </List>
           </Grid>

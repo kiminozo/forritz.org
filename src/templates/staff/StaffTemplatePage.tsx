@@ -20,6 +20,7 @@ import {
   Avatar,
   ListItemButton,
   ListItemIcon,
+  ListSubheader,
   ListItemText,
   Pagination,
   Typography,
@@ -107,25 +108,21 @@ export class StaffTemplatePage extends Component<TemplateProps> {
           {title} 的作品
         </Typography>
 
-        <StaffTab staffName={title} staffType={staffType} staffWork={data} />
-
-
-        {/* <Typography
-          variant="h6"
-          component="h6"
-          sx={{ mt: 2, mb: 1 }}
-        >
-          曲目列表
-        </Typography> */}
-
         <List
           disablePadding
-          sx={{ mb: 3 }}
+          sx={{ my: 1 }}
+          subheader={
+            <ListSubheader component="div" id="nested-list-subheader">
+              <StaffTab staffName={title} staffType={staffType} staffWork={data} />
+            </ListSubheader>
+
+          }
         >
           {nodes.map(({ song }) => (
-            <ListItem
+            <ListItemButton
               key={song.slug}
-              divider
+              component={GLink}
+              to={song.slug}
               sx={{
                 px: 1,
               }}
@@ -154,10 +151,7 @@ export class StaffTemplatePage extends Component<TemplateProps> {
                       textDecoration:
                         "none",
                       color: "text.primary",
-                      "&:hover": {
-                        textDecoration:
-                          "underline",
-                      },
+
                     }}
                   >
                     {song.title}
@@ -172,7 +166,7 @@ export class StaffTemplatePage extends Component<TemplateProps> {
                   </Box>
                 }
               />
-            </ListItem>
+            </ListItemButton>
           ))}
         </List>
 
