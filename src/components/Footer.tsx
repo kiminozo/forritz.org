@@ -21,13 +21,13 @@ const Footer = () => (
             </Typography>
 
             <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-              <Link underline="hover" href="https://bbs.forritz.org" color="gray" target="_blank" rel="noopener">
+              <Link underline="hover" href="https://bbs.forritz.org" color="text.secondary" target="_blank" rel="noopener">
                 加入讨论
               </Link>
-              <Link underline="hover" component={GLink} to="/about" color="gray">
+              <Link underline="hover" component={GLink} to="/about" color="text.secondary">
                 特别感谢
               </Link>
-              <Link underline="hover" href="/sitemap-index.xml" color="gray">
+              <Link underline="hover" href="/sitemap-index.xml" color="text.secondary">
                 网站地图
               </Link>
             </Box>
@@ -45,7 +45,7 @@ const Footer = () => (
                 href="https://github.com/kiminozo/forritz.org"
                 target="_blank"
                 rel="noopener"
-                color="gray"
+                color="text.secondary"
               >
                 Source Code
               </Link>
@@ -54,7 +54,7 @@ const Footer = () => (
                 href="https://mui.com"
                 target="_blank"
                 rel="noopener"
-                color="gray"
+                color="text.secondary"
               >
                 MUI
               </Link>
@@ -63,7 +63,7 @@ const Footer = () => (
                 href="https://www.gatsbyjs.org/"
                 target="_blank"
                 rel="noopener"
-                color="gray"
+                color="text.secondary"
               >
                 GatsbyJS
               </Link>
@@ -77,7 +77,7 @@ const Footer = () => (
             </Typography>
 
             <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-              <Typography variant="body2">
+              <Typography variant="body2" color="text.secondary">
                 © 2006-{new Date().getFullYear()}{" "}
                 <Link underline="hover" component={GLink} to="/">
                   For RITZ
@@ -85,7 +85,7 @@ const Footer = () => (
                 All rights reserved.
               </Typography>
 
-              <Typography variant="body2">
+              <Typography variant="body2" color="text.secondary">
                 Open Source (MIT)
               </Typography>
             </Box>
