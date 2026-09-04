@@ -5,7 +5,7 @@ import {
 } from "@mui/material"
 import React from "react"
 
-import logo from "../assets/logo.jpg"
+import logo from "../assets/logo.svg"
 import Navigator from "./Navigator"
 
 type Props = {
@@ -20,7 +20,7 @@ export default function Header({ pathName }: Props) {
       {/* 顶部 */}
       <Container>
         <Box sx={{ display: "flex", alignItems: "center", py: 2 }}>
-          <img src={logo} style={{ height: 60, marginRight: 16 }} />
+          <img src={logo} alt="logo" style={{ width: 40, marginRight: 16 }} />
           <Box>
             <Typography variant="h5" color="textPrimary" sx={{ fontWeight: "bold" }}>
               For RITZ
