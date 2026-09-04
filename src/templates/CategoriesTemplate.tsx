@@ -100,10 +100,8 @@ const CategoriesTemplatePage = (props: TemplateProps) => {
           <Box
             className="blog-post-content"
             dangerouslySetInnerHTML={{ __html: info }}
-            sx={{ mt: 2 }}
+            sx={{ mt: 2, mb: 6 }}
           />
-
-          <Divider sx={{ my: 3 }} />
 
           {/* Article List */}
           <Typography variant="h5" component="h5">
@@ -119,9 +117,7 @@ const CategoriesTemplatePage = (props: TemplateProps) => {
                 <Box
                   key={slug}
                   sx={{
-                    py: 2,
-                    borderBottom: 1,
-                    borderColor: "divider",
+                    py: 3,
                   }}
                 >
                   <Typography

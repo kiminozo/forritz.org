@@ -95,7 +95,7 @@ const Record = ({
   info: RecordInfo
   artist: string
 }) => (
-  <Card sx={{ width: '100%' }}>
+  <Card sx={{ width: '100%', borderRadius: 2, boxShadow: 2 }}>
     <CardMedia
       component="div"
       sx={{
@@ -111,7 +111,7 @@ const Record = ({
         }}
       />
     </CardMedia>
-
+    <Divider />
     <CardContent>
       <Typography
         variant="h2"

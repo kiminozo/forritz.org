@@ -25,7 +25,7 @@ const DiscographyPage = (props: Props) => {
       <Grid container spacing={2}>
         {/* 主内容 */}
         <Grid size={{ xs: 12, md: 10 }} >
-          <Typography variant="h4" sx={{ px: 3 }}>
+          <Typography variant="h4" sx={{ px: 3, pb: 3 }}>
             唱片集
           </Typography>
           <Divider sx={{ my: 1, px: 3 }} />

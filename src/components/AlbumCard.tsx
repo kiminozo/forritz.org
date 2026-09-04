@@ -32,6 +32,7 @@ const AlbumCard = ({ slug, coverImage, square, title, hasLabel }: AlbumCardProp)
         sx={{
             borderRadius: 2,
             overflow: "hidden",
+            boxShadow: 3,
         }}
     >
         <CardActionArea

@@ -36,10 +36,11 @@ interface Props extends PageProps {
 
 // 个人简介卡
 const RitzCard = () => (
-  <Card sx={{ maxWidth: 350, mx: "auto", borderRadius: 2, overflow: 'hidden' }}>
+  <Card sx={{ maxWidth: 350, mx: "auto", boxShadow: 2, borderRadius: 2, overflow: 'hidden' }}>
     <CardMedia>
       <StaticImage src="../images/steps.jpg" alt="avatar" />
     </CardMedia>
+    <Divider />
     <CardContent>
       <Typography gutterBottom variant="h5" component="h5">
         岡崎律子
@@ -118,20 +119,6 @@ const AlbumCardList = ({ records }: { records: Record[] }) => (
       了解更多
     </Button>
   </Container>
-
-  // <ImageList variant="quilted" sx={{ md: 2 }} cols={6} gap={10}>
-  //   {records.map((item) => (
-  //     <ImageListItem key={item.title} >
-  //       <Card sx={{ borderRadius: 2 }} >
-  //         <CardActionArea>
-  //           <CardMedia>
-  //             <CoverImage coverimage={item.coverImage} alt={item.title} style={{ width: "100%", height: "100%" }} />
-  //           </CardMedia>
-  //         </CardActionArea>
-  //       </Card>
-  //     </ImageListItem>
-  //   ))}
-  // </ImageList>
 )
 
 export const Head = () => <SEO title="首页" />
