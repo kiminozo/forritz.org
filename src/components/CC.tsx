@@ -34,7 +34,7 @@ const CC = ({ license }: { license?: License }) => {
             sx={{ mt: 2 }}
         >
             <AlertTitle>
-                <Link href={byncsa} target="_blank" rel="noopener">
+                <Link href={byncsa} underline="hover" target="_blank" rel="noopener" >
                     BY-NC-SA 4.0
                 </Link>
             </AlertTitle>
