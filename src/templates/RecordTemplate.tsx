@@ -1,171 +1,371 @@
 import React, { Component } from "react"
-import { graphql, Link } from "gatsby"
 
-import { SEO, Layout, SideBar, CoverImage } from "../components";
-import StaffList, { StaffInfo, StaffLink } from '../components/StaffList'
+import { Link as GLink, graphql } from "gatsby"
 
 import {
-  Button, Grid, Header, Ref, Segment, Rail, Accordion,
-  Label, Divider, Item, List, Card
-} from 'semantic-ui-react'
-import _ from "lodash";
-import demo from "../images/demo.png"
+  CoverImage,
+  Layout,
+  SEO,
+} from "../components"
+
+import StaffList, {
+  StaffInfo,
+} from "../components/StaffList"
+
+import {
+  Avatar,
+  Box,
+  Card,
+  CardContent,
+  CardMedia,
+  Divider,
+  Grid,
+  Link,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemButton,
+  ListItemText,
+  Typography
+} from "@mui/material"
+
+import QueueMusicNoteIcon from "@mui/icons-material/QueueMusic"
+
+import _ from "lodash"
 
 interface RecordInfo {
-  coverImage: string;
-  artist: string;
-  recordNo: string;
-  recordPrice: string;
-  recordPublisher: string;
-  recordType: string;
-  recordReleaseDate: string;
-  categories: string[];
+  coverImage: string
+  artist: string
+  recordNo: string
+  recordPrice: string
+  recordPublisher: string
+  recordType: string
+  recordReleaseDate: string
+  categories: string[]
 }
 
 interface TemplateProps {
   data: {
     record: {
       frontmatter: RecordInfo & {
-        title: string;
-        slug: string;
+        title: string
+        slug: string
       }
-      html: string;
+      html: string
     }
+
     songs: {
       nodes: {
         frontmatter: StaffInfo & {
-          title: string;
-          slug: string;
-          remarks?: string;
+          title: string
+          slug: string
+          remarks?: string
         }
       }[]
     }
   }
 }
 
-const MetaItem = ({ meta, name }: { meta: string, name: string }) => (
-  name ? <List.Item>{meta}: {name}</List.Item> : <></>
-)
-
-const Record = ({ title, info, artist }: { title: string, info: RecordInfo, artist: string }) => (
-  <Card.Group centered>
-    <Card>
-      <CoverImage alt={title} coverimage={info.coverImage} />
-      <Card.Content>
-        <Card.Header>{title}</Card.Header>
-        <Card.Meta>
-          <Link to={`/discography/${_.kebabCase(artist)}/`}>{artist}</Link>
-        </Card.Meta>
-        <Card.Description>
-          <List>
-            <MetaItem meta='编号' name={info.recordNo} />
-            <MetaItem meta='唱片类型' name={info.recordType} />
-            <MetaItem meta='发售日期' name={info.recordReleaseDate} />
-            <MetaItem meta='发行商' name={info.recordPublisher} />
-            <MetaItem meta='售价' name={info.recordPrice} />
-          </List>
-        </Card.Description>
-      </Card.Content>
-    </Card>
-  </Card.Group>
-)
-
-export const Head = (props: TemplateProps) => <SEO title={props.data.record.frontmatter.title} />
-
-
-class RecordTemplate extends Component<TemplateProps> {
-
-  constructor(props: Readonly<TemplateProps>) {
-    super(props);
+const MetaItem = ({
+  meta,
+  name,
+}: {
+  meta: string
+  name?: string
+}) => {
+  if (!name) {
+    return null
   }
 
+  return (
+    <ListItem disableGutters>
+      <ListItemText
+        primary={`${meta}: ${name}`}
+      />
+    </ListItem>
+  )
+}
 
+const Record = ({
+  title,
+  info,
+  artist,
+}: {
+  title: string
+  info: RecordInfo
+  artist: string
+}) => (
+  <Card sx={{ width: '100%', borderRadius: 2, boxShadow: 2 }}>
+    <CardMedia
+      component="div"
+      sx={{
+        width: '100%',
+      }}
+    >
+      <CoverImage
+        alt={title}
+        coverimage={info.coverImage}
+        sx={{
+          display: 'block',
+          width: '100%',
+        }}
+      />
+    </CardMedia>
+    <Divider />
+    <CardContent>
+      <Typography
+        variant="h2"
+        component="h2"
+        sx={{
+          fontSize: "1.5rem",
+          fontWeight: 500,
+        }}
+      >
+        {title}
+      </Typography>
 
+      <Typography
+        variant="subtitle1"
+        color="text.secondary"
+        sx={{ mt: 0.5 }}
+      >
+        <Link
+          color="subtitle1"
+          underline="hover"
+          component={GLink}
+          to={`/discography/${_.kebabCase(
+            artist
+          )}/`}
+        >
+          {artist}
+        </Link>
+      </Typography>
+
+      <List dense disablePadding sx={{ mt: 1 }}>
+        <MetaItem
+          meta="编号"
+          name={info.recordNo}
+        />
+
+        <MetaItem
+          meta="唱片类型"
+          name={info.recordType}
+        />
+
+        <MetaItem
+          meta="发售日期"
+          name={info.recordReleaseDate}
+        />
+
+        <MetaItem
+          meta="发行商"
+          name={info.recordPublisher}
+        />
+
+        <MetaItem
+          meta="售价"
+          name={info.recordPrice}
+        />
+      </List>
+    </CardContent>
+  </Card>
+)
+
+export const Head = (props: TemplateProps) => (
+  <SEO
+    title={
+      props.data.record.frontmatter.title
+    }
+  />
+)
+
+class RecordTemplate extends Component<TemplateProps> {
   render() {
-    const { record: { frontmatter, html }, songs: { nodes } } = this.props.data; // data.markdownRemark holds your post data
-    const { title, slug, artist } = frontmatter;
-    const songs = nodes.map(p => p.frontmatter)
-    //const artist = [...new Set<string>(songs.flatMap(p => p.singer))]
+    const {
+      record: {
+        frontmatter,
+        html,
+      },
+      songs: { nodes },
+    } = this.props.data
+
+    const {
+      title,
+      slug,
+      artist,
+    } = frontmatter
+
+    const songs = nodes.map(
+      (p) => p.frontmatter
+    )
+
     return (
       <Layout path={slug}>
-        <Grid>
-          <Grid.Column mobile={16} computer={4} tablet={4}>
-            <Record title={title} artist={artist} info={frontmatter} />
-          </Grid.Column>
-          <Grid.Column mobile={16} computer={12} tablet={12}>
-            <h1>简介</h1>
-            <div
-              className="blog-post-content"
-              dangerouslySetInnerHTML={{ __html: html }}
+        <Grid container columns={16} spacing={4}>
+          {/* Record Information */}
+          <Grid size={{ xs: 16, md: 4 }}>
+            <Record
+              title={title}
+              artist={artist}
+              info={frontmatter}
             />
-            <Divider />
-            <h1>曲目列表</h1>
-            <List divided relaxed>
-              {songs.map(song =>
-              (
-                <List.Item key={song.slug}>
-                  <List.Icon name="music" size="large" color='blue' />
-                  <List.Content>
-                    <List.Header as="h3">
-                      <Link to={song.slug}>{song.title}</Link>
-                    </List.Header>
-                    <List.Description>
-                      <StaffList staff={song} />
-                    </List.Description>
-                    {
-                      song.remarks &&
-                      <List.Description>
-                        <Label basic color='teal'>{song.remarks}</Label>
-                      </List.Description>
+          </Grid>
+
+          {/* Main Content */}
+          <Grid size={{ xs: 16, md: 12 }}>
+            <Typography
+              variant="h5"
+              component="h5"
+            >
+              简介
+            </Typography>
+
+            <Box
+              className="blog-post-content"
+              dangerouslySetInnerHTML={{
+                __html: html,
+              }}
+            />
+
+            <Divider sx={{ my: 3 }} />
+
+            <Typography
+              variant="h5"
+              component="h5"
+            >
+              曲目列表
+            </Typography>
+
+            <List
+              disablePadding
+              sx={{ mt: 1 }}
+            >
+              {songs.map((song) => (
+                <ListItemButton
+                  key={song.slug}
+                  alignItems="flex-start"
+                  disableGutters
+                  component={GLink}
+                  to={song.slug}
+                  sx={{
+                    py: 2,
+                  }}
+                >
+                  <ListItemAvatar
+                    sx={{
+                      minWidth: 40,
+                      pt: 0.5,
+                    }}
+                  >
+                    <Avatar>
+                      <QueueMusicNoteIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+
+                  <ListItemText
+                    sx={{ mx: 2 }}
+                    primary={
+                      <Typography
+                        variant="h3"
+                        component="h3"
+                        sx={{
+                          fontSize: "1.2rem",
+                          fontWeight: 500,
+                        }}
+                      >
+                        <Link
+                          color="subtitle1"
+                          underline="hover"
+                          component={GLink}
+                          to={song.slug}
+                          style={{
+                            textDecoration:
+                              "none",
+                          }}
+                        >
+                          {song.title}
+                        </Link>
+                      </Typography>
                     }
-                  </List.Content>
-                </List.Item>
-              ))
-              }
+                    secondary={
+                      <Box sx={{ mt: 1 }}>
+                        <StaffList
+                          staff={song}
+                        />
+
+                        {song.remarks && (
+                          <Box sx={{ mt: 1, fontSize: "0.9rem" }}
+                          >
+                            {song.remarks}
+                          </Box>
+                        )}
+                      </Box>
+                    }
+                  />
+                </ListItemButton>
+              ))}
             </List>
-          </Grid.Column>
+          </Grid>
         </Grid>
-      </Layout>
+      </Layout >
     )
   }
 }
 
-export default function Template({ data }: TemplateProps) {
-  return (<RecordTemplate data={data} />)
+export default function Template({
+  data,
+}: TemplateProps) {
+  return <RecordTemplate data={data} />
 }
 
+export const pageQuery = graphql`
+  query ($id: String!) {
+    record: markdownRemark(
+      frontmatter: {
+        id: { eq: $id }
+      }
+    ) {
+      html
 
-export const pageQuery = graphql`query ($id: String!) {
-  record: markdownRemark(frontmatter: {id: {eq: $id}}) {
-    html
-    frontmatter {
-      id
-      slug
-      title
-      coverImage
-      artist
-      categories
-      recordNo
-      recordPrice
-      recordPublisher
-      recordType
-      recordReleaseDate
-    }
-  }
-  songs: allMarkdownRemark(
-    filter: {frontmatter: {type: {eq: "song"}, discographyId: {glob: $id}}}
-    sort: {frontmatter: {order: ASC}}
-  ) {
-    nodes {
       frontmatter {
-        title
+        id
         slug
-        songWriter: songwriter
-        lyricWriter: lyricwriter
-        singer
-        arranger
-        remarks
+        title
+        coverImage
+        artist
+        categories
+        recordNo
+        recordPrice
+        recordPublisher
+        recordType
+        recordReleaseDate
+      }
+    }
+
+    songs: allMarkdownRemark(
+      filter: {
+        frontmatter: {
+          type: { eq: "song" }
+          discographyId: { glob: $id }
+        }
+      }
+      sort: {
+        frontmatter: {
+          order: ASC
+        }
+      }
+    ) {
+      nodes {
+        frontmatter {
+          title
+          slug
+          songWriter: songwriter
+          lyricWriter: lyricwriter
+          singer
+          arranger
+          remarks
+        }
       }
     }
   }
-}`
+`

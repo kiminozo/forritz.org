@@ -1,40 +1,96 @@
-import React from "react"
-import { Link } from "gatsby"
-import {
-    List
-} from 'semantic-ui-react'
+import { Chip, Link, Stack } from "@mui/material";
+import { Link as GLink } from "gatsby";
+import React from "react";
+
+import LyricsIcon from '@mui/icons-material/Lyrics';
+import MicIcon from '@mui/icons-material/Mic';
+import PianoIcon from '@mui/icons-material/Piano';
+import TuneIcon from '@mui/icons-material/Tune';
+
+export type StaffType =
+  | "song-writer"
+  | "lyric-writer"
+  | "singer"
+  | "arranger"
 
 interface StaffInfo {
-    songWriter: string[];
-    lyricWriter: string[];
-    singer: string[];
-    arranger: string[];
+  songWriter: string[]
+  lyricWriter: string[]
+  singer: string[]
+  arranger: string[]
 }
 
+interface StaffIconProps {
+  type: StaffType
+}
+
+const StaffIcon = ({ type }: StaffIconProps) => {
+  switch (type) {
+    case "song-writer":
+      return <PianoIcon />
+
+    case "lyric-writer":
+      return <LyricsIcon />
+
+    case "singer":
+      return <MicIcon />
+
+    case "arranger":
+      return <TuneIcon />
+  }
+}
+
+
+const StaffLinks = ({ type, names }: { type: StaffType; names: string[] }) => (
+  <Chip
+    variant="outlined" size="small"
+    label={<StaffLink type={type} names={names} />}
+    avatar={<StaffIcon type={type} />}
+  />
+)
+
+
+const StaffLink = ({ type, names }: { type: string; names: string[] }) => (
+  <>
+    {names.map((name, i, arr) => {
+      const path = `/${type}/${name}`
+      return (
+        <React.Fragment key={path}>
+          <Link
+            component={GLink}
+            to={path}
+            underline="hover"
+            color="inherit"
+            variant="body2"
+          >
+            {name}
+          </Link>
+          {i !== arr.length - 1 ? " " : null}
+        </React.Fragment>
+      )
+    })}
+  </>
+)
+
 const StaffList = ({ staff: { songWriter, lyricWriter, singer, arranger } }: { staff: StaffInfo }) => (
-    <List horizontal >
-        {songWriter.length > 0 && <List.Item><b>作曲</b> <StaffLink type="song-writer" names={songWriter} /> </List.Item>}
-        {lyricWriter.length > 0 && <List.Item><b>作词</b> <StaffLink type="lyric-writer" names={lyricWriter} /></List.Item>}
-        {singer.length > 0 && <List.Item><b>演唱</b> <StaffLink type="singer" names={singer} /></List.Item>}
-        {arranger.length > 0 && <List.Item><b>编曲</b> <StaffLink type="arranger" names={arranger} /></List.Item>}
-    </List>
+  <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap" }}>
+    {songWriter.length > 0 && (
+      //songWriter
+      <StaffLinks type="song-writer" names={songWriter} />
+    )}
+    {lyricWriter.length > 0 && (
+      <StaffLinks type="lyric-writer" names={lyricWriter} />
+    )}
+    {singer.length > 0 && (
+      <StaffLinks type="singer" names={singer} />
+    )}
+    {arranger.length > 0 && (
+      <StaffLinks type="arranger" names={arranger} />
+    )}
+  </Stack>
 )
 
-const StaffLink = ({ type, names }: { type: string, names: string[] }) => (
-    <>
-        {
-            names.map((name, i, { length }) => {
-                const path = `/${type}/${name}`;
-                return (
-                    <React.Fragment key={path}>
-                        <Link to={path}>{name}</Link>
-                        {i != length - 1 ? " " : null}
-                    </React.Fragment>
-                )
-            })
-        }
-    </>
-)
 
-export { StaffInfo, StaffLink }
-export default StaffList;
+
+export { StaffIcon, StaffInfo };
+export default StaffList

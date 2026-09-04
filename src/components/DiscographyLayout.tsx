@@ -1,98 +1,109 @@
-import React from "react"
+import React from "react";
 // Utilities
-import _ from "lodash"
+import _ from "lodash";
 // Components
-import { Link } from "gatsby"
-import { CoverImage } from ".";
 import {
-    Card, Segment, Divider, Grid, Header, Icon, Label
-} from 'semantic-ui-react'
+  Box,
+  Container,
+  Divider,
+  Grid,
+  Link,
+  Typography
+} from "@mui/material";
+import { Link as GLink } from "gatsby";
+import AlbumCard from "../components/AlbumCard";
+
 
 interface DiscographyInfo {
-    coverImage: string;
-    id: string;
-    title: string;
-    slug: string;
-    artist: string
-    categories: string[]
+  coverImage: string;
+  id: string;
+  title: string;
+  slug: string;
+  artist: string
+  categories: string[]
 }
 
 interface DiscographyProps {
-    records: DiscographyInfo[];
+  records: DiscographyInfo[];
 }
 
 //const cardSize = { width: 150, height: 150 };
 interface RecordsProp {
-    single?: boolean;
-    category: string;
-    artists: {
-        artist: string;
-        records: DiscographyInfo[];
-    }[]
+  single?: boolean;
+  category: string;
+  artists: {
+    artist: string;
+    records: DiscographyInfo[];
+  }[]
 }
 
+
 const Records = ({ single, category, artists }: RecordsProp) => (
-    <>
-        {!single &&
-            <Header as='h2' dividing={artists.length > 1}>
-                <Link to={`/discography/${_.kebabCase(category)}/`}>{category}</Link>
-                {/* <Label basic color='blue' circular>
-                    {artists.length == 1 ? artists[0].records.length : artists.length}
-                </Label> */}
+  <>
+    {!single && (
+      <Box sx={{ mb: 2 }}>
+        <Typography
+          variant="h5"
+          sx={{
+            borderBottom: artists.length > 1 ? "1px solid rgba(0,0,0,0.12)" : "none",
+            pb: 1
+          }}
+        >
+          <Link color="inherit" underline="hover" component={GLink}
+            to={`/discography/${_.kebabCase(category)}/`}>
+            {category}
+          </Link>
+        </Typography>
+      </Box>
+    )}
 
-            </Header>
-        }
-        {
-            artists.map(({ artist, records }) => (
-                <Segment vertical key={artist}>
-                    {artists.length > 1 && (
-                        <Header as={single ? 'h2' : "h3"}>
-                            <Header.Content>
-                                <Link to={`/discography/${_.kebabCase(artist)}/`}>{artist}</Link>
-                                {/* <Label color='teal'>
-                                    {records.length}
-                                </Label> */}
-                            </Header.Content>
-                        </Header>
-                    )}
-                    <Card.Group itemsPerRow={5} doubling>
-                        {records.map(item =>
-                        (
-                            <Card as={Link} key={item.id} to={item.slug}>
-                                <CoverImage key={item.id} alt={item.title} coverimage={item.coverImage} />
-                            </Card>
-                        )
-                        )}
-                    </Card.Group>
-                    <Divider hidden />
+    {artists.map(({ artist, records }) => (
+      <Box key={artist} sx={{ mb: 4 }}>
+        {artists.length > 1 && (
+          <Typography variant={single ? "h5" : "h6"} sx={{ mb: 2 }}>
+            <Link color="inherit" underline="hover" component={GLink}
+              to={`/discography/${_.kebabCase(artist)}/`}>
+              {artist}
+            </Link>
+          </Typography>
+        )}
 
-                </Segment>
-            ))
-        }
-    </>
+        <Grid container spacing={2}>
+          {records.map(item => (
+            <Grid key={item.id} size={{ xs: 6, sm: 4, md: 2.4 }}>
+              <AlbumCard coverImage={item.coverImage} slug={item.slug} title={item.title} square />
+            </Grid>
+          ))}
+        </Grid>
+
+        <Divider sx={{ mt: 3, visibility: "hidden" }} />
+      </Box>
+    ))}
+  </>
 )
 
-const DiscographyLayout = ({ records }: DiscographyProps) => {
-    // const { records: { nodes } } = props;
-    // const records = nodes.map(p => p.frontmatter);
 
-    const group = _.groupBy(records, p => p.categories[0]);
-    const groupArtist = (records: DiscographyInfo[]) => {
-        const g = _.groupBy(records, p => p.artist);
-        return _.map(g, (value, key) => ({ artist: key, records: value }))
-    }
-    const categories = _.map(group, (value, key) => ({ category: key, artists: groupArtist(value) }));
-    return (
-        <>
-            {
-                categories.length == 1 ?
-                    <Records single {...categories[0]} />
-                    : categories.map(prop => (
-                        <Records key={prop.category} {...prop} />
-                    ))
-            }
-        </>
-    )
+const DiscographyLayout = ({ records }: DiscographyProps) => {
+  // const { records: { nodes } } = props;
+  // const records = nodes.map(p => p.frontmatter);
+
+  const group = _.groupBy(records, p => p.categories[0]);
+  const groupArtist = (records: DiscographyInfo[]) => {
+    const g = _.groupBy(records, p => p.artist);
+    return _.map(g, (value, key) => ({ artist: key, records: value }))
+  }
+  const categories = _.map(group, (value, key) => ({ category: key, artists: groupArtist(value) }));
+  return (
+    <Container sx={{ px: 0, py: 1, mx: 0, my: 0 }} maxWidth="xl">
+      {
+        categories.length == 1 ?
+          <Records single {...categories[0]} />
+          : categories.map(prop => (
+            <Records key={prop.category} {...prop} />
+          ))
+      }
+    </Container>
+  )
 }
 
 export { DiscographyInfo };

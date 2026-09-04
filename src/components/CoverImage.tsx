@@ -1,44 +1,86 @@
-import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { useCoverImagesData } from '../hooks/useCoverImagesData'
+import React, { CSSProperties } from "react"
+
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+
+import { useCoverImagesData } from "../hooks/useCoverImagesData"
+
 import demo from "../images/demo.png"
-import { Image, ImageProps, SemanticSIZES } from 'semantic-ui-react'
-import cx from 'classnames'
+
+import { Box } from "@mui/material"
 
 interface Props {
   coverimage: string
-  size?: SemanticSIZES
+  size?: "small" | "medium" | "large"
   bordered?: boolean
   rounded?: boolean
+  square?: boolean
   alt?: string
+  sx?: CSSProperties
 }
 
-const imgStyle = { maxHeight: 200 }
+const CoverImage = ({
+  coverimage: coverImage,
+  bordered,
+  rounded,
+  square,
+  alt,
+  sx
+}: Props) => {
 
-const useKeyOnly = (val: any, key: string) => val && key;
+  const data = useCoverImagesData()
 
-const CoverImage = (props: Props) => {
-  const data = useCoverImagesData();
-  const { coverimage: coverImage, size, bordered, rounded, alt } = props;
-  const imageInfo = data.filter(p => p.base === coverImage)[0];
-  const className = cx(
-    'ui',
-    size ? size : 'medium',
-    'image',
-    useKeyOnly(bordered, 'bordered'),
-    useKeyOnly(rounded, 'rounded'),
-  )
-  if (imageInfo) {
-    const image = getImage(imageInfo.image)
-    return image ?
-      <GatsbyImage
-        image={image}
-        className={className}
-        alt={alt ?? ""} />
-      : <Image size={size} src={imageInfo.publicURL} />;
+  const imageInfo = data.find(p => p.base === coverImage)
+
+  const commonSx = {
+    border: bordered ? "1px solid rgba(0,0,0,0.2)" : "none",
+    borderRadius: rounded ? 2 : 0,
+    width: "100%",
   }
-  return <Image size={size} style={imgStyle} src={demo} ></Image>
+
+  if (imageInfo) {
+    const image = getImage(
+      square ? imageInfo.square : imageInfo.image
+    )
+    return image ? (
+      <Box sx={commonSx}>
+        <GatsbyImage
+          image={image}
+          alt={alt ?? ""}
+          style={{
+            width: "100%",
+            height: "auto",
+            ...sx,
+          }}
+          imgStyle={{
+            width: "100%",
+            height: "auto",
+          }}
+        />
+      </Box>
+    ) : (
+      <Box
+        component="img"
+        src={imageInfo.publicURL}
+        alt={alt ?? ""}
+        sx={{
+          ...commonSx,
+          height: "auto",
+        }}
+      />
+    )
+  }
+
+  return (
+    <Box
+      component="img"
+      src={demo}
+      alt=""
+      sx={{
+        ...commonSx,
+        height: "auto",
+      }}
+    />
+  )
 }
 
 export default CoverImage

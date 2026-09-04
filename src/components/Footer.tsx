@@ -1,59 +1,99 @@
-import { Link } from "gatsby"
+import {
+  Box,
+  Container,
+  Grid,
+  Link,
+  Typography
+} from "@mui/material"
+import { Link as GLink } from "gatsby"
 import React from "react"
-import { Menu, Container, Divider, Segment, Grid, List, Header } from 'semantic-ui-react'
-
-import "./footer.sass"
-
-//Build with GatsbyJS and React 16.12.0. Hosted on V
-//The code is open source and available at 
-//Copyright ©forritz Theme by kiminozo
 
 const Footer = () => (
-    <>
-        <Divider />
+  <>
 
-        <Segment as="footer" vertical style={{ padding: 10 }}>
-            <Container>
-                <Grid divided stackable>
-                    <Grid.Row>
-                        <Grid.Column width={3}>
-                            <Header as='h4' content='社区' color='grey' />
-                            <List link >
-                                <List.Item as='a' href="https://bbs.forritz.org" >加入讨论</List.Item>
-                                <List.Item as={Link} to='/about'>特别感谢</List.Item>
-                                <List.Item as='a' href='/sitemap-index.xml'>网站地图</List.Item>
-                            </List>
-                        </Grid.Column>
-                        <Grid.Column width={3}>
-                            <Header as='h4' content='技术' color='grey' />
-                            <List link >
-                                <List.Item as='a' href="https://github.com/kiminozo/forritz.org" target="_Blank">Source Code</List.Item>
-                                <List.Item as='a' href="https://react.semantic-ui.com" target="_Blank">Semantic UI React</List.Item>
-                                <List.Item as='a' href="https://www.gatsbyjs.org/" target="_Blank">GatsbyJS</List.Item>
-                            </List>
-                        </Grid.Column>
-                        <Grid.Column width={10}>
-                            <Header as='h4' content='关于' color='grey' />
-                            <List link >
-                                {/* <List.Item>
-                                    这里是已故音乐唱作歌手岡崎律子小姐的非官方中文资料站，
-                                </List.Item> */}
-                                <List.Item>
-                                    © 2006-{new Date().getFullYear()},
-                                    <Link to="/">For RITZ</Link>
-                                    {` `}All rights reserved.
-                                </List.Item>
-                                <List.Item>
-                                    Open Source (MIT)
-                                </List.Item>
+    <Box component="footer" sx={{ py: 3 }}>
+      <Container>
+        <Grid container spacing={4}>
+          {/* 社区 */}
+          <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+            <Typography variant="subtitle1" color="text.secondary" gutterBottom>
+              社区
+            </Typography>
 
-                            </List>
-                        </Grid.Column>
-                    </Grid.Row>
-                </Grid>
-            </Container>
-        </Segment>
-    </>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+              <Link underline="hover" href="https://bbs.forritz.org" color="text.secondary" target="_blank" rel="noopener">
+                加入讨论
+              </Link>
+              <Link underline="hover" component={GLink} to="/about" color="text.secondary">
+                特别感谢
+              </Link>
+              <Link underline="hover" href="/sitemap-index.xml" color="text.secondary">
+                网站地图
+              </Link>
+            </Box>
+          </Grid>
+
+          {/* 技术 */}
+          <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+            <Typography variant="subtitle1" color="text.secondary" gutterBottom>
+              技术
+            </Typography>
+
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+              <Link
+                underline="hover"
+                href="https://github.com/kiminozo/forritz.org"
+                target="_blank"
+                rel="noopener"
+                color="text.secondary"
+              >
+                Source Code
+              </Link>
+              <Link
+                underline="hover"
+                href="https://mui.com"
+                target="_blank"
+                rel="noopener"
+                color="text.secondary"
+              >
+                MUI
+              </Link>
+              <Link
+                underline="hover"
+                href="https://www.gatsbyjs.org/"
+                target="_blank"
+                rel="noopener"
+                color="text.secondary"
+              >
+                GatsbyJS
+              </Link>
+            </Box>
+          </Grid>
+
+          {/* 关于 */}
+          <Grid size={{ xs: 12, md: 6 }}>
+            <Typography variant="subtitle1" color="text.secondary" gutterBottom>
+              关于
+            </Typography>
+
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+              <Typography variant="body2" color="text.secondary">
+                © 2006-{new Date().getFullYear()}{" "}
+                <Link underline="hover" component={GLink} to="/">
+                  For RITZ
+                </Link>{" "}
+                All rights reserved.
+              </Typography>
+
+              <Typography variant="body2" color="text.secondary">
+                Open Source (MIT)
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
+  </>
 )
 
 export default Footer

@@ -1,9 +1,9 @@
-import React from "react"
 import { graphql } from "gatsby"
+import React from "react"
 import { StaffTemplatePage, TemplateProps } from './StaffTemplatePage'
 
 export default function SingerTemplate({ pageContext, data }: TemplateProps) {
-  return (<StaffTemplatePage title={`${pageContext.staff} 演唱的歌曲`}
+  return (<StaffTemplatePage title={pageContext.staff} staffType="singer"
     pageContext={pageContext} data={data} />)
 }
 
@@ -25,5 +25,45 @@ export const pageQuery = graphql`query ($staff: String, $skip: Int!, $limit: Int
         arranger
       }
     }
+  }
+
+  singer: allMarkdownRemark(
+    filter: {
+      frontmatter: {
+        singer: { eq: $staff }
+      }
+    }
+  ) {
+    totalCount
+  }
+
+  songWriter: allMarkdownRemark(
+    filter: {
+      frontmatter: {
+        songwriter: { eq: $staff }
+      }
+    }
+  ) {
+    totalCount
+  }
+
+  lyricWriter: allMarkdownRemark(
+    filter: {
+      frontmatter: {
+        lyricwriter: { eq: $staff }
+      }
+    }
+  ) {
+    totalCount
+  }
+
+  arranger: allMarkdownRemark(
+    filter: {
+      frontmatter: {
+        arranger: { eq: $staff }
+      }
+    }
+  ) {
+    totalCount
   }
 }`

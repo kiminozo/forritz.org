@@ -1,6 +1,6 @@
-import React from "react"
+import React from "react";
 
-import { SEO, Layout } from "../components";
+import { Layout, SEO } from "../components";
 
 export const Head = () => <SEO title="404" />
 

@@ -1,6 +1,5 @@
-import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-//import { SiteMetaQuery } from "../graphql"
+import { graphql, useStaticQuery } from "gatsby"
+import React, { JSX } from "react"
 
 type MetaProps = JSX.IntrinsicElements["meta"]
 
@@ -63,14 +62,6 @@ function SEO({ description, lang = `zh-CN`, meta = [], title }: SEOProps): any {
       content: metaDescription,
     },
   ]
-
-  // htmlAttributes={{
-  //   lang,
-  // }}
-  // title={title}
-  // titleTemplate={`%s | ${siteMetadata.title} | ${siteMetadata.description}`}
-  // meta={constantMeta.concat(meta)}
-
   return (
     <>
       <html lang={lang} />

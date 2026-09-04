@@ -1,149 +1,241 @@
-import React, { Component } from "react"
-import PropTypes from "prop-types"
-// Components
-import { Link, graphql, navigate } from "gatsby"
-import { SEO, Layout, SideBar, TagsLine } from "../components";
-import kebabCase from "lodash/kebabCase"
-import { Pagination, Grid, Header, List, Divider, Segment, Label } from "semantic-ui-react";
+import React from "react"
 
+import { Link as GLink, graphql, navigate } from "gatsby"
+
+import { SEO, Layout, SideBar, TagsLine } from "../components"
+
+import { Box, Chip, Divider, Grid, Pagination, Typography, Link } from "@mui/material"
 
 interface TemplateProps {
-    pageContext: {
-        category: string;
-        basePath: string;
-        activePage: number;
-        totalPages: number;
-    }
-    data: {
+  pageContext: {
+    category: string
+    basePath: string
+    activePage: number
+    totalPages: number
+  }
 
-        meta: {
-            frontmatter: {
-                id: string;
-                title: string;
-            },
-            info: string;
-        }
-        posts: {
-            totalCount: number;
-            nodes: {
-                frontmatter: {
-                    slug: string;
-                    title: string;
-                    categories: string[];
-                    tags: string[];
-                }
-                excerpt: string;
-            }[]
-        }
+  data: {
+    meta: {
+      frontmatter: {
+        id: string
+        title: string
+      }
+      info: string
     }
-};
 
-function getPath(basePath: string, activePage: string | number | undefined) {
-    const path = (activePage === 1 || activePage === "1")
-        ? basePath : basePath + "/" + activePage;
-    return path;
+    posts: {
+      totalCount: number
+
+      nodes: {
+        frontmatter: {
+          slug: string
+          title: string
+          categories: string[]
+          tags: string[]
+        }
+        excerpt: string
+      }[]
+    }
+  }
 }
 
-export const Head = (props: TemplateProps) => <SEO title={props.pageContext.category} />
+function getPath(
+  basePath: string,
+  activePage: string | number | undefined
+) {
+  return activePage === 1 || activePage === "1"
+    ? basePath
+    : `${basePath}/${activePage}`
+}
 
+export const Head = (props: TemplateProps) => (
+  <SEO title={props.pageContext.category} />
+)
 
 const CategoriesTemplatePage = (props: TemplateProps) => {
-    const {
-        pageContext: { category, basePath, activePage, totalPages },
-        data: {
-            meta: { info },
-            posts: { totalCount, nodes }
-        }
-    } = props;
-    return (
-        <Layout path={getPath(basePath, 1)}>
-            <Grid container stackable>
-                <Grid.Column mobile={16} computer={11} tablet={11}>
-                    <Header as="h1" >
-                        {category}
-                        <Label color='teal'>{totalCount}</Label>
-                    </Header>
-                    <Divider />
-                    <Header as="h2" >简介</Header>
-                    <div
-                        className="blog-post-content"
-                        dangerouslySetInnerHTML={{ __html: info }}
-                    />
-                    <Divider />
-                    <Header as="h2" >文章列表</Header>
-                    <Divider hidden />
+  const {
+    pageContext: {
+      category,
+      basePath,
+      activePage,
+      totalPages,
+    },
+    data: {
+      meta: { info },
+      posts: { totalCount, nodes },
+    },
+  } = props
 
-                    {
-                        nodes.map(({ frontmatter: { slug, title, tags }, excerpt }) => (
-                            <Segment vertical key={slug}>
-                                <Header as="h3" size='medium'>
-                                    <Header.Content><Link to={slug}>{title}</Link></Header.Content>
-                                </Header>
+  return (
+    <Layout path={getPath(basePath, 1)}>
+      <Grid container spacing={4}>
+        {/* Main Content */}
+        <Grid size={{ xs: 12, md: 8 }}>
+          {/* Category Title */}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+            }}
+          >
+            <Typography variant="h4" component="h4">
+              {category}
+            </Typography>
 
-                                <p>{excerpt}</p>
+            <Chip
+              label={totalCount}
+              color="primary"
+              size="small"
+            />
+          </Box>
 
-                                <Divider hidden />
+          <Divider sx={{ my: 2 }} />
 
-                                <TagsLine tags={tags} />
+          {/* Introduction */}
+          <Typography variant="h5" component="h5">
+            简介
+          </Typography>
 
-                            </Segment>
-                        ))
-                    }
+          <Box
+            className="blog-post-content"
+            dangerouslySetInnerHTML={{ __html: info }}
+            sx={{ mt: 2, mb: 6 }}
+          />
 
-                    {totalPages > 1 &&
-                        (
-                            <>
-                                <Divider />
-                                <Pagination
-                                    onPageChange={(e, { activePage }) => { navigate(getPath(basePath, activePage)) }}
-                                    firstItem={null}
-                                    lastItem={null}
-                                    prevItem={activePage === 1 ? null : undefined}
-                                    nextItem={activePage === totalPages ? null : undefined}
-                                    activePage={activePage}
-                                    totalPages={totalPages} />
-                            </>
-                        )
-                    }
+          {/* Article List */}
+          <Typography variant="h5" component="h5">
+            文章列表
+          </Typography>
 
-                    {/* <Link to="/categories">All Categories</Link> */}
-                </Grid.Column>
-                <Grid.Column mobile={16} computer={5} tablet={5} >
-                    <SideBar />
-                </Grid.Column>
-            </Grid>
-        </Layout>
-    )
+          <Box sx={{ mt: 2 }}>
+            {nodes.map(
+              ({
+                frontmatter: { slug, title, tags },
+                excerpt,
+              }) => (
+                <Box
+                  key={slug}
+                  sx={{
+                    py: 3,
+                  }}
+                >
+                  <Typography
+                    variant="h3"
+                    component="h3"
+                    sx={{
+                      fontSize: "1.25rem",
+                      fontWeight: 500,
+                    }}
+                  >
+                    <Link
+                      component={GLink}
+                      to={slug}
+                      underline="hover"
+                    >
+                      {title}
+                    </Link>
+                  </Typography>
+
+                  <Typography
+                    component="p"
+                    color="text.secondary"
+                    sx={{ mt: 1 }}
+                  >
+                    {excerpt}
+                  </Typography>
+
+                  <Box sx={{ mt: 2 }}>
+                    <TagsLine tags={tags} />
+                  </Box>
+                </Box>
+              )
+            )}
+          </Box>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <>
+              <Divider sx={{ my: 3 }} />
+
+              <Pagination
+                page={activePage}
+                count={totalPages}
+                onChange={(_, page) => {
+                  navigate(getPath(basePath, page))
+                }}
+                hidePrevButton={activePage === 1}
+                hideNextButton={activePage === totalPages}
+              />
+            </>
+          )}
+
+          {/* 
+          <Link to="/categories">
+            All Categories
+          </Link>
+          */}
+        </Grid>
+
+        {/* Sidebar */}
+        <Grid size={{ xs: 12, md: 4 }}>
+          <SideBar />
+        </Grid>
+      </Grid>
+    </Layout>
+  )
 }
 
-
-export default function CategoriesTemplate({ pageContext, data }: TemplateProps) {
-    return (<CategoriesTemplatePage pageContext={pageContext} data={data} />)
+export default function CategoriesTemplate({
+  pageContext,
+  data,
+}: TemplateProps) {
+  return (
+    <CategoriesTemplatePage
+      pageContext={pageContext}
+      data={data}
+    />
+  )
 }
 
-export const query = graphql`query ($category: String, $skip: Int!, $limit: Int!) {
-  meta: markdownRemark(frontmatter: {type: {eq: "meta"}, title: {eq: $category}}) {
-    frontmatter {
-      id
-      title
-    }
-    info: html
-  }
-  posts: allMarkdownRemark(
-    limit: $limit
-    skip: $skip
-    sort: {frontmatter: {slug: ASC}}
-    filter: {frontmatter: {categories: {in: [$category]}}}
-  ) {
-    totalCount
-    nodes {
-      frontmatter {
-        slug
-        title
-        categories
-        tags
+export const query = graphql`
+  query ($category: String, $skip: Int!, $limit: Int!) {
+    meta: markdownRemark(
+      frontmatter: {
+        type: { eq: "meta" }
+        title: { eq: $category }
       }
-      excerpt(truncate: true)
+    ) {
+      frontmatter {
+        id
+        title
+      }
+
+      info: html
+    }
+
+    posts: allMarkdownRemark(
+      limit: $limit
+      skip: $skip
+      sort: { frontmatter: { slug: ASC } }
+      filter: {
+        frontmatter: {
+          categories: { in: [$category] }
+        }
+      }
+    ) {
+      totalCount
+
+      nodes {
+        frontmatter {
+          slug
+          title
+          categories
+          tags
+        }
+
+        excerpt(truncate: true)
+      }
     }
   }
-}`
+`

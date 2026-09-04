@@ -1,4 +1,6 @@
-module.exports = {
+import type { GatsbyConfig } from "gatsby";
+
+const config: GatsbyConfig = {
   siteMetadata: {
     title: `For RITZ`,
     description: `岡崎律子的非官方中文资料站`,
@@ -6,8 +8,6 @@ module.exports = {
     siteUrl: `https://forritz.org`,
   },
   plugins: [
-    `gatsby-plugin-typescript`,
-    // `gatsby-plugin-tslint`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -39,8 +39,6 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
-    `gatsby-plugin-sass`,
-    `gatsby-plugin-lodash`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -56,7 +54,6 @@ module.exports = {
         // GitHub Flavored Markdown mode (default: true)
         gfm: true,
         // Add your gatsby-remark-* plugins here
-        plugins: [],
         // Enable JS for https://github.com/jonschlinkert/gray-matter#optionsengines (default: false)
         // It's not advised to set this to "true" and this option will likely be removed in the future
         jsFrontmatterEngine: false,
@@ -80,4 +77,6 @@ module.exports = {
       }
     }
   ],
-}
+};
+
+export default config;

@@ -1,37 +1,30 @@
+import { Grid } from "@mui/material"
 import React from "react"
-import { Link } from "gatsby"
-
-
-import { Card, Label } from 'semantic-ui-react'
-import _ from "lodash";
 import { useRecordsData } from "../hooks/useRecordsData"
-import CoverImage from './CoverImage'
-
-
+import AlbumCard from "./AlbumCard"
 
 type Props = {
-    discographyId: string[];
+  discographyId: string[]
 }
 
-const lableStyle = { backgroundColor: '#0003', color: '#fff' }
 
-const RecordGroup = (props: Props) => {
-    const { discographyId } = props;
+const RecordGroup = ({ discographyId }: Props) => {
+  const records = useRecordsData()
+  const list = records.filter(p => discographyId.includes(p.id))
 
-    const records = useRecordsData();
+  return (
+    <Grid container spacing={2} sx={{ justifyContent: "center" }}>
+      {list.map(item => (
+        <Grid size={12} key={item.id}>
+          <AlbumCard coverImage={item.coverImage} slug={item.slug} title={item.title} square hasLabel />
+        </Grid>
+      ))}
+    </Grid>
 
-    const list = records.filter(p => discographyId.indexOf(p.id) >= 0);
-    return (
-        <Card.Group stackable centered >
-            {list.map(item => (
-                <Card fluid as={Link} key={item.id} to={item.slug}>
-                    <CoverImage key={item.id} alt={item.title} coverimage={item.coverImage} />
-                    <Label size="tiny" style={lableStyle} attached='bottom'>{item.title}</Label>
-                </Card>
 
-            ))
-            }
-        </Card.Group >)
+  )
 }
 
-export default RecordGroup;
+
+
+export default RecordGroup
