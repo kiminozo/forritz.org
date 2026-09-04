@@ -1,6 +1,6 @@
-import React from "react"
-import { Link as GLink, graphql, useStaticQuery, } from "gatsby"
-import { Stack, Avatar, Link, Badge, Box, Tabs, Tab } from "@mui/material"
+import { Box, Tab, Tabs } from "@mui/material";
+import { Link as GLink } from "gatsby";
+import React from "react";
 
 import { StaffIcon, StaffType } from "./StaffList";
 
@@ -81,5 +81,5 @@ const StaffTabs = (props: StaffTabProp) => {
     )
 }
 
-export { StaffWorks }
+export { StaffWorks };
 export default StaffTabs

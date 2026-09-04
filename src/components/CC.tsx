@@ -1,10 +1,16 @@
-import React, { Component, JSX } from "react"
-import { Alert, AlertTitle, Link, Box, Typography } from "@mui/material"
 import CopyrightIcon from "@mui/icons-material/Copyright"
-import { License } from "./License";
-import _ from "lodash";
+import { Alert, AlertTitle, Link, Typography } from "@mui/material"
+import React, { JSX } from "react"
 
 const byncsa = "https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-Hans"
+
+declare interface License {
+    type: string
+    author: string
+    reproduced_url: string
+    reproduced_website: string
+    translator: string
+}
 
 
 const CC = ({ license }: { license?: License }) => {
@@ -37,4 +43,5 @@ const CC = ({ license }: { license?: License }) => {
     )
 };
 
+export { License }
 export default CC

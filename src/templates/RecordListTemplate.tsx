@@ -1,26 +1,25 @@
 import React from "react"
 
-import { graphql, Link as GLink } from "gatsby"
+import { Link as GLink, graphql } from "gatsby"
 
 import {
-  SEO,
   Layout,
-  SideBar,
-  CoverImage,
+  SEO,
+  SideBar
 } from "../components"
 
 import {
   Box,
+  Chip,
   Divider,
   Grid,
+  Link,
   List,
   ListItem,
   ListItemButton,
+  ListItemIcon,
   ListItemText,
-  Typography,
-  Chip,
-  Link,
-  ListItemIcon
+  Typography
 } from "@mui/material"
 import AlbumCard from "../components/AlbumCard"
 

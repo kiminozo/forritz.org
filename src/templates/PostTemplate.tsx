@@ -1,14 +1,13 @@
 import React, { Component } from "react"
 
-import { graphql, Link } from "gatsby"
+import { graphql, Link as GLink } from "gatsby"
 
 import {
-  SEO,
-  Layout,
-  TagsLine,
-  SideBar,
   CC,
-  License,
+  Layout,
+  SEO,
+  SideBar,
+  TagsLine,
 } from "../components"
 
 import {
@@ -16,12 +15,12 @@ import {
   Button,
   Divider,
   Grid,
-  Typography,
-  Chip
+  Typography
 } from "@mui/material"
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
+import { License } from "../components/CC"
 
 type TemplateProps = {
   pageContext: {
@@ -116,7 +115,7 @@ class PostTemplate extends Component<TemplateProps> {
               }}
             >
               <Button
-                component={Link}
+                component={GLink}
                 to={previous ?? "/"}
                 disabled={!previous}
                 variant="outlined"
@@ -127,7 +126,7 @@ class PostTemplate extends Component<TemplateProps> {
               </Button>
 
               <Button
-                component={Link}
+                component={GLink}
                 to={next ?? "/"}
                 disabled={!next}
                 variant="outlined"

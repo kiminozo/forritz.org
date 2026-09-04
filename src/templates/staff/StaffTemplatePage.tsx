@@ -1,32 +1,29 @@
-import React, { Component } from "react"
+import React, { Component } from "react";
 
 import {
   Link as GLink,
   navigate,
-} from "gatsby"
+} from "gatsby";
 
 import {
-  SEO,
   Layout,
+  SEO,
   StaffList,
   StaffTabs
-} from "../../components"
+} from "../../components";
 
 
 import {
-  List,
-  ListItem,
-  ListItemAvatar,
   Avatar,
+  Box,
+  List,
+  ListItemAvatar,
   ListItemButton,
-  ListItemIcon,
-  ListSubheader,
   ListItemText,
+  ListSubheader,
   Pagination,
-  Typography,
-  Box, Chip,
-  Tabs, Tab
-} from "@mui/material"
+  Typography
+} from "@mui/material";
 
 import QueueMusicNoteIcon from '@mui/icons-material/QueueMusic';
 import { StaffInfo, StaffType } from "../../components/StaffList";

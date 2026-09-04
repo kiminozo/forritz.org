@@ -1,18 +1,12 @@
-import React from "react"
-import { Link as GLink, PageProps, graphql } from "gatsby"
-import { SEO, Layout, CoverImage } from "../components"
-import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image"
 import {
-    Grid,
-    Divider,
-    Typography,
-    Card,
-    CardContent,
-    CardMedia,
-    CardActions,
     Box,
+    Card,
     CardActionArea,
+    CardMedia
 } from "@mui/material"
+import { Link as GLink } from "gatsby"
+import React from "react"
+import { CoverImage } from "../components"
 
 const labelStyle = {
     position: "absolute" as const,

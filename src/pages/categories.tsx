@@ -1,7 +1,7 @@
+import { Chip, List, ListItemButton, ListItemText, Stack } from "@mui/material"
+import { Link as GatsbyLink, graphql } from "gatsby"
 import React from "react"
-import { Link as GatsbyLink ,graphql} from "gatsby"
-import { SEO, Layout } from "../components"
-import { Stack, List, ListItemButton, ListItemText, Chip } from "@mui/material"
+import { Layout, SEO } from "../components"
 import { getMetaId } from "../hooks/useMetaData"
 
 type CategoriesGroup = {

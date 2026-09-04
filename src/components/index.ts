@@ -6,8 +6,7 @@ import SEO from "./SEO"
 import CoverImage from './CoverImage'
 import StaffList from "./StaffList"
 import StaffTabs from "./StaffTab"
-import { License } from "./License";
 export {
-    Layout, TagsLine, CC, SEO, CoverImage, SideBar, StaffList, StaffTabs, License
+    Layout, TagsLine, CC, SEO, CoverImage, SideBar, StaffList, StaffTabs
 }
 

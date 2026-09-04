@@ -1,8 +1,8 @@
-import React from "react"
-import { Link as GatsbyLink } from "gatsby"
-import { Stack, Chip } from "@mui/material"
 import BookmarkIcon from "@mui/icons-material/Bookmark"
+import { Chip, Stack } from "@mui/material"
+import { Link as GLink } from "gatsby"
 import kebabCase from "lodash/kebabCase"
+import React from "react"
 import { getMetaId } from "../hooks/useMetaData"
 
 interface Props {
@@ -18,7 +18,7 @@ const TagsLine = ({ categories, tags }: Props) => (
           key={category}
           label={category}
           icon={<BookmarkIcon />}
-          component={GatsbyLink}
+          component={GLink}
           to={`/category/${getMetaId(category)}/`}
           color="primary"
           size="small"
@@ -30,7 +30,7 @@ const TagsLine = ({ categories, tags }: Props) => (
         <Chip
           key={tag}
           label={tag}
-          component={GatsbyLink}
+          component={GLink}
           to={`/tags/${kebabCase(tag)}/`}
           variant="outlined"
           size="small"

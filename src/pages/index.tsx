@@ -1,27 +1,20 @@
-import React from "react"
-import { Link, PageProps, graphql } from "gatsby"
-import { SEO, Layout, CoverImage } from "../components"
-import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image"
-import {
-  Grid,
-  Divider,
-  Typography,
-  Card,
-  CardContent,
-  CardMedia,
-  CardActions,
-  CardActionArea,
-  Button,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Container,
-  BottomNavigation,
-  BottomNavigationAction,
-} from "@mui/material"
 import ArrowRightIcon from "@mui/icons-material/ArrowRight"
 import PublicIcon from "@mui/icons-material/Public"
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Container,
+  Divider,
+  Grid,
+  Typography
+} from "@mui/material"
+import { Link as GLink, PageProps, graphql } from "gatsby"
+import { StaticImage } from "gatsby-plugin-image"
+import React from "react"
+import { Layout, SEO } from "../components"
 import AlbumCard from "../components/AlbumCard"
 
 
@@ -116,7 +109,7 @@ const AlbumCardList = ({ records }: { records: Record[] }) => (
       ))}
     </Grid >
     <Button
-      component={Link}
+      component={GLink}
       to="/discography"
       variant="outlined"
       sx={{ my: 3 }}

@@ -1,6 +1,6 @@
-import React from "react"
-import { Link as GLink } from "gatsby"
-import { Stack, Avatar, Link, Chip, Box } from "@mui/material"
+import { Chip, Link, Stack } from "@mui/material";
+import { Link as GLink } from "gatsby";
+import React from "react";
 
 import LyricsIcon from '@mui/icons-material/Lyrics';
 import MicIcon from '@mui/icons-material/Mic';
@@ -92,5 +92,5 @@ const StaffList = ({ staff: { songWriter, lyricWriter, singer, arranger } }: { s
 
 
 
-export { StaffInfo, StaffIcon }
+export { StaffIcon, StaffInfo };
 export default StaffList

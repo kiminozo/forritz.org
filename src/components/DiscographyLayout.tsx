@@ -1,20 +1,17 @@
-import React from "react"
+import React from "react";
 // Utilities
-import _ from "lodash"
+import _ from "lodash";
 // Components
-import { Link as GatsbyLink } from "gatsby"
-import { CoverImage } from ".";
 import {
+  Box,
   Container,
-  Typography,
   Divider,
   Grid,
-  Card,
-  CardActionArea,
-  Box,
   Link,
-} from "@mui/material"
-import AlbumCard from "../components/AlbumCard"
+  Typography
+} from "@mui/material";
+import { Link as GLink } from "gatsby";
+import AlbumCard from "../components/AlbumCard";
 
 
 interface DiscographyInfo {
@@ -52,7 +49,7 @@ const Records = ({ single, category, artists }: RecordsProp) => (
             pb: 1
           }}
         >
-          <Link color="inherit" underline="hover" component={GatsbyLink}
+          <Link color="inherit" underline="hover" component={GLink}
             to={`/discography/${_.kebabCase(category)}/`}>
             {category}
           </Link>
@@ -64,7 +61,7 @@ const Records = ({ single, category, artists }: RecordsProp) => (
       <Box key={artist} sx={{ mb: 4 }}>
         {artists.length > 1 && (
           <Typography variant={single ? "h5" : "h6"} sx={{ mb: 2 }}>
-            <Link color="inherit" underline="hover" component={GatsbyLink}
+            <Link color="inherit" underline="hover" component={GLink}
               to={`/discography/${_.kebabCase(artist)}/`}>
               {artist}
             </Link>

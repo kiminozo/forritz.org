@@ -4,7 +4,7 @@ import React from "react"
 import kebabCase from "lodash/kebabCase"
 
 // Components
-import { Link, graphql } from "gatsby"
+import { Link as GLink, graphql } from "gatsby"
 import { Box, Chip, Typography } from "@mui/material"
 
 import { SEO, Layout } from "../components"
@@ -56,7 +56,7 @@ const TagsPage = (props: TagsPageProp) => {
           {group.map((tag) => (
             <Chip
               key={tag.fieldValue}
-              component={Link}
+              component={GLink}
               to={`/tags/${kebabCase(tag.fieldValue)}/`}
               clickable
               label={

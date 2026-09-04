@@ -1,6 +1,6 @@
+import { Box, Chip, Divider, List, ListItemButton, ListItemText, ListSubheader } from "@mui/material"
+import { Link as GLink, graphql, useStaticQuery } from "gatsby"
 import React from "react"
-import { graphql, useStaticQuery, Link as GatsbyLink } from "gatsby"
-import { List, ListSubheader, ListItemButton, ListItemText, Chip, Box, Divider } from "@mui/material"
 import { getMetaId } from "../hooks/useMetaData"
 
 interface CategoriesGroup {
@@ -54,7 +54,7 @@ const SideBar = () => {
         {recordList.map(({ fieldValue, totalCount }) => (
           <ListItemButton
             key={fieldValue}
-            component={GatsbyLink}
+            component={GLink}
             to={`/discography/${getMetaId(fieldValue)}/`}
           >
             <ListItemText primary={fieldValue} />
@@ -73,7 +73,7 @@ const SideBar = () => {
         {postList.map(({ fieldValue, totalCount }) => (
           <ListItemButton
             key={fieldValue}
-            component={GatsbyLink}
+            component={GLink}
             to={`/category/${getMetaId(fieldValue)}/`}
           >
             <ListItemText primary={fieldValue} />

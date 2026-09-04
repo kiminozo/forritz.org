@@ -1,11 +1,11 @@
 import React, { Component } from "react"
 
-import { graphql, Link as GLink } from "gatsby"
+import { Link as GLink, graphql } from "gatsby"
 
 import {
-  SEO,
-  Layout,
   CoverImage,
+  Layout,
+  SEO,
 } from "../components"
 
 import StaffList, {
@@ -13,22 +13,20 @@ import StaffList, {
 } from "../components/StaffList"
 
 import {
+  Avatar,
   Box,
-  Link,
   Card,
   CardContent,
   CardMedia,
-  Chip,
   Divider,
   Grid,
+  Link,
   List,
   ListItem,
-  ListItemIcon,
   ListItemAvatar,
-  Avatar,
-  ListItemText,
-  Typography,
   ListItemButton,
+  ListItemText,
+  Typography
 } from "@mui/material"
 
 import QueueMusicNoteIcon from "@mui/icons-material/QueueMusic"

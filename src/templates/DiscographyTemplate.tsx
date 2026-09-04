@@ -4,8 +4,8 @@ import React from "react"
 import _ from "lodash"
 
 // Components
-import { Link, graphql } from "gatsby"
-import { SEO, Layout, SideBar } from "../components"
+import { graphql } from "gatsby"
+import { Layout, SEO, SideBar } from "../components"
 
 import { Divider, Grid, Typography } from "@mui/material"
 

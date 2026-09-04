@@ -1,13 +1,12 @@
-import { Link as GatsbyLink } from "gatsby"
-import React from "react"
 import {
   Box,
   Container,
   Grid,
-  Typography,
   Link,
-  Divider
+  Typography
 } from "@mui/material"
+import { Link as GLink } from "gatsby"
+import React from "react"
 
 const Footer = () => (
   <>
@@ -25,7 +24,7 @@ const Footer = () => (
               <Link underline="hover" href="https://bbs.forritz.org" color="gray" target="_blank" rel="noopener">
                 加入讨论
               </Link>
-              <Link underline="hover" component={GatsbyLink} to="/about" color="gray">
+              <Link underline="hover" component={GLink} to="/about" color="gray">
                 特别感谢
               </Link>
               <Link underline="hover" href="/sitemap-index.xml" color="gray">
@@ -80,7 +79,7 @@ const Footer = () => (
             <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
               <Typography variant="body2">
                 © 2006-{new Date().getFullYear()}{" "}
-                <Link underline="hover" component={GatsbyLink} to="/">
+                <Link underline="hover" component={GLink} to="/">
                   For RITZ
                 </Link>{" "}
                 All rights reserved.

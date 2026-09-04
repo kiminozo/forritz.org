@@ -1,22 +1,16 @@
-import React from "react"
-import { Link } from "gatsby"
 import {
-  AppBar,
-  Toolbar,
-  Container,
-  Typography,
-  Button,
-  Menu,
-  MenuItem,
-  Divider,
   Box,
+  Container,
+  Tab,
   Tabs,
-  Tab
+  Typography
 } from "@mui/material"
+import { Link as GLink } from "gatsby"
+import React from "react"
 
-import logo from "../assets/logo.jpg"
-import { menusConfig, MenuConfig } from "../menu"
 import _ from "lodash"
+import logo from "../assets/logo.jpg"
+import { MenuConfig, menusConfig } from "../menu"
 
 type Props = {
   siteTitle: string
@@ -98,7 +92,7 @@ export default function Header({ siteTitle, pathName }: Props) {
                   value={index}
                   key={item.name}
                   label={item.name}
-                  component={Link}
+                  component={GLink}
                   to={item.link}
                 />
               )

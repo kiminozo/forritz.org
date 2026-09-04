@@ -1,9 +1,6 @@
+import { Grid } from "@mui/material"
 import React from "react"
-import { Link as GLink } from "gatsby"
-import { Grid, Card, CardMedia, CardActionArea, Typography, Box } from "@mui/material"
-import _ from "lodash"
 import { useRecordsData } from "../hooks/useRecordsData"
-import CoverImage from "./CoverImage"
 import AlbumCard from "./AlbumCard"
 
 type Props = {

@@ -3,10 +3,9 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import {
-  SEO,
-  Layout,
   CC,
-  License,
+  Layout,
+  SEO,
 } from "../components"
 
 import RecordGroup from "../components/RecordGroup"
@@ -22,6 +21,7 @@ import {
   Grid,
   Typography,
 } from "@mui/material"
+import { License } from "../components/CC"
 
 interface Record {
   discography: string[]

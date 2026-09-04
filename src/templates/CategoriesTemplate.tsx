@@ -1,10 +1,10 @@
 import React from "react"
 
-import { Link, graphql, navigate } from "gatsby"
+import { Link as GLink, graphql, navigate } from "gatsby"
 
 import { SEO, Layout, SideBar, TagsLine } from "../components"
 
-import { Box, Chip, Divider, Grid, Pagination, Typography } from "@mui/material"
+import { Box, Chip, Divider, Grid, Pagination, Typography, Link } from "@mui/material"
 
 interface TemplateProps {
   pageContext: {
@@ -133,10 +133,9 @@ const CategoriesTemplatePage = (props: TemplateProps) => {
                     }}
                   >
                     <Link
+                      component={GLink}
                       to={slug}
-                      style={{
-                        textDecoration: "none",
-                      }}
+                      underline="hover"
                     >
                       {title}
                     </Link>

@@ -1,8 +1,8 @@
+import { Box, Container, Divider } from "@mui/material"
+import { graphql, useStaticQuery } from "gatsby"
 import React, { ReactNode } from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import { Container, Divider, Box } from "@mui/material"
-import Header from "./Header"
 import Footer from "./Footer"
+import Header from "./Header"
 
 interface LayoutProps {
   path?: string

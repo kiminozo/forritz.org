@@ -1,5 +1,5 @@
-import React from "react"
 import { graphql } from "gatsby"
+import React from "react"
 import { StaffTemplatePage, TemplateProps } from './StaffTemplatePage'
 
 export default function SingerTemplate({ pageContext, data }: TemplateProps) {

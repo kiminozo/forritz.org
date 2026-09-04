@@ -1,9 +1,8 @@
+import { Divider, Grid, Typography } from "@mui/material"
+import { graphql, PageProps } from "gatsby"
 import React from "react"
-import _ from "lodash"
-import { Link, graphql, PageProps } from "gatsby"
-import { SEO, Layout, CoverImage, SideBar } from "../components"
+import { Layout, SEO, SideBar } from "../components"
 import DiscographyLayout, { DiscographyInfo } from "../components/DiscographyLayout"
-import { Grid, Divider, Typography } from "@mui/material"
 
 interface Props extends PageProps {
   data: {

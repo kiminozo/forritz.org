@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Link, graphql } from "gatsby"
+import { Link as GLink, graphql } from "gatsby"
 
 import {
   SEO,
@@ -100,7 +100,7 @@ const TagsTemplatePage = (
                   disablePadding
                 >
                   <ListItemButton
-                    component={Link}
+                    component={GLink}
                     to={slug}
                   >
                     <ListItemText
@@ -113,7 +113,7 @@ const TagsTemplatePage = (
           </List>
 
           <Button
-            component={Link}
+            component={GLink}
             to="/tags"
             variant="outlined"
             color="primary"
