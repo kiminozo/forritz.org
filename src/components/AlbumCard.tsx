@@ -7,6 +7,7 @@ import {
 import { Link as GLink } from "gatsby"
 import React from "react"
 import { CoverImage } from "../components"
+import { ScalesType } from "./CoverImage"
 
 const labelStyle = {
     position: "absolute" as const,
@@ -23,11 +24,11 @@ interface AlbumCardProp {
     coverImage: string
     title?: string
     slug?: string
-    square?: boolean
+    scales?: ScalesType
     hasLabel?: boolean
 }
 
-const AlbumCard = ({ slug, coverImage, square, title, hasLabel }: AlbumCardProp) => (
+const AlbumCard = ({ slug, coverImage, scales, title, hasLabel }: AlbumCardProp) => (
     <Card
         sx={{
             borderRadius: 2,
@@ -42,7 +43,7 @@ const AlbumCard = ({ slug, coverImage, square, title, hasLabel }: AlbumCardProp)
             <CardMedia>
                 <CoverImage
                     coverimage={coverImage}
-                    square={square}
+                    scales={scales}
                     alt={title}
                     sx={{
                         width: "100%",

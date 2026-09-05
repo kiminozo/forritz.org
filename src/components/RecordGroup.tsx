@@ -16,7 +16,7 @@ const RecordGroup = ({ discographyId }: Props) => {
     <Grid container spacing={2} sx={{ justifyContent: "center" }}>
       {list.map(item => (
         <Grid size={12} key={item.id}>
-          <AlbumCard coverImage={item.coverImage} slug={item.slug} title={item.title} square hasLabel />
+          <AlbumCard coverImage={item.coverImage} slug={item.slug} title={item.title} scales="crop" hasLabel />
         </Grid>
       ))}
     </Grid>

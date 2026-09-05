@@ -105,10 +105,7 @@ const Record = ({
       <CoverImage
         alt={title}
         coverimage={info.coverImage}
-        sx={{
-          display: 'block',
-          width: '100%',
-        }}
+        scales="inside"
       />
     </CardMedia>
     <Divider />

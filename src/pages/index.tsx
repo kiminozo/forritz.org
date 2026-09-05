@@ -105,7 +105,7 @@ const AlbumCardList = ({ records }: { records: Record[] }) => (
     <Grid container spacing={{ xs: 2, md: 3 }}>
       {records.map((item) => (
         <Grid key={item.title} size={{ xs: 6, sm: 4, md: 2 }}>
-          <AlbumCard coverImage={item.coverImage} slug={item.slug} title={item.title} />
+          <AlbumCard coverImage={item.coverImage} slug={item.slug} title={item.title} scales="crop" />
         </Grid>
       ))}
     </Grid >
