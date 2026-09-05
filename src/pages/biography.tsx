@@ -8,8 +8,9 @@ import {
     StepLabel,
     Stepper,
     Typography,
+    Grid
 } from '@mui/material';
-import { Layout, SEO } from "../components"
+import { Layout, SEO, SideBar } from "../components"
 
 
 interface BiographyEvent {
@@ -354,40 +355,55 @@ function TimelineStep({
     );
 }
 
-export default function BiographyPage() {
-    return (
-        <Layout>
+const Biography = () =>
+(
 
-            <Box
-                sx={{
-                    maxWidth: 900,
-                    mx: 'auto',
-                    px: { xs: 2, md: 0 },
-                    py: 4,
-                }}
-            >
-                <Typography variant="h4" component="h1" gutterBottom>
-                    详细生平
-                </Typography>
+    <Box
+        sx={{
+            maxWidth: 900,
+            mx: 'auto',
+            px: { xs: 2, md: 0 },
+            py: 4,
+        }}
+    >
+        <Typography variant="h4" component="h1" gutterBottom>
+            详细生平
+        </Typography>
 
-                <Typography
-                    variant="body1"
-                    color="text.secondary"
-                    sx={{ mb: 5 }}
-                >
-                    岡崎律子的生平与音乐创作历程。
-                </Typography>
+        <Typography
+            variant="body1"
+            color="text.secondary"
+            sx={{ mb: 5 }}
+        >
+            岡崎律子的生平与音乐创作历程。
+        </Typography>
 
-                <Box>
-                    {biography.map((item, index) => (
-                        <TimelineStep
-                            key={`${item.year}-${index}`}
-                            item={item}
-                            last={index === biography.length - 1}
-                        />
-                    ))}
-                </Box>
-            </Box>
-        </Layout>
-    );
-}
+        <Box>
+            {biography.map((item, index) => (
+                <TimelineStep
+                    key={`${item.year}-${index}`}
+                    item={item}
+                    last={index === biography.length - 1}
+                />
+            ))}
+        </Box>
+    </Box>
+)
+
+const BiographyPage = () =>
+    <Layout>
+        <Grid container spacing={2}>
+            {/* 主内容 */}
+            <Grid size={{ xs: 12, md: 10 }} >
+                <Biography />
+            </Grid>
+
+            {/* 侧边栏 */}
+            <Grid size={{ xs: 12, md: 2 }} >
+                <SideBar />
+            </Grid>
+        </Grid>
+    </Layout>
+
+
+export default BiographyPage
