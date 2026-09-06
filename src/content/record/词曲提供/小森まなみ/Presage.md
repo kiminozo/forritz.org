@@ -7,7 +7,7 @@ artist: "小森まなみ"
 categories: ["词曲提供"]
 recordNo: ""
 recordPrice: ""
-recordReleaseDate: ""
+recordReleaseDate: "1998.11.27"
 recordPublisher: ""
 recordType: ""
 order: 4400

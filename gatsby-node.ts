@@ -646,3 +646,90 @@ export const createPages: GatsbyNode['createPages'] = async ({
     });
   }
 };
+
+export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
+  actions,
+}) => {
+  actions.createTypes(`
+    type MarkdownRemark implements Node {
+      fields: MarkdownRemarkFields
+    }
+
+    type MarkdownRemarkFields {
+      songYear: String
+      songReleaseDate: String
+    }
+  `);
+};
+
+export const onCreateNode: GatsbyNode['onCreateNode'] = ({
+  node,
+  actions,
+  getNodesByType,
+}) => {
+  const { createNodeField } = actions;
+
+  if (node.internal.type !== 'MarkdownRemark') {
+    return;
+  }
+
+  const frontmatter = node.frontmatter as {
+    type?: string;
+    discographyId?: string[];
+  };
+
+  if (frontmatter.type !== 'song') {
+    return;
+  }
+
+  const discographyIds = frontmatter.discographyId ?? [];
+
+  if (discographyIds.length === 0) {
+    return;
+  }
+
+  const records = getNodesByType('MarkdownRemark');
+
+  const releaseDates = records
+    .filter((record) => {
+      const fm = record.frontmatter as {
+        type?: string;
+        id?: string;
+        recordReleaseDate?: string;
+      };
+
+      return (
+        fm.type === 'record' &&
+        fm.id &&
+        discographyIds.includes(fm.id) &&
+        fm.recordReleaseDate
+      );
+    })
+    .map((record) => {
+      const fm = record.frontmatter as {
+        recordReleaseDate?: string;
+      };
+
+      return fm.recordReleaseDate!;
+    })
+    .sort();
+
+  if (releaseDates.length === 0) {
+    return;
+  }
+
+  const songReleaseDate = releaseDates[0];
+  const songYear = songReleaseDate.substring(0, 4);
+
+  createNodeField({
+    node,
+    name: 'songYear',
+    value: songYear,
+  });
+
+  createNodeField({
+    node,
+    name: 'songReleaseDate',
+    value: songReleaseDate,
+  });
+};
