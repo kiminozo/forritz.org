@@ -17,9 +17,9 @@ interface ArtistCount {
 }
 
 interface StaffWorks {
-    singer: ArtistCount;
-    songWriter: ArtistCount;
-    lyricWriter: ArtistCount;
+    vocal: ArtistCount;
+    composer: ArtistCount;
+    lyricist: ArtistCount;
     arranger: ArtistCount;
 }
 
@@ -39,31 +39,31 @@ const StaffTabs = (props: StaffTabProp) => {
                 },
             }}>
             <Tab
-                value="song-writer"
-                icon={<StaffIcon type="song-writer" />}
+                value="composer"
+                icon={<StaffIcon type="composer" />}
                 iconPosition="start"
-                label={`作曲(${staffWork.songWriter.totalCount})`}
+                label={`作曲(${staffWork.composer.totalCount})`}
                 component={GLink}
-                to={`/song-writer/${staffName}`}
-                disabled={staffWork.songWriter.totalCount == 0}
+                to={`/composer/${staffName}`}
+                disabled={staffWork.composer.totalCount == 0}
             />
             <Tab
-                value="lyric-writer"
-                icon={<StaffIcon type="lyric-writer" />}
+                value="lyricist"
+                icon={<StaffIcon type="lyricist" />}
                 iconPosition="start"
-                label={`作词(${staffWork.lyricWriter.totalCount})`}
+                label={`作词(${staffWork.lyricist.totalCount})`}
                 component={GLink}
-                to={`/lyric-writer/${staffName}`}
-                disabled={staffWork.lyricWriter.totalCount == 0}
+                to={`/lyricist/${staffName}`}
+                disabled={staffWork.lyricist.totalCount == 0}
             />
             <Tab
-                value="singer"
-                icon={<StaffIcon type="singer" />}
+                value="vocal"
+                icon={<StaffIcon type="vocal" />}
                 iconPosition="start"
-                label={`演唱(${staffWork.singer.totalCount})`}
+                label={`演唱(${staffWork.vocal.totalCount})`}
                 component={GLink}
-                to={`/singer/${staffName}`}
-                disabled={staffWork.singer.totalCount == 0}
+                to={`/vocal/${staffName}`}
+                disabled={staffWork.vocal.totalCount == 0}
 
             />
             <Tab

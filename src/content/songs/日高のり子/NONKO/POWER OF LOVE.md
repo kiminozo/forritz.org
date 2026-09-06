@@ -6,9 +6,9 @@ date: "2013-04-14"
 order: 390102
 discography: ["NONKO"]
 discographyId: ["nonko"]
-singer: ["日高のり子"]
-songwriter: ["岸村正実"]
-lyricwriter: ["岡崎律子"]
+vocal: ["日高のり子"]
+composer: ["岸村正実"]
+lyricist: ["岡崎律子"]
 arranger: ["梅村圭"]
 slug: "/songs/power-of-love"
 tags: []

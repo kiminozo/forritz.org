@@ -6,9 +6,9 @@ date: "2017-02-05"
 order: 50021
 discography: ["男の気持ち、わかりたいなら"]
 discographyId: ["otoko-no-kimochi"]
-singer: ["伊藤敏博"]
-songwriter: ["森野律"]
-lyricwriter: ["伊藤敏博"]
+vocal: ["伊藤敏博"]
+composer: ["森野律"]
+lyricist: ["伊藤敏博"]
 arranger: ["山本健司"]
 slug: "/songs/love-bird"
 tags: []

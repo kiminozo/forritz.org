@@ -6,9 +6,9 @@ date: "2010-09-01"
 order: 20701
 discography: ["L'aquoiboniste～無造作紳士〜"]
 discographyId: ["laquoiboniste"]
-singer: ["岡崎律子"]
-songwriter: ["Serge Gainsbourg"]
-lyricwriter: ["Serge Gainsbourg"]
+vocal: ["岡崎律子"]
+composer: ["Serge Gainsbourg"]
+lyricist: ["Serge Gainsbourg"]
 arranger: ["門倉聡"]
 slug: "/songs/laquoiboniste"
 tags: []

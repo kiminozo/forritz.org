@@ -6,9 +6,9 @@ date: "2013-04-07"
 order: 360813
 discography: ["feel well"]
 discographyId: ["feel-well"]
-singer: ["林原めぐみ"]
-songwriter: ["岡崎律子"]
-lyricwriter: ["岡崎律子"]
+vocal: ["林原めぐみ"]
+composer: ["岡崎律子"]
+lyricist: ["岡崎律子"]
 arranger: ["光宗信吉"]
 slug: "/songs/sincere-aisu-ru-nin-dear"
 tags: []

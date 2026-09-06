@@ -6,9 +6,9 @@ date: "2010-08-22"
 order: 10206
 discography: ["Joyful Calendar","Rain or Shine"]
 discographyId: ["joyful-calendar","rain-or-shine"]
-singer: ["岡崎律子"]
-songwriter: ["岡崎律子"]
-lyricwriter: ["岡崎律子"]
+vocal: ["岡崎律子"]
+composer: ["岡崎律子"]
+lyricist: ["岡崎律子"]
 arranger: ["京田誠一"]
 slug: "/songs/nowadays"
 tags: []

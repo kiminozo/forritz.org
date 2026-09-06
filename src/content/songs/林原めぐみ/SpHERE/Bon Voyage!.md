@@ -6,9 +6,9 @@ date: "2013-04-05"
 order: 360205
 discography: ["SpHERE"]
 discographyId: ["sphere"]
-singer: ["林原めぐみ"]
-songwriter: ["岡崎律子"]
-lyricwriter: ["岡崎律子"]
+vocal: ["林原めぐみ"]
+composer: ["岡崎律子"]
+lyricist: ["岡崎律子"]
 arranger: ["岩本正樹"]
 slug: "/songs/bon-voyage-megmi"
 tags: []

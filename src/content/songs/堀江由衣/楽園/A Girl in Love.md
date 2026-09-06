@@ -6,9 +6,9 @@ date: "2013-03-31"
 order: 350202
 discography: ["楽園"]
 discographyId: ["rakuen"]
-singer: ["堀江由衣"]
-songwriter: ["岡崎律子"]
-lyricwriter: ["岡崎律子"]
+vocal: ["堀江由衣"]
+composer: ["岡崎律子"]
+lyricist: ["岡崎律子"]
 arranger: ["村山達哉","礒江俊道"]
 slug: "/songs/a-girl-in-love"
 tags: []

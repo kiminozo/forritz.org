@@ -6,9 +6,9 @@ date: "2017-02-04"
 order: 100000
 discography: ["Tiny Angel"]
 discographyId: ["tiny-angel"]
-singer: ["小森まなみ"]
-songwriter: ["岡崎律子"]
-lyricwriter: ["小森まなみ"]
+vocal: ["小森まなみ"]
+composer: ["岡崎律子"]
+lyricist: ["小森まなみ"]
 arranger: ["丸尾めぐみ"]
 slug: "/songs/happy-happy-birthday"
 tags: []

@@ -6,9 +6,9 @@ date: "2010-08-31"
 order: 11012
 discography: ["Love&amp;Life〜private works 1999-2001〜","Rain or Shine～降っても晴れても〜"]
 discographyId: ["love-and-life","rain-or-shine-single"]
-singer: ["岡崎律子"]
-songwriter: ["岡崎律子"]
-lyricwriter: ["岡崎律子"]
+vocal: ["岡崎律子"]
+composer: ["岡崎律子"]
+lyricist: ["岡崎律子"]
 arranger: ["蓮沼健介"]
 slug: "/songs/white-land"
 tags: []

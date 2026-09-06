@@ -2,8 +2,8 @@ import { graphql } from "gatsby"
 import React from "react"
 import { StaffTemplatePage, TemplateProps } from './StaffTemplatePage'
 
-export default function LyricWriterTemplate({ pageContext, data }: TemplateProps) {
-  return (<StaffTemplatePage title={pageContext.staff} staffType="lyric-writer"
+export default function lyricistTemplate({ pageContext, data }: TemplateProps) {
+  return (<StaffTemplatePage title={pageContext.staff} staffType="lyricist"
     pageContext={pageContext} data={data} />)
 }
 
@@ -11,7 +11,7 @@ export const pageQuery = graphql`query ($staff: String, $skip: Int!, $limit: Int
   songs: allMarkdownRemark(
     limit: $limit
     skip: $skip
-    filter: {frontmatter: {lyricwriter: {in: [$staff]}}}
+    filter: {frontmatter: {lyricist: {in: [$staff]}}}
     sort: {frontmatter: {order: ASC}}
   ) {
     totalCount
@@ -19,38 +19,38 @@ export const pageQuery = graphql`query ($staff: String, $skip: Int!, $limit: Int
       song: frontmatter {
         slug
         title
-        singer
-        songWriter: songwriter
-        lyricWriter: lyricwriter
+        vocal
+        composer: composer
+        lyricist: lyricist
         arranger
       }
     }
   }
 
-  singer: allMarkdownRemark(
+  vocal: allMarkdownRemark(
     filter: {
       frontmatter: {
-        singer: { eq: $staff }
+        vocal: { eq: $staff }
       }
     }
   ) {
     totalCount
   }
 
-  songWriter: allMarkdownRemark(
+  composer: allMarkdownRemark(
     filter: {
       frontmatter: {
-        songwriter: { eq: $staff }
+        composer: { eq: $staff }
       }
     }
   ) {
     totalCount
   }
 
-  lyricWriter: allMarkdownRemark(
+  lyricist: allMarkdownRemark(
     filter: {
       frontmatter: {
-        lyricwriter: { eq: $staff }
+        lyricist: { eq: $staff }
       }
     }
   ) {

@@ -50,15 +50,15 @@ interface GraphQLResult {
     group: GroupNode[];
   };
 
-  singers: {
+  vocals: {
     group: GroupNode[];
   };
 
-  songWriters: {
+  composers: {
     group: GroupNode[];
   };
 
-  lyricWriters: {
+  lyricists: {
     group: GroupNode[];
   };
 
@@ -191,20 +191,20 @@ export const createPages: GatsbyNode['createPages'] = async ({
       totalCount
     }
   }
-  singers: allMarkdownRemark(limit: 2000) {
-    group(field: {frontmatter: {singer: SELECT}}) {
+  vocals: allMarkdownRemark(limit: 2000) {
+    group(field: {frontmatter: {vocal: SELECT}}) {
       fieldValue
       totalCount
     }
   }
-  songWriters: allMarkdownRemark(limit: 2000) {
-    group(field: {frontmatter: {songwriter: SELECT}}) {
+  composers: allMarkdownRemark(limit: 2000) {
+    group(field: {frontmatter: {composer: SELECT}}) {
       fieldValue
       totalCount
     }
   }
-  lyricWriters: allMarkdownRemark(limit: 2000) {
-    group(field: {frontmatter: {lyricwriter: SELECT}}) {
+  lyricists: allMarkdownRemark(limit: 2000) {
+    group(field: {frontmatter: {lyricist: SELECT}}) {
       fieldValue
       totalCount
     }
@@ -411,15 +411,15 @@ export const createPages: GatsbyNode['createPages'] = async ({
   const staffPerPage = 20;
 
   /**
-   * Singers
+   * vocals
    */
   const staffTemplate = path.resolve(
-    './src/templates/staff/SingerTemplate.tsx',
+    './src/templates/staff/VocalTemplate.tsx',
   );
 
-  data.singers.group.forEach((staff) => {
+  data.vocals.group.forEach((staff) => {
     createPageWithPagination({
-      path: `/singer/${_.kebabCase(staff.fieldValue)}`,
+      path: `/vocal/${_.kebabCase(staff.fieldValue)}`,
       component: staffTemplate,
       context: {
         staff: staff.fieldValue,
@@ -432,14 +432,14 @@ export const createPages: GatsbyNode['createPages'] = async ({
   /**
    * Lyric Writers
    */
-  const lyricWriterTemplate = path.resolve(
-    './src/templates/staff/LyricWriterTemplate.tsx',
+  const lyricistTemplate = path.resolve(
+    './src/templates/staff/LyricistTemplate.tsx',
   );
 
-  data.lyricWriters.group.forEach((staff) => {
+  data.lyricists.group.forEach((staff) => {
     createPageWithPagination({
-      path: `/lyric-writer/${_.kebabCase(staff.fieldValue)}`,
-      component: lyricWriterTemplate,
+      path: `/lyricist/${_.kebabCase(staff.fieldValue)}`,
+      component: lyricistTemplate,
       context: {
         staff: staff.fieldValue,
       },
@@ -451,14 +451,14 @@ export const createPages: GatsbyNode['createPages'] = async ({
   /**
    * Song Writers
    */
-  const songWriterTemplate = path.resolve(
-    './src/templates/staff/SongWriterTemplate.tsx',
+  const composerTemplate = path.resolve(
+    './src/templates/staff/ComposerTemplate.tsx',
   );
 
-  data.songWriters.group.forEach((staff) => {
+  data.composers.group.forEach((staff) => {
     createPageWithPagination({
-      path: `/song-writer/${_.kebabCase(staff.fieldValue)}`,
-      component: songWriterTemplate,
+      path: `/composer/${_.kebabCase(staff.fieldValue)}`,
+      component: composerTemplate,
       context: {
         staff: staff.fieldValue,
       },

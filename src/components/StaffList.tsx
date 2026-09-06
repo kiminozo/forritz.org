@@ -8,15 +8,15 @@ import PianoIcon from '@mui/icons-material/Piano';
 import TuneIcon from '@mui/icons-material/Tune';
 
 export type StaffType =
-  | "song-writer"
-  | "lyric-writer"
-  | "singer"
+  | "composer"
+  | "lyricist"
+  | "vocal"
   | "arranger"
 
 interface StaffInfo {
-  songWriter: string[]
-  lyricWriter: string[]
-  singer: string[]
+  composer: string[]
+  lyricist: string[]
+  vocal: string[]
   arranger: string[]
 }
 
@@ -26,13 +26,13 @@ interface StaffIconProps {
 
 const StaffIcon = ({ type }: StaffIconProps) => {
   switch (type) {
-    case "song-writer":
+    case "composer":
       return <PianoIcon />
 
-    case "lyric-writer":
+    case "lyricist":
       return <LyricsIcon />
 
-    case "singer":
+    case "vocal":
       return <MicIcon />
 
     case "arranger":
@@ -72,17 +72,17 @@ const StaffLink = ({ type, names }: { type: string; names: string[] }) => (
   </>
 )
 
-const StaffList = ({ staff: { songWriter, lyricWriter, singer, arranger } }: { staff: StaffInfo }) => (
+const StaffList = ({ staff: { composer, lyricist, vocal, arranger } }: { staff: StaffInfo }) => (
   <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap" }}>
-    {songWriter.length > 0 && (
-      //songWriter
-      <StaffLinks type="song-writer" names={songWriter} />
+    {composer.length > 0 && (
+      //composer
+      <StaffLinks type="composer" names={composer} />
     )}
-    {lyricWriter.length > 0 && (
-      <StaffLinks type="lyric-writer" names={lyricWriter} />
+    {lyricist.length > 0 && (
+      <StaffLinks type="lyricist" names={lyricist} />
     )}
-    {singer.length > 0 && (
-      <StaffLinks type="singer" names={singer} />
+    {vocal.length > 0 && (
+      <StaffLinks type="vocal" names={vocal} />
     )}
     {arranger.length > 0 && (
       <StaffLinks type="arranger" names={arranger} />

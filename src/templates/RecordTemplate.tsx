@@ -356,9 +356,9 @@ export const pageQuery = graphql`
         frontmatter {
           title
           slug
-          songWriter: songwriter
-          lyricWriter: lyricwriter
-          singer
+          composer: composer
+          lyricist: lyricist
+          vocal
           arranger
           remarks
         }

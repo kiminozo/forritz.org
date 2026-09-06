@@ -19,38 +19,38 @@ export const pageQuery = graphql`query ($staff: String, $skip: Int!, $limit: Int
       song: frontmatter {
         slug
         title
-        singer
-        songWriter: songwriter
-        lyricWriter: lyricwriter
+        vocal
+        composer: composer
+        lyricist: lyricist
         arranger
       }
     }
   }
 
-  singer: allMarkdownRemark(
+  vocal: allMarkdownRemark(
     filter: {
       frontmatter: {
-        singer: { eq: $staff }
+        vocal: { eq: $staff }
       }
     }
   ) {
     totalCount
   }
 
-  songWriter: allMarkdownRemark(
+  composer: allMarkdownRemark(
     filter: {
       frontmatter: {
-        songwriter: { eq: $staff }
+        composer: { eq: $staff }
       }
     }
   ) {
     totalCount
   }
 
-  lyricWriter: allMarkdownRemark(
+  lyricist: allMarkdownRemark(
     filter: {
       frontmatter: {
-        lyricwriter: { eq: $staff }
+        lyricist: { eq: $staff }
       }
     }
   ) {

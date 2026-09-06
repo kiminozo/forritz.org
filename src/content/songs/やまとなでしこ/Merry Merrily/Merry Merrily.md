@@ -6,9 +6,9 @@ date: "2013-04-14"
 order: 380101
 discography: ["Merry Merrily"]
 discographyId: ["merry-merrily"]
-singer: ["やまとなでしこ"]
-songwriter: ["岡崎律子"]
-lyricwriter: ["岡崎律子"]
+vocal: ["やまとなでしこ"]
+composer: ["岡崎律子"]
+lyricist: ["岡崎律子"]
 arranger: ["十川知司"]
 slug: "/songs/merry-merrily"
 tags: []

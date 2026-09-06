@@ -283,9 +283,9 @@ export const query = graphql`
           reproduced_website
         }
 
-        singer
-        songWriter: songwriter
-        lyricWriter: lyricwriter
+        vocal
+        composer: composer
+        lyricist: lyricist
         arranger
         discography
         discographyId
