@@ -13,6 +13,13 @@ export type StaffType =
   | "vocal"
   | "arranger"
 
+export const StaffTypeName: Record<StaffType, string> = {
+  composer: "作曲",
+  lyricist: "作词",
+  vocal: "演唱",
+  arranger: "编曲",
+};
+
 interface StaffInfo {
   composer: string[]
   lyricist: string[]
@@ -73,7 +80,13 @@ const StaffLink = ({ type, names }: { type: string; names: string[] }) => (
 )
 
 const StaffList = ({ staff: { composer, lyricist, vocal, arranger } }: { staff: StaffInfo }) => (
-  <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap" }}>
+  <Stack
+    direction={{ xs: "column", sm: "row" }}
+    spacing={1}
+    sx={{
+      alignItems: { xs: "flex-start", sm: "center" },
+    }}
+  >
     {composer.length > 0 && (
       //composer
       <StaffLinks type="composer" names={composer} />

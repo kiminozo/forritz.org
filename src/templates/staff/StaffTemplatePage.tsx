@@ -98,11 +98,11 @@ export class StaffTemplatePage extends Component<TemplateProps> {
     return (
       <Layout path="songs">
         <Typography
-          variant="h4"
-          component="h4"
-          sx={{ mb: 1 }}
+          variant="h5"
+          component="h5"
+          sx={{ m: 2 }}
         >
-          {title} 的作品
+          {title}参与的歌曲列表
         </Typography>
 
         <List
