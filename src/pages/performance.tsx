@@ -71,6 +71,13 @@ const unique = (items?: string[] | null): string[] => {
     return [...new Set(items.filter(Boolean))];
 };
 
+const isRitz = (names: String[] | null | undefined): boolean => {
+    if (!names || names == null || names.length == 0) return false
+    return names.includes('岡崎律子') === true ||
+        names.includes('森野律') === true ||
+        names.includes('メロキュア') === true ||
+        names.includes('Ritz') === true;
+}
 /**
  * 生成歌曲参与角色
  *
@@ -81,19 +88,20 @@ const unique = (items?: string[] | null): string[] => {
 const getRoles = ({ frontmatter }: SongInfo): string[] => {
     const roles: string[] = [];
 
-    if (frontmatter.lyricist?.length) {
+
+    if (isRitz(frontmatter.lyricist)) {
         roles.push('作词');
     }
 
-    if (frontmatter.composer?.length) {
+    if (isRitz(frontmatter.composer)) {
         roles.push('作曲');
     }
 
-    if (frontmatter.vocal?.length) {
+    if (isRitz(frontmatter.vocal)) {
         roles.push('演唱');
     }
 
-    if (frontmatter.arranger?.length) {
+    if (isRitz(frontmatter.arranger)) {
         roles.push('编曲');
     }
 
@@ -108,44 +116,21 @@ const getRoles = ({ frontmatter }: SongInfo): string[] => {
  * 例如：
  * 岡崎律子 · 作词 / 作曲 / 演唱
  */
-const getPeople = ({ frontmatter }: SongInfo): string[] => {
-    const people = [
-        ...(frontmatter.vocal ?? []),
-        ...(frontmatter.composer ?? []),
-        ...(frontmatter.lyricist ?? []),
-    ];
-
-    return unique(people);
-};
-
 /**
  * 格式化参与信息
  */
 const getStaffText = (song: SongInfo): string => {
-    const people = getPeople(song);
     const roles = getRoles(song);
 
-    if (!people.length && !roles.length) {
-        return '';
-    }
-
-    if (!roles.length) {
-        return people.join('、');
-    }
-
-    if (!people.length) {
-        return roles.join(' / ');
-    }
-
-    return `${people.join('、')} · ${roles.join(' / ')}`;
+    return ` ${roles.join(' / ')}`;
 };
 
-/**
- * 获取收录作品
- */
-const getDiscography = (song: SongInfo): string[] => {
-    return unique(song.frontmatter.discography);
-};
+// /**
+//  * 获取收录作品
+//  */
+// const getDiscography = (song: SongInfo): string[] => {
+//     return unique(song.frontmatter.discography);
+// };
 
 /**
  * 判断是否属于重要歌曲
@@ -161,7 +146,9 @@ const isImportant = (song: SongInfo): boolean => {
     return (
         song.frontmatter.vocal?.includes('岡崎律子') === true
     );
-};
+}
+
+
 
 /**
  * 将 remarks 按换行拆开
@@ -221,8 +208,9 @@ interface SongItemProps {
 const SongItem = ({ song }: SongItemProps) => {
     const important = isImportant(song);
 
-    const discography = getDiscography(song);
     const remarks = getRemarks(song.frontmatter.remarks);
+    const discographys = song.frontmatter.discography
+
     const staffText = getStaffText(song);
 
     return (
@@ -274,34 +262,41 @@ const SongItem = ({ song }: SongItemProps) => {
 
             {song.frontmatter.slug ? (
                 <Box
-                    component={GatsbyLink}
-                    to={song.frontmatter.slug}
                     sx={{
-                        textDecoration: 'none',
-
-                        '&:hover .song-title': {
-                            color: 'primary.main',
-                        },
+                        display: "flex",
+                        alignItems: "baseline",
+                        gap: 1,
                     }}
                 >
                     <Typography
                         className="song-title"
-                        variant={important ? 'h6' : 'body1'}
+                        component={GatsbyLink}
+                        to={song.frontmatter.slug}
+                        variant="h6"
                         sx={{
                             color: 'text.primary',
-
                             transition: 'color 0.2s',
-
-
                             lineHeight: 1.5,
+                            textDecoration: 'none',
+
+                            '&:hover .song-title': {
+                                color: 'primary.main',
+                            },
                         }}
                     >
                         {song.frontmatter.title}
                     </Typography>
+                    <Typography
+                        color="secondary"
+                        variant="body2"
+                        component="div"
+                    >
+                        {song.frontmatter.vocal?.join(" · ")}
+                    </Typography>
                 </Box>
             ) : (
                 <Typography
-                    variant={important ? 'h6' : 'body1'}
+                    variant="h6"
                     sx={{
                         lineHeight: 1.5,
                         fontWeight: 600
@@ -331,26 +326,27 @@ const SongItem = ({ song }: SongItemProps) => {
             {/* =================================================
        * Discography
        * =============================================== */}
-
-            {discography.length > 0 && (
+            {/* {discographys && discographys.length > 0 && (
                 <Typography
                     variant="body2"
-                    color="text.secondary"
+                    color="textSecondary"
                     sx={{
                         mt: 0.25,
                         opacity: 0.75,
                         lineHeight: 1.5,
                     }}
                 >
-                    {discography.join(' · ')}
+                    {discographys.join(' · ')}
                 </Typography>
-            )}
+
+            )
+            } */}
 
             {/* =================================================
        * Remarks
        * =============================================== */}
 
-            {remarks.length > 0 && (
+            {/* {remarks.length > 0 && (
                 <Box
                     sx={{
                         mt: 0.5,
@@ -371,8 +367,8 @@ const SongItem = ({ song }: SongItemProps) => {
                         </Typography>
                     ))}
                 </Box>
-            )}
-        </Box>
+            )} */}
+        </Box >
     );
 };
 
@@ -446,9 +442,9 @@ const YearSection = ({
                         fontSize: {
                             xs: '1.1rem',
                             sm: '1.4rem',
-                            md: '1.5rem',
+                            md: '1.4rem',
                         },
-                        fontWeight: 700
+                        fontWeight: 600
                     }}
                 >
                     {year}
@@ -758,7 +754,7 @@ const PerformancePage = (props: PageProps<Data>) => {
                 <Grid size={{ xs: 12, md: 10 }} >
                     <PerformanceTimeline
                         songs={songs}
-                        initialVisible={8}
+                        initialVisible={30}
                     />
                 </Grid>
                 {/* 侧边栏 */}

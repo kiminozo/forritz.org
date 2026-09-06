@@ -13,6 +13,10 @@ interface Frontmatter {
 
 interface MarkdownNode {
   frontmatter: Frontmatter;
+  fields?: {
+    songYear?: string;
+    songReleaseDate?: string;
+  };
 }
 
 interface MarkdownEdge {
