@@ -11,7 +11,9 @@ import {
     Grid
 } from '@mui/material';
 import { Layout, SEO, SideBar } from "../components"
-
+import { Artist, Record, Song } from "../components/LinkLabel";
+import AlbumCard from '../components/AlbumCard';
+import { PageProps } from 'gatsby';
 
 interface BiographyEvent {
     year: string;
@@ -19,6 +21,15 @@ interface BiographyEvent {
     content: React.ReactNode;
     important?: boolean;
 }
+
+// const AlbumCardList = ({ records }: { records: Record[] }) => (
+//     <Grid container spacing={{ xs: 2, md: 3 }}>
+//         {records.map((item) => (
+//             <Grid key={item.title} size={{ xs: 6, sm: 4, md: 2 }}>
+//                 <AlbumCard coverImage={item.coverImage} slug={item.slug} title={item.title} scales="crop" />
+//             </Grid>
+//         ))}
+//     </Grid >
 
 const biography: BiographyEvent[] = [
     {
@@ -48,23 +59,22 @@ const biography: BiographyEvent[] = [
         content: (
             <>
                 <Typography variant="body1">
-                    高中时期开始尝试作词作曲，并与加藤惠子、堤真耶组成女子三人组合
-                    「エレナー」。
+                    高中时期开始尝试作词作曲，并与加藤惠子、堤真耶组成女子三人组合<Artist>"エレナー"</Artist>。
                 </Typography>
 
                 <Box sx={{ mt: 1 }}>
-                    <Chip label="雨がくれたもの" size="small" />
+                    第一首歌：<Song>雨がくれたもの</Song>
                 </Box>
             </>
         ),
     },
     {
-        year: '大学～短期大学',
+        year: '短期大学',
         title: '音乐与面包店',
         content: (
             <Typography variant="body1">
                 在文化祭等活动中发表自己的作品，同时参加羽毛球部。
-                进入短期大学后，主要将时间投入面包店兼职以及「エレナー」的音乐活动。
+                进入短期大学后，主要将时间投入面包店兼职以及<Artist>エレナー</Artist>的音乐活动。
             </Typography>
         ),
     },
@@ -74,7 +84,7 @@ const biography: BiographyEvent[] = [
         content: (
             <Typography variant="body1">
                 短期大学毕业后曾在普通企业工作。约1982年开始正式从事音乐创作，
-                最初主要为广告创作音乐，并曾使用「森野律」及「Ritz」等名义发表作品。
+                最初主要为广告创作音乐，并曾使用<Artist>森野律</Artist>及<Artist>Ritz</Artist>等名义发表作品。
             </Typography>
         ),
     },
@@ -83,8 +93,8 @@ const biography: BiographyEvent[] = [
         title: '作品首次被收录',
         content: (
             <Typography variant="body1">
-                创作的歌曲首次被其他音乐人的唱片收录，包括鲇川麻弥专辑
-                《Candy Game》中的《シークレット・ラブ》。
+                创作的歌曲首次被其他音乐人的唱片收录，包括鲇川麻弥专辑<Record>Candy Game</Record>
+                中的<Song>シークレット・ラブ</Song>
             </Typography>
         ),
     },
@@ -105,13 +115,8 @@ const biography: BiographyEvent[] = [
             <>
                 <Typography variant="body1">
                     参与《魔法のプリンセス ミンキーモモ》的音乐创作，
-                    并在最终回演唱自己创作的《約束》。
+                    并在最终回演唱自己创作的<Song>約束</Song>。
                 </Typography>
-
-                <Box sx={{ mt: 1 }}>
-                    <Chip label="4月の雪" size="small" sx={{ mr: 0.5 }} />
-                    <Chip label="約束" size="small" />
-                </Box>
             </>
         ),
     },
@@ -120,8 +125,8 @@ const biography: BiographyEvent[] = [
         title: '个人歌手出道',
         content: (
             <Typography variant="body1">
-                3月3日，以单曲《悲しい自由》正式作为创作歌手出道。
-                3月24日发行首张个人专辑《Sincerely yours》。
+                3月3日，以单曲<Song>悲しい自由</Song>正式作为创作歌手出道。
+                3月24日发行首张个人专辑<Record>Sincerely yours</Record>。
             </Typography>
         ),
     },
@@ -130,7 +135,7 @@ const biography: BiographyEvent[] = [
         title: '个人音乐活动',
         content: (
             <Typography variant="body1">
-                相继发行《Joyful Calendar》《A Happy Life》《Ritzberry Fields》等个人专辑，
+                相继发行<Record>Joyful Calendar</Record> <Record>A Happy Life</Record> <Record>Ritzberry Fields</Record>等个人专辑，
                 逐渐形成兼具作词、作曲与演唱能力的个人音乐风格。
             </Typography>
         ),
@@ -140,7 +145,7 @@ const biography: BiographyEvent[] = [
         title: '动画歌曲创作',
         content: (
             <Typography variant="body1">
-                参与《爱天使传说Wedding Peach》的音乐创作，为主题曲《夢見る愛天使》作曲，
+                参与《爱天使传说Wedding Peach》的音乐创作，为主题曲<Song>夢見る愛天使</Song>作曲，
                 同时演唱多首相关歌曲。
             </Typography>
         ),
@@ -151,7 +156,7 @@ const biography: BiographyEvent[] = [
         content: (
             <Typography variant="body1">
                 参与《アキハバラ電脳組》《彼氏彼女の事情》等作品的音乐创作，
-                并演唱《シンシア・愛する人》。
+                并演唱<Song>シンシア・愛する人</Song>。
             </Typography>
         ),
     },
@@ -172,7 +177,7 @@ const biography: BiographyEvent[] = [
         content: (
             <>
                 <Typography variant="body1">
-                    为动画《水果篮子》创作并演唱主题曲《For フルーツバスケット》，
+                    为动画《水果篮子》创作并演唱主题曲<Song>For フルーツバスケット</Song>，
                     同时创作作品中的多首歌曲。
                 </Typography>
 
@@ -188,36 +193,25 @@ const biography: BiographyEvent[] = [
         content: (
             <Typography variant="body1">
                 参与《Sister Princess RePure》的音乐创作，为十二位角色分别创作主题歌曲。
-                同年为《プリンセスチュチュ》创作并演唱主题曲，并发行相关专辑《Morning Grace》。
+                同年为《プリンセスチュチュ》创作并演唱主题曲，并发行相关专辑<Record>Morning Grace</Record>。
             </Typography>
         ),
     },
     {
         year: '2003',
-        title: 'Symphonic Rain',
+        title: '创作高峰与新尝试',
         important: true,
         content: (
             <>
                 <Typography variant="body1">
                     参与工画堂制作的音乐游戏《Symphonic Rain》，负责大量歌曲的创作。
-                    其中主题曲《空の向こうに》和片尾曲《涙がほおを流れても》均由她亲自演唱。
+                    其中主题曲<Song>空の向こうに</Song>和片尾曲<Song>涙がほおを流れても</Song>均由她亲自演唱。
                 </Typography>
-
-                <Box sx={{ mt: 1 }}>
-                    <Chip label="Symphonic Rain" size="small" />
-                    <Chip label="空の向こうに" size="small" sx={{ ml: 0.5 }} />
-                </Box>
+                <Typography variant="body1">
+                    与日向惠组成双人音乐组合「メロキュア（Melocure）」，
+                    推出多张单曲，并于2004年发行组合专辑<Record>Melodic Hard Cure</Record>。
+                </Typography>
             </>
-        ),
-    },
-    {
-        year: '2003～2004',
-        title: 'Melocure',
-        content: (
-            <Typography variant="body1">
-                与日向惠组成双人音乐组合「メロキュア（Melocure）」，
-                推出多张单曲，并于2004年发行组合专辑《Melodic Hard Cure》。
-            </Typography>
         ),
     },
     {
@@ -390,8 +384,8 @@ const Biography = () =>
     </Box>
 )
 
-const BiographyPage = () =>
-    <Layout>
+const BiographyPage = (props: PageProps) =>
+    <Layout path={props.location.pathname}>
         <Grid container spacing={2}>
             {/* 主内容 */}
             <Grid size={{ xs: 12, md: 10 }} >
