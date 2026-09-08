@@ -60,16 +60,6 @@ export interface PerformanceTimelineProps {
  * ======================================================= */
 
 
-/**
- * 去除数组中的重复项目
- */
-const unique = (items?: string[] | null): string[] => {
-    if (!items) {
-        return [];
-    }
-
-    return [...new Set(items.filter(Boolean))];
-};
 
 const isRitz = (names: String[] | null | undefined): boolean => {
     if (!names || names == null || names.length == 0) return false
