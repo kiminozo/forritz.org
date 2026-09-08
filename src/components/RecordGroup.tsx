@@ -13,15 +13,26 @@ const RecordGroup = ({ discographyId }: Props) => {
   const list = records.filter(p => discographyId.includes(p.id))
 
   return (
-    <Grid container spacing={2} sx={{ justifyContent: "center" }}>
+    <Grid container spacing={2} sx={{ justifyContent: "flex-start" }}>
       {list.map(item => (
-        <Grid size={12} key={item.id}>
-          <AlbumCard coverImage={item.coverImage} slug={item.slug} title={item.title} scales="crop" hasLabel />
+        <Grid
+          key={item.id}
+          size={{
+            xs: 6,
+            sm: 4,
+            md: 2,
+          }}
+        >
+          <AlbumCard
+            coverImage={item.coverImage}
+            slug={item.slug}
+            title={item.title}
+            scales="crop"
+            hasLabel
+          />
         </Grid>
       ))}
     </Grid>
-
-
   )
 }
 

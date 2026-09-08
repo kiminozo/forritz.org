@@ -20,6 +20,7 @@ import {
   Divider,
   Grid,
   Typography,
+  Stack
 } from "@mui/material"
 import { License } from "../components/CC"
 
@@ -85,6 +86,129 @@ export const Head = (props: TemplateProps) => (
   />
 )
 
+const LyricView = ({ title, titlech, staff, htmlData }: {
+  title: string,
+  titlech?: string,
+  staff: StaffInfo,
+  htmlData: string
+}) => {
+  const { jp, cn } = split(htmlData)
+
+  return <Grid>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "baseline",
+        gap: 1,
+      }}
+    >
+      <Typography
+        variant="h4"
+        component="h4"
+      >
+        {title}
+      </Typography>
+
+      {titlech && (
+        <Typography
+          variant="subtitle1"
+          component="h6"
+        >
+          {titlech}
+        </Typography>
+      )}
+    </Box>
+
+    <Box sx={{ mt: 1 }}>
+      <StaffList staff={staff} />
+    </Box>
+
+    {htmlData && (
+      <>
+        <Box
+          sx={{
+            mt: 2,
+            p: 1,
+            fontSize: "1.2rem",
+            borderRadius: 1,
+            backgroundColor:
+              "background.paper",
+          }}
+        >
+          <div>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: {
+                  xs: 'column',
+                  md: 'row',
+                },
+                alignItems: {
+                  xs: 'stretch',
+                  md: 'center',
+                },
+                gap: 2,
+              }}
+            >
+              <Box
+                sx={{
+                  width: {
+                    xs: '100%',
+                    md: '40%',
+                  },
+                }}
+                className="song-content"
+                dangerouslySetInnerHTML={{
+                  __html: jp,
+                }}
+              />
+
+
+              <Divider
+                orientation="vertical"
+                flexItem
+                sx={{
+                  mx: 1,
+                }}>
+                <Chip label="翻译" size="small" />
+              </Divider>
+
+              <Box
+                sx={{
+                  width: {
+                    xs: '100%',
+                    md: '40%',
+                  },
+                }}
+                className="song-content"
+                dangerouslySetInnerHTML={{
+                  __html: cn,
+                }}
+              />
+            </Box>
+
+          </div>
+
+          {/* Translation label */}
+
+          {cn && (
+            <Box
+              sx={{
+                position: "absolute",
+                backgroundColor: "red",
+                display: {
+                  xs: "none",
+                  md: "block",
+                },
+              }}
+            />
+          )}
+        </Box>
+      </>
+    )}
+  </Grid>
+}
+
 const SongTemplatePage = ({
   data,
 }: TemplateProps) => {
@@ -113,142 +237,32 @@ const SongTemplatePage = ({
       ? quoteData.html
       : html
 
-  const { jp, cn } = split(htmlData)
 
   return (
     <Layout path={slug}>
-      <Grid
-        container
-        columns={12}
-        spacing={4}
-      >
+      <Stack spacing={4}>
         {/* Song Content */}
-        <Grid size={{ xs: 12, md: 10 }}>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "baseline",
-              gap: 1,
-            }}
-          >
-            <Typography
-              variant="h4"
-              component="h4"
-            >
-              {title}
-            </Typography>
-
-            {titlech && (
-              <Typography
-                variant="subtitle1"
-                component="h6"
-              >
-                {titlech}
-              </Typography>
-            )}
-          </Box>
-
-          <Box sx={{ mt: 1 }}>
-            <StaffList staff={frontmatter} />
-          </Box>
-
-          {htmlData && (
-            <>
-              <Box
-                sx={{
-                  mt: 2,
-                  p: 1,
-                  fontSize: "1.2rem",
-                  borderRadius: 1,
-                  backgroundColor:
-                    "background.paper",
-                }}
-              >
-                <div>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      flexDirection: {
-                        xs: 'column',
-                        md: 'row',
-                      },
-                      alignItems: {
-                        xs: 'stretch',
-                        md: 'center',
-                      },
-                      gap: 2,
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        width: {
-                          xs: '100%',
-                          md: '40%',
-                        },
-                      }}
-                      className="song-content"
-                      dangerouslySetInnerHTML={{
-                        __html: jp,
-                      }}
-                    />
-
-
-                    <Divider
-                      orientation="vertical"
-                      flexItem
-                      sx={{
-                        mx: 1,
-                      }}>
-                      <Chip label="翻译" size="small" />
-                    </Divider>
-
-                    <Box
-                      sx={{
-                        width: {
-                          xs: '100%',
-                          md: '40%',
-                        },
-                      }}
-                      className="song-content"
-                      dangerouslySetInnerHTML={{
-                        __html: cn,
-                      }}
-                    />
-                  </Box>
-
-                </div>
-
-                {/* Translation label */}
-
-                {cn && (
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      backgroundColor: "red",
-                      display: {
-                        xs: "none",
-                        md: "block",
-                      },
-                    }}
-                  />
-                )}
-              </Box>
-
-              <Divider sx={{ my: 3 }} />
-
-              <CC license={license} />
-            </>
-          )}
-        </Grid>
+        <LyricView
+          title={title}
+          titlech={titlech}
+          staff={frontmatter}
+          htmlData={htmlData}
+        />
 
         {/* Discography */}
-        <Grid size={{ xs: 16, md: 2 }}>
-          <RecordGroup
-            discographyId={discographyId}
-          />
-        </Grid>
-      </Grid >
-    </Layout >
+        <Divider />
+        <Typography variant="body1" component="div">
+          关联专辑
+        </Typography>
+
+        <RecordGroup discographyId={discographyId} />
+
+        <Divider />
+
+        <CC license={license} />
+      </Stack>
+    </Layout>
+
   )
 }
 
