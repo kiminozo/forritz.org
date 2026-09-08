@@ -13,10 +13,11 @@ interface Frontmatter {
 
 interface MarkdownNode {
   frontmatter: Frontmatter;
-  fields?: {
-    songYear?: string;
-    songReleaseDate?: string;
-  };
+}
+
+interface SongField {
+  songYear?: string;
+  songReleaseDate?: string;
 }
 
 interface MarkdownEdge {
@@ -666,74 +667,73 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
   `);
 };
 
-export const onCreateNode: GatsbyNode['onCreateNode'] = ({
-  node,
-  actions,
-  getNodesByType,
-}) => {
-  const { createNodeField } = actions;
 
-  if (node.internal.type !== 'MarkdownRemark') {
-    return;
+interface SongFrontmatter {
+  type?: string
+  discographyId?: string[]
+}
+
+interface RecordFrontmatter {
+  type?: string
+  id?: string
+  recordReleaseDate?: string
+}
+
+
+const getSongReleaseDate = async (
+  source: any,
+  context: any,
+): Promise<SongField | null> => {
+  const frontmatter = source.frontmatter as SongFrontmatter
+
+  if (frontmatter?.type !== 'song') {
+    return null
   }
 
-  const frontmatter = node.frontmatter as {
-    type?: string;
-    discographyId?: string[];
-  };
-
-  if (frontmatter.type !== 'song') {
-    return;
-  }
-
-  const discographyIds = frontmatter.discographyId ?? [];
+  const discographyIds = frontmatter.discographyId ?? []
 
   if (discographyIds.length === 0) {
-    return;
+    return null
   }
 
-  const records = getNodesByType('MarkdownRemark');
+  const result = await context.nodeModel.findAll({
+    type: 'MarkdownRemark',
+  })
 
-  const releaseDates = records
-    .filter((record) => {
-      const fm = record.frontmatter as {
-        type?: string;
-        id?: string;
-        recordReleaseDate?: string;
-      };
+  const releaseDates = Array.from(result.entries)
+    .filter((record: any) => {
+      const fm = record.frontmatter as RecordFrontmatter
 
       return (
         fm.type === 'record' &&
-        fm.id &&
+        !!fm.id &&
         discographyIds.includes(fm.id) &&
-        fm.recordReleaseDate
-      );
+        !!fm.recordReleaseDate
+      )
     })
-    .map((record) => {
-      const fm = record.frontmatter as {
-        recordReleaseDate?: string;
-      };
-
-      return fm.recordReleaseDate!;
+    .map((record: any) => {
+      const fm = record.frontmatter as RecordFrontmatter
+      return {
+        songReleaseDate: fm.recordReleaseDate!,
+        songYear: fm.recordReleaseDate!.substring(0, 4),
+      }
     })
-    .sort();
+    .sort()
 
-  if (releaseDates.length === 0) {
-    return;
-  }
+  return releaseDates[0] ?? null
+}
 
-  const songReleaseDate = releaseDates[0];
-  const songYear = songReleaseDate.substring(0, 4);
-
-  createNodeField({
-    node,
-    name: 'songYear',
-    value: songYear,
-  });
-
-  createNodeField({
-    node,
-    name: 'songReleaseDate',
-    value: songReleaseDate,
-  });
-};
+export const createResolvers: GatsbyNode['createResolvers'] = ({
+  createResolvers,
+}) => {
+  createResolvers({
+    MarkdownRemark: {
+      fields: {
+        type: 'MarkdownRemarkFields',
+        resolve: async (source: any, _args: any, context: any) => {
+          return await getSongReleaseDate(source, context)
+        }
+      },
+    },
+  })
+}
