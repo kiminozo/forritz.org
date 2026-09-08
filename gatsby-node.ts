@@ -1,6 +1,7 @@
 import type { GatsbyNode } from 'gatsby';
 import path from 'node:path';
 import _ from 'lodash';
+import { Record } from './src/components/LinkLabel';
 
 interface Frontmatter {
   id?: string;
@@ -667,10 +668,17 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
   `);
 };
 
+interface SongSource {
+  frontmatter: SongFrontmatter
+}
 
 interface SongFrontmatter {
   type?: string
   discographyId?: string[]
+}
+
+interface RecordSource {
+  frontmatter: RecordFrontmatter
 }
 
 interface RecordFrontmatter {
@@ -681,10 +689,10 @@ interface RecordFrontmatter {
 
 
 const getSongReleaseDate = async (
-  source: any,
+  source: SongSource,
   context: any,
 ): Promise<SongField | null> => {
-  const frontmatter = source.frontmatter as SongFrontmatter
+  const frontmatter = source.frontmatter
 
   if (frontmatter?.type !== 'song') {
     return null
@@ -700,9 +708,9 @@ const getSongReleaseDate = async (
     type: 'MarkdownRemark',
   })
 
-  const releaseDates = Array.from(result.entries)
+  const releaseDates = Array.from<RecordSource>(result.entries)
     .filter((record: any) => {
-      const fm = record.frontmatter as RecordFrontmatter
+      const fm = record.frontmatter
 
       return (
         fm.type === 'record' &&
@@ -711,17 +719,19 @@ const getSongReleaseDate = async (
         !!fm.recordReleaseDate
       )
     })
-    .map((record: any) => {
-      const fm = record.frontmatter as RecordFrontmatter
-      return {
-        songReleaseDate: fm.recordReleaseDate!,
-        songYear: fm.recordReleaseDate!.substring(0, 4),
-      }
-    })
-    .sort()
+    .map((record) => record.frontmatter.recordReleaseDate!
+    )
+    .sort((a, b) =>
+      a.localeCompare(b)
+    );
 
-  return releaseDates[0] ?? null
+  const releaseDate = releaseDates[0]!
+  return {
+    songReleaseDate: releaseDate,
+    songYear: releaseDate.substring(0, 4),
+  }
 }
+
 
 export const createResolvers: GatsbyNode['createResolvers'] = ({
   createResolvers,
