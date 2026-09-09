@@ -6,9 +6,9 @@ date: "2013-04-07"
 order: 361004
 discography: ["CHOICE"]
 discographyId: ["choice"]
-singer: ["林原めぐみ"]
-songwriter: ["岡崎律子"]
-lyricwriter: ["岡崎律子"]
+vocal: ["林原めぐみ"]
+composer: ["岡崎律子"]
+lyricist: ["岡崎律子"]
 arranger: ["たかはしごう"]
 slug: "/songs/a-happy-life-megmi"
 tags: []

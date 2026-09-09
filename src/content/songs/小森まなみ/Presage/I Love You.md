@@ -6,9 +6,9 @@ date: "2017-02-04"
 order: 100000
 discography: ["Presage"]
 discographyId: ["presage"]
-singer: ["小森まなみ"]
-songwriter: ["池間史規"]
-lyricwriter: ["小森まなみ"]
+vocal: ["小森まなみ"]
+composer: ["池間史規"]
+lyricist: ["小森まなみ"]
 arranger: ["池間史規"]
 slug: "/songs/i-love-you"
 tags: []

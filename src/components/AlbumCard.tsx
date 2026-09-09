@@ -2,11 +2,13 @@ import {
     Box,
     Card,
     CardActionArea,
-    CardMedia
+    CardMedia,
+    Typography
 } from "@mui/material"
 import { Link as GLink } from "gatsby"
 import React from "react"
 import { CoverImage } from "../components"
+import { ScalesType } from "./CoverImage"
 
 const labelStyle = {
     position: "absolute" as const,
@@ -23,11 +25,12 @@ interface AlbumCardProp {
     coverImage: string
     title?: string
     slug?: string
-    square?: boolean
+    scales?: ScalesType
     hasLabel?: boolean
+    artist?: string
 }
 
-const AlbumCard = ({ slug, coverImage, square, title, hasLabel }: AlbumCardProp) => (
+const AlbumCard = ({ slug, coverImage, scales, title, hasLabel, artist }: AlbumCardProp) => (
     <Card
         sx={{
             borderRadius: 2,
@@ -42,7 +45,7 @@ const AlbumCard = ({ slug, coverImage, square, title, hasLabel }: AlbumCardProp)
             <CardMedia>
                 <CoverImage
                     coverimage={coverImage}
-                    square={square}
+                    scales={scales}
                     alt={title}
                     sx={{
                         width: "100%",
@@ -50,9 +53,23 @@ const AlbumCard = ({ slug, coverImage, square, title, hasLabel }: AlbumCardProp)
                     }}
                 />
             </CardMedia>
-            {hasLabel && <Box sx={labelStyle}>{title}</Box>}
+            {hasLabel && <Box sx={labelStyle}>
+                <Typography noWrap>
+                    {title}
+                </Typography>
+
+                {artist
+                    && (
+                        <Typography
+                            variant="caption"
+                            color="text.secondary"
+                            noWrap
+                        >
+                            {artist}
+                        </Typography>
+                    )}</Box>}
         </CardActionArea>
-    </Card>
+    </Card >
 )
 
 export default AlbumCard

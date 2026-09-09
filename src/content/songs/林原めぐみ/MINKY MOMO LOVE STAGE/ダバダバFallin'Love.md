@@ -6,9 +6,9 @@ date: "2017-02-05"
 order: 60027
 discography: ["MINKY MOMO LOVE STAGE"]
 discographyId: ["minky-momo-love-stage"]
-singer: ["林原めぐみ"]
-songwriter: ["岡崎律子"]
-lyricwriter: ["渡辺なつみ"]
+vocal: ["林原めぐみ"]
+composer: ["岡崎律子"]
+lyricist: ["渡辺なつみ"]
 arranger: ["長谷川智樹"]
 slug: "/songs/da-ba-da-ba-fallin-love"
 tags: []

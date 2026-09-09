@@ -6,9 +6,9 @@ date: "2010-09-01"
 order: 20901
 discography: ["Morning Grace"]
 discographyId: ["morning-grace"]
-singer: ["岡崎律子"]
-songwriter: ["岡崎律子"]
-lyricwriter: ["岡崎律子"]
+vocal: ["岡崎律子"]
+composer: ["岡崎律子"]
+lyricist: ["岡崎律子"]
 arranger: ["村山達哉"]
 slug: "/songs/morning-grace"
 tags: []

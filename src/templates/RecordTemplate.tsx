@@ -105,10 +105,7 @@ const Record = ({
       <CoverImage
         alt={title}
         coverimage={info.coverImage}
-        sx={{
-          display: 'block',
-          width: '100%',
-        }}
+        scales="inside"
       />
     </CardMedia>
     <Divider />
@@ -291,6 +288,7 @@ class RecordTemplate extends Component<TemplateProps> {
                       <Box sx={{ mt: 1 }}>
                         <StaffList
                           staff={song}
+                          flow
                         />
 
                         {song.remarks && (
@@ -359,9 +357,9 @@ export const pageQuery = graphql`
         frontmatter {
           title
           slug
-          songWriter: songwriter
-          lyricWriter: lyricwriter
-          singer
+          composer: composer
+          lyricist: lyricist
+          vocal
           arranger
           remarks
         }

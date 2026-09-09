@@ -6,9 +6,9 @@ date: "2010-08-24"
 order: 10410
 discography: ["Ritzberry Fields"]
 discographyId: ["ritzberry-fields"]
-singer: ["岡崎律子"]
-songwriter: ["岡崎律子"]
-lyricwriter: ["岡崎律子"]
+vocal: ["岡崎律子"]
+composer: ["岡崎律子"]
+lyricist: ["岡崎律子"]
 arranger: ["光宗信吉"]
 slug: "/songs/lucky-and-happy"
 tags: []

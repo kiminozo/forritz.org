@@ -6,9 +6,9 @@ date: "2010-08-22"
 order: 10208
 discography: ["Joyful Calendar"]
 discographyId: ["joyful-calendar"]
-singer: ["岡崎律子"]
-songwriter: ["岡崎律子"]
-lyricwriter: ["岡崎律子"]
+vocal: ["岡崎律子"]
+composer: ["岡崎律子"]
+lyricist: ["岡崎律子"]
 arranger: ["島健"]
 slug: "/songs/starry-night"
 tags: []

@@ -6,9 +6,9 @@ date: "2010-08-19"
 order: 10108
 discography: ["Rain or Shine","Sincerely Yours","長距離電話"]
 discographyId: ["rain-or-shine","sincerely-yours","choukyoridenwa"]
-singer: ["岡崎律子"]
-songwriter: ["岡崎律子"]
-lyricwriter: ["岡崎律子"]
+vocal: ["岡崎律子"]
+composer: ["岡崎律子"]
+lyricist: ["岡崎律子"]
 arranger: ["京田誠一"]
 slug: "/songs/girlfriend"
 tags: []

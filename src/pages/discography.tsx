@@ -1,4 +1,4 @@
-import { Divider, Grid, Typography } from "@mui/material"
+import { Divider, Grid, Typography, Box } from "@mui/material"
 import { graphql, PageProps } from "gatsby"
 import React from "react"
 import { Layout, SEO, SideBar } from "../components"
@@ -25,9 +25,11 @@ const DiscographyPage = (props: Props) => {
       <Grid container spacing={2}>
         {/* 主内容 */}
         <Grid size={{ xs: 12, md: 10 }} >
-          <Typography variant="h4" sx={{ px: 3, pb: 3 }}>
-            唱片集
-          </Typography>
+          <Box>
+            <Typography variant="h4" sx={{ px: { md: 3 }, pb: 3 }}>
+              唱片集
+            </Typography>
+          </Box>
           <Divider sx={{ my: 1, px: 3 }} />
           <DiscographyLayout records={records} />
         </Grid>

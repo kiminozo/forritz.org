@@ -1,6 +1,7 @@
 import type { GatsbyNode } from 'gatsby';
 import path from 'node:path';
 import _ from 'lodash';
+import { Record } from './src/components/LinkLabel';
 
 interface Frontmatter {
   id?: string;
@@ -13,6 +14,11 @@ interface Frontmatter {
 
 interface MarkdownNode {
   frontmatter: Frontmatter;
+}
+
+interface SongField {
+  songYear?: string;
+  songReleaseDate?: string;
 }
 
 interface MarkdownEdge {
@@ -50,15 +56,15 @@ interface GraphQLResult {
     group: GroupNode[];
   };
 
-  singers: {
+  vocals: {
     group: GroupNode[];
   };
 
-  songWriters: {
+  composers: {
     group: GroupNode[];
   };
 
-  lyricWriters: {
+  lyricists: {
     group: GroupNode[];
   };
 
@@ -191,20 +197,20 @@ export const createPages: GatsbyNode['createPages'] = async ({
       totalCount
     }
   }
-  singers: allMarkdownRemark(limit: 2000) {
-    group(field: {frontmatter: {singer: SELECT}}) {
+  vocals: allMarkdownRemark(limit: 2000) {
+    group(field: {frontmatter: {vocal: SELECT}}) {
       fieldValue
       totalCount
     }
   }
-  songWriters: allMarkdownRemark(limit: 2000) {
-    group(field: {frontmatter: {songwriter: SELECT}}) {
+  composers: allMarkdownRemark(limit: 2000) {
+    group(field: {frontmatter: {composer: SELECT}}) {
       fieldValue
       totalCount
     }
   }
-  lyricWriters: allMarkdownRemark(limit: 2000) {
-    group(field: {frontmatter: {lyricwriter: SELECT}}) {
+  lyricists: allMarkdownRemark(limit: 2000) {
+    group(field: {frontmatter: {lyricist: SELECT}}) {
       fieldValue
       totalCount
     }
@@ -411,15 +417,15 @@ export const createPages: GatsbyNode['createPages'] = async ({
   const staffPerPage = 20;
 
   /**
-   * Singers
+   * vocals
    */
   const staffTemplate = path.resolve(
-    './src/templates/staff/SingerTemplate.tsx',
+    './src/templates/staff/VocalTemplate.tsx',
   );
 
-  data.singers.group.forEach((staff) => {
+  data.vocals.group.forEach((staff) => {
     createPageWithPagination({
-      path: `/singer/${_.kebabCase(staff.fieldValue)}`,
+      path: `/vocal/${_.kebabCase(staff.fieldValue)}`,
       component: staffTemplate,
       context: {
         staff: staff.fieldValue,
@@ -432,14 +438,14 @@ export const createPages: GatsbyNode['createPages'] = async ({
   /**
    * Lyric Writers
    */
-  const lyricWriterTemplate = path.resolve(
-    './src/templates/staff/LyricWriterTemplate.tsx',
+  const lyricistTemplate = path.resolve(
+    './src/templates/staff/LyricistTemplate.tsx',
   );
 
-  data.lyricWriters.group.forEach((staff) => {
+  data.lyricists.group.forEach((staff) => {
     createPageWithPagination({
-      path: `/lyric-writer/${_.kebabCase(staff.fieldValue)}`,
-      component: lyricWriterTemplate,
+      path: `/lyricist/${_.kebabCase(staff.fieldValue)}`,
+      component: lyricistTemplate,
       context: {
         staff: staff.fieldValue,
       },
@@ -451,14 +457,14 @@ export const createPages: GatsbyNode['createPages'] = async ({
   /**
    * Song Writers
    */
-  const songWriterTemplate = path.resolve(
-    './src/templates/staff/SongWriterTemplate.tsx',
+  const composerTemplate = path.resolve(
+    './src/templates/staff/ComposerTemplate.tsx',
   );
 
-  data.songWriters.group.forEach((staff) => {
+  data.composers.group.forEach((staff) => {
     createPageWithPagination({
-      path: `/song-writer/${_.kebabCase(staff.fieldValue)}`,
-      component: songWriterTemplate,
+      path: `/composer/${_.kebabCase(staff.fieldValue)}`,
+      component: composerTemplate,
       context: {
         staff: staff.fieldValue,
       },
@@ -646,3 +652,98 @@ export const createPages: GatsbyNode['createPages'] = async ({
     });
   }
 };
+
+export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({
+  actions,
+}) => {
+  actions.createTypes(`
+    type MarkdownRemark implements Node {
+      fields: MarkdownRemarkFields
+    }
+
+    type MarkdownRemarkFields {
+      songYear: String
+      songReleaseDate: String
+    }
+  `);
+};
+
+interface SongSource {
+  frontmatter: SongFrontmatter
+}
+
+interface SongFrontmatter {
+  type?: string
+  discographyId?: string[]
+}
+
+interface RecordSource {
+  frontmatter: RecordFrontmatter
+}
+
+interface RecordFrontmatter {
+  type?: string
+  id?: string
+  recordReleaseDate?: string
+}
+
+
+const getSongReleaseDate = async (
+  source: SongSource,
+  context: any,
+): Promise<SongField | null> => {
+  const frontmatter = source.frontmatter
+
+  if (frontmatter?.type !== 'song') {
+    return null
+  }
+
+  const discographyIds = frontmatter.discographyId ?? []
+
+  if (discographyIds.length === 0) {
+    return null
+  }
+
+  const result = await context.nodeModel.findAll({
+    type: 'MarkdownRemark',
+  })
+
+  const releaseDates = Array.from<RecordSource>(result.entries)
+    .filter((record: any) => {
+      const fm = record.frontmatter
+
+      return (
+        fm.type === 'record' &&
+        !!fm.id &&
+        discographyIds.includes(fm.id) &&
+        !!fm.recordReleaseDate
+      )
+    })
+    .map((record) => record.frontmatter.recordReleaseDate!
+    )
+    .sort((a, b) =>
+      a.localeCompare(b)
+    );
+
+  const releaseDate = releaseDates[0]!
+  return {
+    songReleaseDate: releaseDate,
+    songYear: releaseDate.substring(0, 4),
+  }
+}
+
+
+export const createResolvers: GatsbyNode['createResolvers'] = ({
+  createResolvers,
+}) => {
+  createResolvers({
+    MarkdownRemark: {
+      fields: {
+        type: 'MarkdownRemarkFields',
+        resolve: async (source: any, _args: any, context: any) => {
+          return await getSongReleaseDate(source, context)
+        }
+      },
+    },
+  })
+}

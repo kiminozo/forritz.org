@@ -6,9 +6,9 @@ date: "2010-08-25"
 order: 10609
 discography: ["おはよう"]
 discographyId: ["ohayou"]
-singer: ["岡崎律子"]
-songwriter: ["岡崎律子"]
-lyricwriter: ["岡崎律子"]
+vocal: ["岡崎律子"]
+composer: ["岡崎律子"]
+lyricist: ["岡崎律子"]
 arranger: ["光宗信吉"]
 slug: "/songs/good-luck"
 tags: []

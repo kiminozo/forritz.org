@@ -6,9 +6,9 @@ date: "2010-08-25"
 order: 10504
 discography: ["Rain or Shine","Rain or Shine～降っても晴れても〜"]
 discographyId: ["rain-or-shine","rain-or-shine-single"]
-singer: ["岡崎律子"]
-songwriter: ["岡崎律子"]
-lyricwriter: ["岡崎律子"]
+vocal: ["岡崎律子"]
+composer: ["岡崎律子"]
+lyricist: ["岡崎律子"]
 arranger: ["長谷川智樹"]
 slug: "/songs/rain-or-shine"
 tags: []

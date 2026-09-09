@@ -38,7 +38,7 @@ interface RecordInfo {
 interface SongInfo {
   slug: string
   title: string
-  singer: string
+  vocal: string
   discographyId: string[]
 }
 
@@ -180,7 +180,7 @@ const RecordListTemplate = (props: TemplateProps) => {
                           color="secondary"
                           underline="hover"
                           component={GLink}
-                          to={`/singer/${_.kebabCase(
+                          to={`/vocal/${_.kebabCase(
                             artist
                           )}/`}
                         >
@@ -321,7 +321,7 @@ export const pageQuery = graphql`
         frontmatter {
           slug
           title
-          singer
+          vocal
           discographyId
         }
       }

@@ -40,7 +40,7 @@ const menusConfig: MenuConfig[] =
         }]
     }, {
         name: "唱片集",
-        active: ["songs", "song-writer", "lyric-writer", "singer", "arranger"],
+        active: ["songs", "composer", "lyricist", "vocal", "arranger"],
         link: "/discography"
     }];
 

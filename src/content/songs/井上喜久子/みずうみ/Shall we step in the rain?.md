@@ -6,9 +6,9 @@ date: "2013-03-27"
 order: 300109
 discography: ["みずうみ"]
 discographyId: ["mizumi"]
-singer: ["井上喜久子"]
-songwriter: ["岡崎律子"]
-lyricwriter: ["岡崎律子"]
+vocal: ["井上喜久子"]
+composer: ["岡崎律子"]
+lyricist: ["岡崎律子"]
 arranger: ["島健"]
 slug: "/songs/shall-we-step-in-the-rain"
 tags: []

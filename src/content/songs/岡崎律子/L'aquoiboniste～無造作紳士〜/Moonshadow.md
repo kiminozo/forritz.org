@@ -6,9 +6,9 @@ date: "2010-09-01"
 order: 11015
 discography: ["L'aquoiboniste～無造作紳士〜","Love&amp;Life〜private works 1999-2001〜"]
 discographyId: ["laquoiboniste","love-and-life"]
-singer: ["岡崎律子"]
-songwriter: ["村山達哉"]
-lyricwriter: ["岡崎律子"]
+vocal: ["岡崎律子"]
+composer: ["村山達哉"]
+lyricist: ["岡崎律子"]
 arranger: ["加藤敏樹","加藤道明","村山達哉","磯江俊道"]
 slug: "/songs/moonshadow"
 tags: []

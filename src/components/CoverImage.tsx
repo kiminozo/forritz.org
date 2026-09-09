@@ -8,21 +8,25 @@ import demo from "../images/demo.png"
 
 import { Box } from "@mui/material"
 
+type ScalesType = "origin" | "crop" | "inside"
+
 interface Props {
   coverimage: string
-  size?: "small" | "medium" | "large"
-  bordered?: boolean
-  rounded?: boolean
-  square?: boolean
+  scales?: ScalesType
   alt?: string
   sx?: CSSProperties
 }
 
+const commonSx = {
+  aspectRatio: "1 / 1",
+  width: "100%",
+  backgroundColor: "#eee",
+  overflow: "hidden",
+}
+
 const CoverImage = ({
   coverimage: coverImage,
-  bordered,
-  rounded,
-  square,
+  scales,
   alt,
   sx
 }: Props) => {
@@ -31,34 +35,18 @@ const CoverImage = ({
 
   const imageInfo = data.find(p => p.base === coverImage)
 
-  const commonSx = {
-    border: bordered ? "1px solid rgba(0,0,0,0.2)" : "none",
-    borderRadius: rounded ? 2 : 0,
-    width: "100%",
-  }
+  // const commonSx = {
+  //   border: bordered ? "1px solid rgba(0,0,0,0.2)" : "none",
+  //   borderRadius: rounded ? 2 : 0,
+  //   width: "100%",
+  // }
 
   if (imageInfo) {
     const image = getImage(
-      square ? imageInfo.square : imageInfo.image
+      scales == "crop" ? imageInfo.square : imageInfo.image
     )
-    return image ? (
-      <Box sx={commonSx}>
-        <GatsbyImage
-          image={image}
-          alt={alt ?? ""}
-          style={{
-            width: "100%",
-            height: "auto",
-            ...sx,
-          }}
-          imgStyle={{
-            width: "100%",
-            height: "auto",
-          }}
-        />
-      </Box>
-    ) : (
-      <Box
+    if (!image) {
+      return <Box
         component="img"
         src={imageInfo.publicURL}
         alt={alt ?? ""}
@@ -67,7 +55,43 @@ const CoverImage = ({
           height: "auto",
         }}
       />
-    )
+    }
+    switch (scales) {
+      case "inside":
+        return <Box sx={commonSx}>
+          <GatsbyImage
+            image={image}
+            alt={alt ?? ""}
+            style={{
+              width: "100%",
+              height: "100%",
+              ...sx,
+            }}
+            imgStyle={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+            }}
+          />
+        </Box>
+
+      default:
+        return <Box sx={commonSx}>
+          <GatsbyImage
+            image={image}
+            alt={alt ?? ""}
+            style={{
+              width: "100%",
+              height: "auto",
+              ...sx,
+            }}
+            imgStyle={{
+              width: "100%",
+              height: "auto",
+            }}
+          />
+        </Box>
+    }
   }
 
   return (
@@ -83,4 +107,5 @@ const CoverImage = ({
   )
 }
 
+export { ScalesType }
 export default CoverImage

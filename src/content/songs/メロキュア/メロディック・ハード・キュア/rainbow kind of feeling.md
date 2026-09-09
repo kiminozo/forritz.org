@@ -6,9 +6,9 @@ date: "2010-09-05"
 order: 30413
 discography: ["メロディック・ハード・キュア"]
 discographyId: ["melodic-hard-cure"]
-singer: ["メロキュア"]
-songwriter: ["日向めぐみ"]
-lyricwriter: ["日向めぐみ"]
+vocal: ["メロキュア"]
+composer: ["日向めぐみ"]
+lyricist: ["日向めぐみ"]
 arranger: ["関淳二郎"]
 slug: "/songs/rainbow-kind-of-feeling"
 tags: []

@@ -6,9 +6,9 @@ date: "2017-02-04"
 order: 40016
 discography: ["メッセージ"]
 discographyId: ["message"]
-singer: ["本間かおり"]
-songwriter: ["岡崎律子"]
-lyricwriter: ["森野律"]
+vocal: ["本間かおり"]
+composer: ["岡崎律子"]
+lyricist: ["森野律"]
 arranger: ["飛沢宏元"]
 slug: "/songs/good-bye-good-days"
 tags: []

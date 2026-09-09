@@ -6,9 +6,9 @@ date: "2010-09-05"
 order: 30407
 discography: ["メロディック・ハード・キュア","愛しいかけら"]
 discographyId: ["melodic-hard-cure","itoshii-kakera"]
-singer: ["メロキュア"]
-songwriter: ["岡崎律子"]
-lyricwriter: ["岡崎律子"]
+vocal: ["メロキュア"]
+composer: ["岡崎律子"]
+lyricist: ["岡崎律子"]
 arranger: ["西脇辰弥"]
 slug: "/songs/agape"
 tags: []

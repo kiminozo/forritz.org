@@ -1,10 +1,12 @@
 import { useStaticQuery, graphql } from "gatsby"
+import { kebabCase } from "lodash"
 
 interface RecordsInfo {
     id: string
     title: string
     coverImage: string
     slug: string
+    artist: string
 }
 interface Data {
     records: {
@@ -15,6 +17,10 @@ interface Data {
         }[]
     }
 }
+
+export const getRecordSlug = (name: string) => useRecordsData()
+    .filter(p => p.title === name)
+    .map(p => p.slug)[0]
 
 export const useRecordsData = (): RecordsInfo[] => {
     const data = useStaticQuery<Data>(graphql`
@@ -28,6 +34,7 @@ export const useRecordsData = (): RecordsInfo[] => {
                 title
                 coverImage
                 slug
+                artist
               }
             }
           }

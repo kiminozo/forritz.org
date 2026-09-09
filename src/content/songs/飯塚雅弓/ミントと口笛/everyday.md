@@ -6,9 +6,9 @@ date: "2013-03-30"
 order: 300312
 discography: ["ミントと口笛"]
 discographyId: ["minto_to_kuchibue"]
-singer: ["飯塚雅弓"]
-songwriter: ["岡崎律子"]
-lyricwriter: ["岡崎律子"]
+vocal: ["飯塚雅弓"]
+composer: ["岡崎律子"]
+lyricist: ["岡崎律子"]
 arranger: ["長谷川智樹"]
 slug: "/songs/everyday"
 tags: []

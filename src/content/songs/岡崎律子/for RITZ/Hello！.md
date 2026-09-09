@@ -6,9 +6,9 @@ date: "2010-08-30"
 order: 10908
 discography: ["for RITZ"]
 discographyId: ["for-ritz"]
-singer: ["岡崎律子"]
-songwriter: ["岡崎律子"]
-lyricwriter: ["岡崎律子"]
+vocal: ["岡崎律子"]
+composer: ["岡崎律子"]
+lyricist: ["岡崎律子"]
 arranger: ["村山達哉","礒江俊道"]
 slug: "/songs/hello"
 tags: []

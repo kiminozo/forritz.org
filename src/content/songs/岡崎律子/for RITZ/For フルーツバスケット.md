@@ -6,9 +6,9 @@ date: "2010-08-30"
 order: 10911
 discography: ["for RITZ","For フルーツバスケット"]
 discographyId: ["for-ritz","for-fruit-basket"]
-singer: ["岡崎律子"]
-songwriter: ["岡崎律子"]
-lyricwriter: ["岡崎律子"]
+vocal: ["岡崎律子"]
+composer: ["岡崎律子"]
+lyricist: ["岡崎律子"]
 arranger: ["村山達哉"]
 slug: "/songs/for-fruits-basket"
 tags: []

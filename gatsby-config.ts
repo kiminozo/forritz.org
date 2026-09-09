@@ -73,7 +73,7 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
-        excludes: [`/category/*`, `/categories`, `/tags/*`, `/arranger/*`, `/lyric-writer/*`, `/song-writer/*`, `/singer/*`],
+        excludes: [`/category/*`, `/categories`, `/tags/*`, `/arranger/*`, `/lyricist/*`, `/composer/*`, `/vocal/*`],
       }
     }
   ],

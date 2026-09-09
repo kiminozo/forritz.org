@@ -71,7 +71,7 @@ const Records = ({ single, category, artists }: RecordsProp) => (
         <Grid container spacing={2}>
           {records.map(item => (
             <Grid key={item.id} size={{ xs: 6, sm: 4, md: 2.4 }}>
-              <AlbumCard coverImage={item.coverImage} slug={item.slug} title={item.title} square />
+              <AlbumCard coverImage={item.coverImage} slug={item.slug} title={item.title} scales="inside" />
             </Grid>
           ))}
         </Grid>
