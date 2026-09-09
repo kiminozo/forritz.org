@@ -232,10 +232,10 @@ const biography: BiographyEvent[] = [
     },
     {
         year: '2004',
-        title: '《for RITZ》',
+        title: '纪念专辑《for RITZ》',
         content: (
             <Typography variant="body1">
-                12月29日，纪念专辑《for RITZ》发行。
+                12月29日，纪念专辑<Record>for RITZ</Record>发行。
                 专辑收录了她生前留下的部分未完成作品，并由相关音乐工作者完成编曲。
                 其中多数歌曲来自《Symphonic Rain》。
             </Typography>
@@ -243,11 +243,11 @@ const biography: BiographyEvent[] = [
     },
     {
         year: '2005',
-        title: '《Love & Life》',
+        title: '限定专辑《Love & Life》',
         content: (
             <Typography variant="body1">
                 5月5日，歌迷俱乐部「Ritzberry Fields」发行限定专辑
-                《Love & Life ～private works 1999-2001～》，
+                <Record>love & Life private works 1999-2001</Record>，
                 收录她生前创作的部分私人作品及未公开音源。
             </Typography>
         ),

@@ -1,26 +1,30 @@
 import React, { JSX } from "react"
 import { Chip, Link, Typography } from "@mui/material"
-
-//    type: "song" | "artist" | "record"
+import { Link as GLink } from 'gatsby';
+import { getSongSlug } from "../hooks/useSongData";
+import { getRecordSlug } from "../hooks/useRecordsData";
 
 interface LinkLabelProp {
-    children: String
+    name?: string
+    children: string
 }
 
 interface SongProps {
     children: string;
 }
 
-const Artist = ({ children }: LinkLabelProp) => {
-    return <Link color="secondary" underline="hover">{children}</Link>
+const Artist = ({ name, children }: LinkLabelProp) => {
+    return <Link component={GLink} to={`/discography/${name ?? children}`} color="secondary" underline="hover">{children}</Link>
 }
 
-const Record = ({ children }: LinkLabelProp) => {
-    return <Chip label={children} size="small" />
+const Record = ({ name, children }: LinkLabelProp) => {
+    const slug = getRecordSlug(name ?? children)
+    return <Link component={GLink} to={slug} color="secondary" underline="hover">《{children}》</Link>
 }
 
-const Song = ({ children }: LinkLabelProp) => {
-    return <Chip label={children} size="small" />
+const Song = ({ name, children }: LinkLabelProp) => {
+    const slug = getSongSlug(name ?? children)
+    return <Link component={GLink} to={slug} color="secondary" underline="hover">《{children}》</Link>
 }
 
 export { Artist, Record, Song }
