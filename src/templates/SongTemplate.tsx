@@ -24,33 +24,30 @@ import {
 } from "@mui/material"
 import { License } from "../components/CC"
 
-interface Record {
-  discography: string[]
-  discographyId: string[]
-}
-
-interface MarkdownRemark {
-  frontmatter: StaffInfo &
-  Record & {
+interface SongFields {
+  frontmatter: StaffInfo & {
     title: string
     titlech?: string
     slug: string
     date: string
-    lang: string
-    license?: License
+    //discography: string[]
+    discographyId: string[]
     quote?: string
     remarks?: string
+    license?: License
   }
+}
 
+interface SongData extends SongFields {
   html: string
 }
 
 interface TemplateProps {
   data: {
-    markdownRemark: MarkdownRemark
-
-    quoteData: {
-      html: string
+    markdownRemark: SongData
+    quoteData?: SongData
+    anotherSongs: {
+      nodes: SongFields[]
     }
   }
 }
@@ -217,6 +214,7 @@ const SongTemplatePage = ({
       frontmatter,
       html,
     },
+    anotherSongs
   } = data
 
   const {
@@ -228,7 +226,13 @@ const SongTemplatePage = ({
     quote,
   } = frontmatter
 
+
+
   const { quoteData } = data
+
+  const quotes = quoteData?.frontmatter.discographyId ?? []
+  const anothers = anotherSongs.nodes.flatMap(p => p.frontmatter.discographyId)
+  const otherId = [...quotes, ...anothers]
 
   const htmlData =
     quote &&
@@ -255,7 +259,7 @@ const SongTemplatePage = ({
           关联专辑
         </Typography>
 
-        <RecordGroup discographyId={discographyId} />
+        <RecordGroup discographyId={discographyId} otherId={otherId} />
 
         <Divider />
 
@@ -275,45 +279,59 @@ export default function SongTemplate({
 }
 
 export const query = graphql`
-  query ($slug: String!, $quote: String) {
-    markdownRemark(
+query ($slug: String!, $quote: String) {
+  markdownRemark(
+    frontmatter: {
+      slug: { eq: $slug }
+    }
+  ) {
+    ...SongFields
+    html
+  }
+
+  quoteData: markdownRemark(
+    frontmatter: {
+      slug: { eq: $quote }
+    }
+  ) {
+    ...SongFields
+    html
+  }
+
+  anotherSongs: allMarkdownRemark(
+    filter: {
       frontmatter: {
-        slug: { eq: $slug }
-      }
-    ) {
-      html
-
-      frontmatter {
-        date(formatString: "MMMM DD, YYYY")
-        slug
-        title
-        titlech
-
-        license {
-          type
-          author
-          translator
-          reproduced_url
-          reproduced_website
-        }
-
-        vocal
-        composer: composer
-        lyricist: lyricist
-        arranger
-        discography
-        discographyId
-        quote
-        remarks
+        quote: { eq: $slug }
       }
     }
-
-    quoteData: markdownRemark(
-      frontmatter: {
-        slug: { eq: $quote }
-      }
-    ) {
-      html
+  ) {
+    nodes {
+      ...SongFields
     }
   }
+}
+
+fragment SongFields on MarkdownRemark {
+  frontmatter {
+    title
+    titlech
+    slug
+    date(formatString: "MMMM DD, YYYY")
+    vocal
+    composer
+    lyricist
+    arranger
+    discography
+    discographyId
+    quote
+    remarks
+    license {
+        type
+        author
+        translator
+        reproduced_url
+        reproduced_website
+    }
+  }
+}
 `
