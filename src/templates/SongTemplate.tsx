@@ -97,6 +97,7 @@ const LyricView = ({ title, titlech, staff, htmlData }: {
         display: "flex",
         alignItems: "baseline",
         gap: 1,
+        flexDirection: { xs: "column", sm: "row" },
       }}
     >
       <Typography
