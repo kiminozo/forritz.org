@@ -27,7 +27,7 @@ const RecordGroup = ({ discographyId }: Props) => {
             coverImage={item.coverImage}
             slug={item.slug}
             title={item.title}
-            scales="crop"
+            scales="inside"
             hasLabel
           />
         </Grid>
