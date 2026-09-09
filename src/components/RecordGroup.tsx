@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material"
+import { Grid, Typography } from "@mui/material"
 import React from "react"
 import { useRecordsData } from "../hooks/useRecordsData"
 import AlbumCard from "./AlbumCard"
@@ -29,9 +29,10 @@ const RecordGroup = ({ discographyId, otherId }: Props) => {
             <AlbumCard
               coverImage={item.coverImage}
               slug={item.slug}
-              title={item.title}
               scales="inside"
               hasLabel
+              title={item.title}
+              artist={item.artist}
             />
           </Grid>
         )),
@@ -47,9 +48,10 @@ const RecordGroup = ({ discographyId, otherId }: Props) => {
             <AlbumCard
               coverImage={item.coverImage}
               slug={item.slug}
-              title={item.title}
               scales="inside"
               hasLabel
+              title={item.title}
+              artist={item.artist}
             />
           </Grid>
         )),

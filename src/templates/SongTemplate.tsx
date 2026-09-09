@@ -255,9 +255,6 @@ const SongTemplatePage = ({
 
         {/* Discography */}
         <Divider />
-        <Typography variant="body1" component="div">
-          关联专辑
-        </Typography>
 
         <RecordGroup discographyId={discographyId} otherId={otherId} />
 

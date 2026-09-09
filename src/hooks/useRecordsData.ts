@@ -5,6 +5,7 @@ interface RecordsInfo {
     title: string
     coverImage: string
     slug: string
+    artist: string
 }
 interface Data {
     records: {
@@ -28,6 +29,7 @@ export const useRecordsData = (): RecordsInfo[] => {
                 title
                 coverImage
                 slug
+                artist
               }
             }
           }

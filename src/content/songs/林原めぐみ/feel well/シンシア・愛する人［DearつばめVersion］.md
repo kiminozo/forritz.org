@@ -1,5 +1,5 @@
 ---
-title: "シンシア・愛する人［Dearｒ つばめversion］"
+title: "シンシア・愛する人［DearつばめVersion］"
 titlech: "真诚 (sincere) 的爱人"
 type: "song"
 date: "2013-04-07"
