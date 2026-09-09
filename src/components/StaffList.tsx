@@ -79,12 +79,14 @@ const StaffLink = ({ type, names }: { type: string; names: string[] }) => (
   </>
 )
 
-const StaffList = ({ staff: { composer, lyricist, vocal, arranger } }: { staff: StaffInfo }) => (
+const StaffList = ({ staff: { composer, lyricist, vocal, arranger }, flow }: { staff: StaffInfo, flow?: Boolean }) => (
   <Stack
-    direction={{ xs: "column", sm: "row" }}
+    direction={{ xs: flow ? "row" : "column", sm: "row" }}
     spacing={1}
+    useFlexGap={flow ? true : false}
     sx={{
       alignItems: { xs: "flex-start", sm: "center" },
+      flexWrap: 'wrap'
     }}
   >
     {composer.length > 0 && (

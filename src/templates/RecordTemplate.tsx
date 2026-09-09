@@ -288,6 +288,7 @@ class RecordTemplate extends Component<TemplateProps> {
                       <Box sx={{ mt: 1 }}>
                         <StaffList
                           staff={song}
+                          flow
                         />
 
                         {song.remarks && (
