@@ -1,5 +1,7 @@
 import ArrowRightIcon from "@mui/icons-material/ArrowRight"
 import PublicIcon from "@mui/icons-material/Public"
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
+
 import {
   Button,
   Card,
@@ -9,14 +11,15 @@ import {
   Container,
   Divider,
   Grid,
-  Typography
+  Typography,
+  Stack,
+  Link
 } from "@mui/material"
 import { Link as GLink, PageProps, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import React from "react"
 import { Layout, SEO } from "../components"
 import AlbumCard from "../components/AlbumCard"
-
 
 interface Record {
   coverImage: string
@@ -128,33 +131,58 @@ const Profile = () => {
     <Typography variant="h4" gutterBottom>
       简介
     </Typography>
-    <Typography >
-      她于1959年12月29日,在日本长崎县出生。
-      大约1982年，开始创作广告配乐。当时，曾以森野律及RITZ为名提供乐曲。
+    <Typography
+      variant="body1"
+      sx={{
+        "& br": {
+          display: "block",
+          content: '""',
+          marginBottom: 3,
+        },
+      }}
+    >
+      岡崎律子（1959年12月29日－2004年5月5日），日本作曲家、唱作歌手。
+      <br />
+      出生于长崎县端岛（军舰岛），高中时期便开始音乐创作。进入音乐行业后，
+      曾以「森野律」等名义创作广告音乐，并为众多动画、游戏及歌手提供作品。
+      <br />
+      1993年正式以唱作歌手身份出道。此后与林原めぐみ、飯塚雅弓、井上喜久子、堀江由衣、小森まなみ等众多歌手及声优合作，
+      创作领域涵盖动画、游戏及个人音乐的大量作品。
+      她的音乐旋律温柔细腻，歌词富有诗意与真挚的情感。
+      <br />
+      2001年，她为动画《水果篮子》创作并演唱最广为流传的片头曲《For フルーツバスケット》，
+      此后又与日向めぐみ组成音乐组合「メロキュア」。
+      <br />
+      在游戏音乐方面，她参与了音乐恋爱游戏《交响乐之雨》的整体音乐创作，
+      负责作曲、作词及主题曲演唱等工作，这也是她生前最后完整参与的游戏音乐项目。
+      <br />
+      2003年被诊断患有胃癌，仍坚持音乐创作，翌年因败血症性休克去世，享年44岁。
+      <br />
+      2019年，《Agapē》与《残酷な天使のテーゼ》并列获得「平成アニソン大賞」综合大赏。
+      这首作品也成为她逝世15年后，音乐仍持续被聆听与认可的见证。
+      <br />
+      短暂的一生中，她以细腻而真挚的音乐留下了独特的印记，<br />
+      而那些温柔的旋律，也在岁月流逝后依然被人反复聆听与铭记。 <br />
     </Typography>
-    <Typography >
-      1991年，为OVA动画「1月にはChristmas」演唱OP和ED成为律子跨入动漫界的第一步作品。
-    </Typography>
-    <Typography >她于1993年以唱作歌手的身份出道。</Typography>
-    <Typography >
-      最有名的歌曲是2001年为动画作品《水果篮子》演唱片头曲《For フルーツバスケット》
-    </Typography>
-    <Typography >
-      2002年为《妹妹公主Re Pure》片尾12个小故事OP和ED作曲。其后与日向めぐみ组成了二人歌唱组合メロキュア(Melocure)，该组合的几张单曲CD取得了不错的成绩。
-    </Typography>
-    <Typography >
-      2003年5月，硬性癌症发作。在与病魔斗争的时候继续坚持着作曲的事业。2004年，组合推出了她们的第一张专辑《Melodic Hard Cure》。2004年5月5日，她因为败血症引发的贫血休克而突然去世，享年44岁。
-    </Typography>
-    <Typography >
-      临终前她没有办法留下遗言，遗下了她未完成的作品。一些动漫画的作者、配音演员，和大量的歌迷在网络上写下了遗憾与祝福。音乐恋爱游戏《交响乐之雨》是岡崎律子小姐最后一个全部包办的作曲项目。
-    </Typography>
-    <Typography >
-      她的作品以抒情慢歌为主，创作的歌曲比较多元化。岡崎律子小姐的歌曲具有诗人的想象力，深刻的情感，乐观主义及纯真的特点。她的声音被认为是令人印象深刻地柔软及精细。
-    </Typography>
-    <Typography >
-      在律子小姐短暂的一生中，写下了许多动人的乐章，大部分曲都是积极向上的，带有许多人生的感悟。
-    </Typography>
-  </Container>
+
+
+    <Stack
+      direction="column"
+      spacing={1}
+      sx={{ mt: 3 }}
+    >
+      <Link component={GLink} underline="hover" to="/performance/">
+        <ArrowForwardIosIcon sx={{ fontSize: "0.8em" }} />
+        岡崎律子小姐的音乐年表
+      </Link>
+
+      <Link component={GLink} underline="hover" to="/biography/">
+        <ArrowForwardIosIcon sx={{ fontSize: "0.8em" }} />
+        岡崎律子小姐的详细生平
+      </Link>
+    </Stack>
+
+  </Container >
 }
 
 const IndexPage = (props: Props) => (
