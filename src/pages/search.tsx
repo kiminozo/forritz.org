@@ -40,9 +40,11 @@ export default function SearchView({ data }: Props) {
                     { name: "vocal", weight: 0.15 },
                     { name: "composer", weight: 0.1 },
                     { name: "lyricist", weight: 0.05 },
+                    { name: "arranger", weight: 0.05 },
                 ],
                 threshold: 0.4,
                 ignoreLocation: true,
+                includeMatches: true
             }),
         [songs]
     )
@@ -73,8 +75,9 @@ export default function SearchView({ data }: Props) {
                 />
 
                 <Box sx={{ mt: 3 }}>
-                    {results.map(({ item }) => (
-                        <ListSongItem key={item.slug} song={item} />
+                    {results.map(({ item, matches }) => (
+                        <ListSongItem key={item.slug} song={item} matches={matches}
+                        />
                     ))}
                 </Box>
             </Box>

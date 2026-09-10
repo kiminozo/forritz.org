@@ -1,30 +1,25 @@
-import React, { Component } from "react";
+import React from "react";
 
 import {
-    Link as GLink,
-    navigate,
+    Link as GLink
 } from "gatsby";
 
 import {
-    Layout,
-    SEO,
-    StaffList,
-    StaffTabs
-} from ".";
-import {
     Avatar,
     Box,
-    List,
     ListItemAvatar,
     ListItemButton,
     ListItemText,
-    ListSubheader,
-    Pagination,
     Typography
 } from "@mui/material";
+import {
+    StaffList
+} from ".";
 
 import QueueMusicNoteIcon from '@mui/icons-material/QueueMusic';
-import { StaffInfo, StaffType } from "./StaffList";
+import type { FuseResultMatch } from "fuse.js";
+import HighlightText, { findIndices, IResultMatch } from "./HighlightText";
+import { StaffInfo } from "./StaffList";
 
 interface ListSongInfo extends StaffInfo {
     slug: string
@@ -32,17 +27,27 @@ interface ListSongInfo extends StaffInfo {
     titlech: string
 }
 
+
+interface ListSongItemProps extends IResultMatch {
+    song: ListSongInfo
+}
+
+
+
 const ListSongItem = ({
     song,
-}: {
-    song: ListSongInfo
-}) => (
-    <ListItemButton
+    matches
+}: ListSongItemProps) => {
+    const titleIndices = findIndices("title", matches)
+    const titlechIndices = findIndices("titlech", matches)
+
+    return (< ListItemButton
         component={GLink}
         to={song.slug}
         sx={{
             px: 1,
-        }}
+        }
+        }
     >
         <ListItemAvatar
             sx={{
@@ -79,14 +84,20 @@ const ListSongItem = ({
 
                         }}
                     >
-                        {song.title}
+                        <HighlightText
+                            text={song.title}
+                            indices={titleIndices}
+                        />
                     </Typography>
                     {song.titlech && (
                         <Typography
                             variant="body2"
                             component="div"
                         >
-                            {song.titlech}
+                            <HighlightText
+                                text={song.titlech}
+                                indices={titlechIndices}
+                            />
                         </Typography>
                     )}
                 </Box>
@@ -96,13 +107,15 @@ const ListSongItem = ({
                     <StaffList
                         key={song.slug}
                         staff={song}
+                        matches={matches}
                     />
                 </Box>
             }
         />
-    </ListItemButton>
-)
+    </ListItemButton >
+    )
+}
 
 
-export { ListSongInfo }
+export { ListSongInfo };
 export default ListSongItem

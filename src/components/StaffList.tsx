@@ -6,6 +6,8 @@ import LyricsIcon from '@mui/icons-material/Lyrics';
 import MicIcon from '@mui/icons-material/Mic';
 import PianoIcon from '@mui/icons-material/Piano';
 import TuneIcon from '@mui/icons-material/Tune';
+import { FuseResultMatch } from "fuse.js";
+import HighlightText, { IResultMatch, findIndices } from "./HighlightText";
 
 export type StaffType =
   | "composer"
@@ -47,39 +49,58 @@ const StaffIcon = ({ type }: StaffIconProps) => {
   }
 }
 
+interface StaffLinksProps extends IResultMatch {
+  type: StaffType
+  names: string[]
+}
 
-const StaffLinks = ({ type, names }: { type: StaffType; names: string[] }) => (
+
+const StaffLinks = ({ type, names, matches }: StaffLinksProps) => (
   <Chip
     variant="outlined" size="small"
-    label={<StaffLink type={type} names={names} />}
+    label={<StaffLink type={type} names={names} matches={matches} />}
     avatar={<StaffIcon type={type} />}
   />
 )
 
+interface StaffLinkProps extends IResultMatch {
+  type: string
+  names: string[]
+}
 
-const StaffLink = ({ type, names }: { type: string; names: string[] }) => (
-  <>
-    {names.map((name, i, arr) => {
-      const path = `/${type}/${name}`
-      return (
-        <React.Fragment key={path}>
-          <Link
-            component={GLink}
-            to={path}
-            underline="hover"
-            color="inherit"
-            variant="body2"
-          >
-            {name}
-          </Link>
-          {i !== arr.length - 1 ? " " : null}
-        </React.Fragment>
-      )
-    })}
-  </>
-)
+const StaffLink = ({ type, names, matches }: StaffLinkProps) => {
+  const indices = findIndices(type, matches)
+  return (
+    <>
+      {
 
-const StaffList = ({ staff: { composer, lyricist, vocal, arranger }, flow }: { staff: StaffInfo, flow?: Boolean }) => (
+        names.map((name, i, arr) => {
+          const path = `/${type}/${name}`
+          return (
+            <React.Fragment key={path}>
+              <Link
+                component={GLink}
+                to={path}
+                underline="hover"
+                color="inherit"
+                variant="body2"
+              >
+                <HighlightText text={name} indices={indices} />
+              </Link>
+              {i !== arr.length - 1 ? " " : null}
+            </React.Fragment>
+          )
+        })}
+    </>
+  )
+}
+
+interface StaffListProps extends IResultMatch {
+  staff: StaffInfo,
+  flow?: Boolean,
+}
+
+const StaffList = ({ staff: { composer, lyricist, vocal, arranger }, flow, matches }: StaffListProps) => (
   <Stack
     direction={{ xs: flow ? "row" : "column", sm: "row" }}
     spacing={1}
@@ -91,16 +112,16 @@ const StaffList = ({ staff: { composer, lyricist, vocal, arranger }, flow }: { s
   >
     {composer.length > 0 && (
       //composer
-      <StaffLinks type="composer" names={composer} />
+      <StaffLinks type="composer" names={composer} matches={matches} />
     )}
     {lyricist.length > 0 && (
-      <StaffLinks type="lyricist" names={lyricist} />
+      <StaffLinks type="lyricist" names={lyricist} matches={matches} />
     )}
     {vocal.length > 0 && (
-      <StaffLinks type="vocal" names={vocal} />
+      <StaffLinks type="vocal" names={vocal} matches={matches} />
     )}
     {arranger.length > 0 && (
-      <StaffLinks type="arranger" names={arranger} />
+      <StaffLinks type="arranger" names={arranger} matches={matches} />
     )}
   </Stack>
 )
