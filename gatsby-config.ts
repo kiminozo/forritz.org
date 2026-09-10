@@ -32,13 +32,13 @@ const config: GatsbyConfig = {
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#fc81aa`,
-        display: `minimal-ui`,
+        display: `standalone`,
         icon: `src/assets/favicon.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
