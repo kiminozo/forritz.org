@@ -101,7 +101,8 @@ const CoverImage = ({
       alt=""
       sx={{
         ...commonSx,
-        height: "auto",
+        height: "100%",
+        objectFit: "contain",
       }}
     />
   )
