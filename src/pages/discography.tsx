@@ -3,6 +3,7 @@ import { graphql, PageProps } from "gatsby"
 import React from "react"
 import { Layout, SEO, SideBar } from "../components"
 import DiscographyLayout, { DiscographyInfo } from "../components/DiscographyLayout"
+import SearchSongView from "../components/SearchSongView"
 
 interface Props extends PageProps {
   data: {
@@ -29,6 +30,7 @@ const DiscographyPage = (props: Props) => {
             <Typography variant="h4" sx={{ px: { md: 3 }, pb: 3 }}>
               唱片集
             </Typography>
+            <SearchSongView />
           </Box>
           <Divider sx={{ my: 1, px: 3 }} />
           <DiscographyLayout records={records} />
