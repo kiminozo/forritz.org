@@ -141,7 +141,7 @@ const RecordListTemplate = (props: TemplateProps) => {
                         width: 160,
                       }}
                     >
-                      <AlbumCard coverImage={coverImage} slug={slug} title={title} />
+                      <AlbumCard coverImage={coverImage} slug={slug} title={title} scales="inside" />
                     </Box>
 
                     {/* Record Content */}
