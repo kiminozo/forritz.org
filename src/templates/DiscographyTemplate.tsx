@@ -50,7 +50,7 @@ const DiscographyTemplate = (props: TemplateProps) => {
       <Grid container spacing={4}>
         {/* Main Content */}
         <Grid size={{ xs: 12, md: 8 }}>
-          <Typography variant="h1" component="h1">
+          <Typography variant="h4" component="h4" sx={{ px: 2 }}>
             {title}
           </Typography>
 
@@ -64,7 +64,7 @@ const DiscographyTemplate = (props: TemplateProps) => {
           <SideBar />
         </Grid>
       </Grid>
-    </Layout>
+    </Layout >
   )
 }
 
