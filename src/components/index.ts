@@ -6,7 +6,9 @@ import SEO from "./SEO"
 import CoverImage from './CoverImage'
 import StaffList from "./StaffList"
 import StaffTabs from "./StaffTab"
+import ListSongItem from "./ListSongItem";
+
 export {
-    Layout, TagsLine, CC, SEO, CoverImage, SideBar, StaffList, StaffTabs
+    Layout, TagsLine, CC, SEO, CoverImage, SideBar, StaffList, StaffTabs, ListSongItem
 }
 

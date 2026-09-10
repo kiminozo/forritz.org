@@ -1,26 +1,22 @@
 import { useStaticQuery, graphql } from "gatsby"
 import kebabCase from "lodash/kebabCase";
+import { ListSongInfo } from "../components/ListSongItem";
 
-interface SongData {
-    title: string
-    titlech?: string
-    slug: string
-}
 
 interface SongSource {
     songs: {
         nodes: {
-            frontmatter: SongData
+            frontmatter: ListSongInfo
         }[]
     }
 }
 
 
-export const getSongSlug = (name: string) => useMetaData()
+export const getSongSlug = (name: string) => useSongData()
     .filter(p => p.title === name || p.titlech === name)
     .map(p => p.slug)[0]
 
-export const useMetaData = (): SongData[] => {
+export const useSongData = (): ListSongInfo[] => {
     const data = useStaticQuery<SongSource>(graphql`
       {
         songs: allMarkdownRemark(filter: {frontmatter: {type: {eq: "song"}}}) {
@@ -29,7 +25,11 @@ export const useMetaData = (): SongData[] => {
                 id
                 title
                 titlech
-                slug
+                vocal
+                composer
+                lyricist
+                 arranger
+                 slug
             }
         }
     }
