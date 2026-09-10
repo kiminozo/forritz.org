@@ -9,7 +9,8 @@ import {
   Layout,
   SEO,
   StaffList,
-  StaffTabs
+  StaffTabs,
+  ListSongItem
 } from "../../components";
 
 
@@ -26,8 +27,9 @@ import {
 } from "@mui/material";
 
 import QueueMusicNoteIcon from '@mui/icons-material/QueueMusic';
-import { StaffInfo, StaffType } from "../../components/StaffList";
+import { StaffType } from "../../components/StaffList";
 import { StaffWorks } from "../../components/StaffTab";
+import { ListSongInfo } from "../../components/ListSongItem";
 
 interface ArtistCount {
   totalCount: number;
@@ -49,10 +51,7 @@ export interface TemplateProps {
       totalCount: number
 
       nodes: {
-        song: StaffInfo & {
-          slug: string
-          title: string
-        }
+        song: ListSongInfo
       }[]
     }
   }
@@ -70,6 +69,7 @@ function getPath(
 
   return path
 }
+
 
 export const Head = (
   props: TemplateProps
@@ -116,54 +116,10 @@ export class StaffTemplatePage extends Component<TemplateProps> {
           }
         >
           {nodes.map(({ song }) => (
-            <ListItemButton
+            <ListSongItem
               key={song.slug}
-              component={GLink}
-              to={song.slug}
-              sx={{
-                px: 1,
-              }}
-            >
-              <ListItemAvatar
-                sx={{
-                  minWidth: 40,
-                  pt: 0.5,
-                  pr: 2,
-                }}
-              >
-                <Avatar>
-                  <QueueMusicNoteIcon />
-                </Avatar>
-              </ListItemAvatar>
-
-              <ListItemText
-                primary={
-                  <Typography
-                    component={GLink}
-                    to={song.slug}
-                    variant="h3"
-                    sx={{
-                      fontSize: "1.2rem",
-                      fontWeight: 500,
-                      textDecoration:
-                        "none",
-                      color: "text.primary",
-
-                    }}
-                  >
-                    {song.title}
-                  </Typography>
-                }
-                secondary={
-                  <Box sx={{ mt: 1 }}>
-                    <StaffList
-                      key={song.slug}
-                      staff={song}
-                    />
-                  </Box>
-                }
-              />
-            </ListItemButton>
+              song={song}
+            />
           ))}
         </List>
 

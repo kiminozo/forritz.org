@@ -42,6 +42,9 @@ const menusConfig: MenuConfig[] =
         name: "唱片集",
         active: ["songs", "composer", "lyricist", "vocal", "arranger"],
         link: "/discography"
+    }, {
+        name: "搜索",
+        link: "/search"
     }];
 
 export { MenuConfig, menusConfig }
