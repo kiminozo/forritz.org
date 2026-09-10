@@ -9,23 +9,13 @@ interface LayoutProps {
   children: ReactNode
 }
 
-const LayoutQuery = graphql`
-  query IndexPageQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`
 
 const Layout = ({ children, path }: LayoutProps) => {
-  const data = useStaticQuery(LayoutQuery)
 
   return (
     <Box>
       {/* Header */}
-      <Header siteTitle={data.site.siteMetadata.title} pathName={path ?? ""} />
+      <Header pathName={path ?? ""} />
 
       {/* Main content */}
       <Container component="main" sx={{ my: 4 }}>

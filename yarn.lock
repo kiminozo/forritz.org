@@ -3390,6 +3390,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/nprogress@npm:^0.2.3":
+  version: 0.2.3
+  resolution: "@types/nprogress@npm:0.2.3"
+  checksum: 10c0/cac0fe73aca79bc1472a1556f56303df72026f2fcd8dbe311fe84b1f46e454b9040c1e69223d94e3bf156a5986382170c52ebda19aa70f555f1b6855d8f744a6
+  languageName: node
+  linkType: hard
+
 "@types/parse-json@npm:^4.0.0":
   version: 4.0.2
   resolution: "@types/parse-json@npm:4.0.2"
@@ -7924,6 +7931,7 @@ __metadata:
     "@types/graphql": "npm:^14.5.0"
     "@types/lodash": "npm:^4.17.25"
     "@types/node": "npm:^26.4.0"
+    "@types/nprogress": "npm:^0.2.3"
     "@types/react": "npm:^19.2.18"
     "@types/react-dom": "npm:^19.2.5"
     gatsby: "npm:^5.16.1"
@@ -7940,6 +7948,7 @@ __metadata:
     gatsby-transformer-remark: "npm:^6.16.0"
     gatsby-transformer-sharp: "npm:^5.16.0"
     lodash: "npm:^4.18.1"
+    nprogress: "npm:^0.2.0"
     react: "npm:19.2.8"
     react-dom: "npm:19.2.8"
     typescript: "npm:^7.0.2"
@@ -12398,6 +12407,13 @@ __metadata:
   dependencies:
     path-key: "npm:^4.0.0"
   checksum: 10c0/124df74820c40c2eb9a8612a254ea1d557ddfab1581c3e751f825e3e366d9f00b0d76a3c94ecd8398e7f3eee193018622677e95816e8491f0797b21e30b2deba
+  languageName: node
+  linkType: hard
+
+"nprogress@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "nprogress@npm:0.2.0"
+  checksum: 10c0/eab9a923a1ad1eed71a455ecfbc358442dd9bcd71b9fa3fa1c67eddf5159360b182c218f76fca320c97541a1b45e19ced04e6dcb044a662244c5419f8ae9e821
   languageName: node
   linkType: hard
 
