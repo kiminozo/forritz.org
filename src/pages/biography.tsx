@@ -413,8 +413,8 @@ function TimelineStep({
             {/* Content */}
             <Box sx={{ pb: 4 }}>
                 <Typography
-                    variant="h4"
-                    component="h4"
+                    variant="h6"
+                    component="h6"
                     sx={{
                         lineHeight: 1.4,
                         fontWeight: item.important ? 700 : 500,
