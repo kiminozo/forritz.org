@@ -7,8 +7,9 @@ import { useCoverImagesData } from "../hooks/useCoverImagesData"
 import demo from "../images/demo.png"
 
 import { Box } from "@mui/material"
+import { defaultFieldResolver } from "graphql"
 
-type ScalesType = "origin" | "crop" | "inside"
+type ScalesType = "origin" | "crop" | "inside" | "avatar"
 
 interface Props {
   coverimage: string
@@ -42,9 +43,23 @@ const CoverImage = ({
   // }
 
   if (imageInfo) {
-    const image = getImage(
-      scales == "crop" ? imageInfo.square : imageInfo.image
-    )
+    let imageSrc
+
+    switch (scales) {
+      case "crop":
+        imageSrc = imageInfo.square
+        break
+
+      case "avatar":
+        imageSrc = imageInfo.small
+        break
+
+      default:
+        imageSrc = imageInfo.image
+        break
+    }
+
+    const image = getImage(imageSrc)
     if (!image) {
       return <Box
         component="img"

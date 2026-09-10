@@ -28,8 +28,9 @@ export const useSongData = (): ListSongInfo[] => {
                 vocal
                 composer
                 lyricist
-                 arranger
-                 slug
+                arranger
+                slug
+                discographyId
             }
         }
     }
