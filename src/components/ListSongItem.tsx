@@ -13,6 +13,7 @@ import {
     Typography
 } from "@mui/material";
 import {
+    CoverImage,
     StaffList
 } from ".";
 
@@ -20,11 +21,13 @@ import QueueMusicNoteIcon from '@mui/icons-material/QueueMusic';
 import type { FuseResultMatch } from "fuse.js";
 import HighlightText, { findIndices, IResultMatch } from "./HighlightText";
 import { StaffInfo } from "./StaffList";
+import { useRecordsData } from "../hooks/useRecordsData";
 
 interface ListSongInfo extends StaffInfo {
     slug: string
     title: string
     titlech: string
+    discographyId?: string[]
 }
 
 
@@ -32,7 +35,35 @@ interface ListSongItemProps extends IResultMatch {
     song: ListSongInfo
 }
 
+const SongIcon = ({ discographyId }: { discographyId?: string[] }) => {
+    const records = useRecordsData()
 
+    const record = (discographyId && discographyId.length > 0) ? records.filter(p => discographyId.includes(p.id))?.[0] : null
+
+
+    if (!record) {
+        return (
+            <ListItemAvatar>
+                <Avatar>
+                    <QueueMusicNoteIcon />
+                </Avatar>
+            </ListItemAvatar>
+        )
+    }
+
+    return (
+        <ListItemAvatar>
+            <Avatar variant="rounded">
+                <CoverImage
+                    coverimage={record.coverImage}
+                    scales="avatar"
+                />
+            </Avatar>
+        </ListItemAvatar>
+    )
+
+
+}
 
 const ListSongItem = ({
     song,
@@ -49,18 +80,7 @@ const ListSongItem = ({
         }
         }
     >
-        <ListItemAvatar
-            sx={{
-                minWidth: 40,
-                pt: 0.5,
-                pr: 2,
-            }}
-        >
-            <Avatar>
-                <QueueMusicNoteIcon />
-            </Avatar>
-        </ListItemAvatar>
-
+        <SongIcon discographyId={song.discographyId} />
         <ListItemText
             primary={
                 <Box

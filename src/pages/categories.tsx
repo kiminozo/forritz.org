@@ -1,4 +1,4 @@
-import { Chip, List, ListItemButton, ListItemText, Stack } from "@mui/material"
+import { Chip, List, ListItemButton, ListItemText, Stack, Typography } from "@mui/material"
 import { Link as GatsbyLink, graphql } from "gatsby"
 import React from "react"
 import { Layout, SEO } from "../components"
@@ -36,28 +36,26 @@ const CategoriesPage = (props: CategoriesPageProp) => {
 
   return (
     <Layout>
-      <div>
-        <h1>Categories</h1>
-        <List>
-          <Stack spacing={1}>
-            {group.map(category => (
-              <ListItemButton
-                key={category.fieldValue}
-                component={GatsbyLink}
-                to={`/category/${getMetaId(category.fieldValue)}/`}
-              >
-                <ListItemText primary={category.fieldValue} />
-                <Chip
-                  label={category.totalCount}
-                  size="small"
-                  color="primary"
-                  variant="outlined"
-                />
-              </ListItemButton>
-            ))}
-          </Stack>
-        </List>
-      </div>
+      <Typography component="h4" variant="h4">Categories</Typography>
+      <List>
+        <Stack spacing={1}>
+          {group.map(category => (
+            <ListItemButton
+              key={category.fieldValue}
+              component={GatsbyLink}
+              to={`/category/${getMetaId(category.fieldValue)}/`}
+            >
+              <ListItemText primary={category.fieldValue} />
+              <Chip
+                label={category.totalCount}
+                size="small"
+                color="primary"
+                variant="outlined"
+              />
+            </ListItemButton>
+          ))}
+        </Stack>
+      </List>
     </Layout>
   )
 }

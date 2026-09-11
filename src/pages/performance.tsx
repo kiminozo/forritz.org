@@ -642,7 +642,18 @@ const PerformanceTimeline = ({
 
     return (
         <Box>
+            <Typography variant="h4" sx={{ pb: 1 }}>
+                音乐年表
+            </Typography>
 
+            <Typography
+                variant="body1"
+                color="text.secondary"
+                sx={{ mb: 1 }}
+            >
+                岡崎律子的参加创作的音乐年历。
+            </Typography>
+            <Divider sx={{ my: 1, px: 3, pb: 1 }} />
             {/* <YearNavigation
                 years={years.map((item) => item.year)}
             /> */}

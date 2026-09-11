@@ -6,7 +6,7 @@ import {
     Step,
     StepContent,
     StepLabel,
-    Stepper,
+    Divider,
     Typography,
     Grid
 } from '@mui/material';
@@ -414,7 +414,7 @@ function TimelineStep({
             <Box sx={{ pb: 4 }}>
                 <Typography
                     variant="h6"
-                    component="h2"
+                    component="h6"
                     sx={{
                         lineHeight: 1.4,
                         fontWeight: item.important ? 700 : 500,
@@ -439,20 +439,20 @@ const Biography = () =>
             maxWidth: 900,
             mx: 'auto',
             px: { xs: 2, md: 0 },
-            py: 4,
         }}
     >
-        <Typography variant="h4" component="h1" gutterBottom>
+        <Typography variant="h4" sx={{ pb: 1 }}>
             详细生平
         </Typography>
 
         <Typography
             variant="body1"
             color="text.secondary"
-            sx={{ mb: 5 }}
+            sx={{ mb: 1 }}
         >
             岡崎律子的生平与音乐创作历程。
         </Typography>
+        <Divider sx={{ my: 1, px: 3 }} />
 
         <Box>
             {biography.map((item, index) => (
@@ -468,7 +468,7 @@ const Biography = () =>
 
 const BiographyPage = (props: PageProps) =>
     <Layout path={props.location.pathname}>
-        <Grid container spacing={2}>
+        <Grid container >
             {/* 主内容 */}
             <Grid size={{ xs: 12, md: 10 }} >
                 <Biography />

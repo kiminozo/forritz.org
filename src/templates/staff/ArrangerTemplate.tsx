@@ -23,6 +23,7 @@ export const pageQuery = graphql`query ($staff: String, $skip: Int!, $limit: Int
         composer: composer
         lyricist: lyricist
         arranger
+        discographyId
       }
     }
   }

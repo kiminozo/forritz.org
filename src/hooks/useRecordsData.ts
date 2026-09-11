@@ -19,7 +19,7 @@ interface Data {
 }
 
 export const getRecordSlug = (name: string) => useRecordsData()
-    .filter(p => p.title === name)
+    .filter(p => p.title === name || p.slug === `/discography/${name}`)
     .map(p => p.slug)[0]
 
 export const useRecordsData = (): RecordsInfo[] => {

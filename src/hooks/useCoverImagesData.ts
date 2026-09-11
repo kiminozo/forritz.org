@@ -9,6 +9,7 @@ interface CoverImageInfo {
   base: string
   image: ImageDataLike
   square: ImageDataLike
+  small: ImageDataLike
 }
 
 interface Data {
@@ -44,6 +45,16 @@ export const query = graphql`
           gatsbyImageData(
             width: 300
             height: 300
+            transformOptions: { cropFocus: CENTER }
+            layout: CONSTRAINED
+            placeholder: BLURRED
+          )
+        }
+
+        small: childImageSharp { 
+          gatsbyImageData(
+            width: 100
+            height: 100
             transformOptions: { cropFocus: CENTER }
             layout: CONSTRAINED
             placeholder: BLURRED

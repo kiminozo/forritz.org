@@ -111,8 +111,8 @@ const Record = ({
     <Divider />
     <CardContent>
       <Typography
-        variant="h2"
-        component="h2"
+        variant="h4"
+        component="h4"
         sx={{
           fontSize: "1.5rem",
           fontWeight: 500,
