@@ -13,7 +13,7 @@ interface SongSource {
 
 
 export const getSongSlug = (name: string) => useSongData()
-    .filter(p => p.title === name || p.titlech === name)
+    .filter(p => p.title === name || p.titlech === name || p.slug === `/songs/${name}`)
     .map(p => p.slug)[0]
 
 export const useSongData = (): ListSongInfo[] => {
